@@ -21,7 +21,7 @@ class MasqueradeWidget extends Component {
     this.courseId = props.courseId;
     this.state = {
       autoFocus: false,
-      masquerade: 'Staff',
+      masquerade: 'Instructor',
       options: [],
       shouldShowUserNameInput: false,
       masqueradeUsername: null,

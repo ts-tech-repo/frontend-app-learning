@@ -80,7 +80,7 @@ const InstructorToolbar = (props) => {
           )}
           {urlStudio && (
             <span className="mx-1 my-1">
-              <a className="btn btn-inverse-outline-primary" href={urlStudio}>Studio</a>
+              <a className="btn btn-inverse-outline-primary" href={urlStudio}>View Instructor</a>
             </span>
           )}
           {urlInsights && (
