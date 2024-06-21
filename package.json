@@ -34,7 +34,7 @@
     "@edx/frontend-component-header": "git+https://github.com/ts-tech-repo/frontend-component-header.git#quince/indigo",
     "@edx/frontend-lib-learning-assistant": "^1.14.0",
     "@edx/frontend-lib-special-exams": "2.23.2",
-    "@edx/frontend-platform": "5.5.2",
+    "@edx/frontend-platform": "^7.1.2",
     "@edx/paragon": "20.46.0",
     "@edx/react-unit-test-utils": "npm:@edx/react-unit-test-utils@1.7.0",
     "@fortawesome/fontawesome-svg-core": "1.3.0",
