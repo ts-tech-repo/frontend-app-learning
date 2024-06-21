@@ -13,6 +13,12 @@ import InstructorToolbar from '../instructor-toolbar';
 import useEnrollmentAlert from '../alerts/enrollment-alert';
 import useLogistrationAlert from '../alerts/logistration-alert';
 
+import { IconButton, Icon } from '@edx/paragon';
+import { useLearnerDashboardHeaderData, useIsCollapsed } from '../hooks';
+const isCollapsed = useIsCollapsed();
+const { isOpen, toggleIsOpen } = useLearnerDashboardHeaderData();
+import BrandLogo from './BrandLogo';
+
 import ProductTours from '../product-tours/ProductTours';
 
 const LoadedTabPage = ({
@@ -43,7 +49,28 @@ const LoadedTabPage = ({
   const [isStreakCelebrationOpen,, closeStreakCelebration] = useToggle(streakLengthToCelebrate);
 
   return (
-    <>
+    isCollapsed && (
+      <>
+        <header className="d-flex shadow-sm align-items-center learner-variant-header">
+          <IconButton
+            invertColors
+            isActive
+            src={isOpen ? Close : MenuIcon}
+            iconAs={Icon}
+            alt={
+              isOpen
+                ? formatMessage(messages.collapseMenuOpenAltText)
+                : formatMessage(messages.collapseMenuClosedAltText)
+            }
+            onClick={toggleIsOpen}
+            variant="primary"
+            className="p-4"
+          />
+          <BrandLogo />
+        </header>
+        <CollapseMenuBody isOpen={isOpen} />
+     
+    
       <ProductTours
         activeTab={activeTabSlug}
         courseId={courseId}
@@ -84,6 +111,7 @@ const LoadedTabPage = ({
         </div>
       </main>
     </>
+      )
   );
 };
 
