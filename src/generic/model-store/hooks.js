@@ -1,9 +1,5 @@
 import { useSelector, shallowEqual } from 'react-redux';
-import { StrictDict } from 'utils';
 
-export const state = StrictDict({
-  isOpen: (val) => React.useState(val), // eslint-disable-line
-});
 /*
   Return the selected model with the given id, or an empty object if the model does not exist "{}".
  */
@@ -22,20 +18,3 @@ export function useModels(type, ids) {
     shallowEqual,
   );
 }
-export const useActivateRecommendationsExperiment = () => {
-  const enterpriseDashboardData = reduxHooks.useEnterpriseDashboardData();
-}
-
-export const useLearnerDashboardHeaderData = () => {
-  const [isOpen, setIsOpen] = module.state.isOpen(false);
-  const toggleIsOpen = () => setIsOpen(!isOpen);
-
-  return {
-    isOpen,
-    toggleIsOpen,
-  };
-};
-
-export default {
-  useLearnerDashboardHeaderData, useActivateRecommendationsExperiment
-};
