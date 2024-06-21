@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@edx/brand": "npm:@openedx/brand-openedx@^1.2.2",
-    "@edx/frontend-component-header": "git+https://github.com/ts-tech-repo/frontend-component-footer.git#quince/indigo",
+    "@edx/frontend-component-header": "git+https://github.com/ts-tech-repo/frontend-component-header.git#quince/indigo",
     "@edx/frontend-lib-learning-assistant": "^2.0.0",
     "@edx/frontend-lib-special-exams": "^3.0.1",
     "@edx/frontend-platform": "^7.1.2",
