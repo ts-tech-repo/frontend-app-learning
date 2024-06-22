@@ -58,11 +58,13 @@ class MasqueradeWidget extends Component {
   }
 
   onSuccess(data) {
-    const options = this.parseAvailableOptions(data);
+    const options = this.parseAvailableOptions(data).map(option => 
+        option === 'Staff' ? 'Instructor' : option
+    );
     this.setState({
       options,
     });
-  }
+}
 
   clearError() {
     this.props.onError('');
