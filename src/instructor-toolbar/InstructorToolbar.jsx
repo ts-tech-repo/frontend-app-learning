@@ -75,12 +75,12 @@ const InstructorToolbar = (props) => {
           {(urlStudio || urlInsights) && (
             <>
               <hr className="border-light" />
-              <span className="mr-2 mt-1 col-form-label">View course in:</span>
+              <span className="mr-2 mt-1 col-form-label"></span>
             </>
           )}
           {urlStudio && (
             <span className="mx-1 my-1">
-              <a className="btn btn-inverse-outline-primary" href={urlStudio}>View Instructor</a>
+              <a className="btn btn-inverse-outline-primary" href={urlStudio}>Edit Course</a>
             </span>
           )}
           {urlInsights && (
