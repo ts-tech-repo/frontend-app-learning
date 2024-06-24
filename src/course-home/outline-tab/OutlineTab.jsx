@@ -194,6 +194,7 @@ const OutlineTab = ({ intl }) => {
               />
             )}
             <CourseTools />
+            <CourseHandouts />
             <UpgradeNotification
               offer={offer}
               verifiedMode={verifiedMode}
@@ -208,7 +209,6 @@ const OutlineTab = ({ intl }) => {
               org={org}
             />
             <CourseDates />
-            <CourseHandouts />
           </div>
         )}
       </div>
