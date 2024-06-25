@@ -17,6 +17,21 @@ const LmsHtmlFragment = ({
         <link rel="stylesheet" href="/static/${getConfig().LEGACY_THEME_NAME ? `${getConfig().LEGACY_THEME_NAME}/` : ''}css/bootstrap/lms-main.css">
         <link rel="stylesheet" type="text/css" href="${getConfig().BASE_URL}/static/LmsHtmlFragment.css">
       </head>
+      <style>
+          body.small a {  
+            color: #15376d;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            text-decoration: underline;
+            display: inline-block;
+            padding-top: 10px;
+            margin-left: 5px;
+          }
+            iframe{
+              height:auto;
+            }
+        </style>
       <body class="${className}">${html}</body>
       <script>
         const resizer = new ResizeObserver(() => {
