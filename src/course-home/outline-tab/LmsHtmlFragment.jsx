@@ -21,7 +21,7 @@ const LmsHtmlFragment = ({
           body.small a {  
             color: #15376d;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             line-height: 20px;
             text-decoration: underline;
             display: inline-block;
