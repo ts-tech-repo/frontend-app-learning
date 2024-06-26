@@ -11,9 +11,6 @@ const UnitIcon = ({ type }) => {
     case 'video':
       icon = faVideo;
       break;
-    case 'encryptplayer':
-      icon = faVideo;
-      break;
     case 'other':
       icon = faBook;
       break;
