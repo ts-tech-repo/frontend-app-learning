@@ -41,24 +41,25 @@ const StartOrResumeCourseCard = ({ intl }) => {
   };
 
   return (
-    <Card className="mb-3 raised-card" data-testid="start-resume-card">
-      <Card.Header
-        title={hasVisitedCourse ? intl.formatMessage(messages.resumeBlurb) : intl.formatMessage(messages.startBlurb)}
-        actions={(
-          <Button
-            variant="brand"
-            block
-            href={resumeCourseUrl}
-            onClick={() => logResumeCourseClick()}
-          >
-            {hasVisitedCourse ? intl.formatMessage(messages.resume) : intl.formatMessage(messages.start)}
-          </Button>
-        )}
-      />
-      {/* Footer is needed for internal vertical spacing to work out. If you can remove, be my guest */}
-      {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-      <Card.Footer><></></Card.Footer>
-    </Card>
+    <></>
+    // <Card className="mb-3 raised-card" data-testid="start-resume-card">
+    //   <Card.Header
+    //     title={hasVisitedCourse ? intl.formatMessage(messages.resumeBlurb) : intl.formatMessage(messages.startBlurb)}
+    //     actions={(
+    //       <Button
+    //         variant="brand"
+    //         block
+    //         href={resumeCourseUrl}
+    //         onClick={() => logResumeCourseClick()}
+    //       >
+    //         {hasVisitedCourse ? intl.formatMessage(messages.resume) : intl.formatMessage(messages.start)}
+    //       </Button>
+    //     )}
+    //   />
+    //   <Card.Footer><></></Card.Footer>
+    // </Card>
+    //   {/* Footer is needed for internal vertical spacing to work out. If you can remove, be my guest */}
+    //   {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
   );
 };
 

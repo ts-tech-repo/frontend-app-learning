@@ -126,9 +126,9 @@ const OutlineTab = ({ intl }) => {
   return (
     <>
       <div data-learner-type={learnerType} className="row w-100 mx-0 my-3 justify-content-between">
-        <div className="col-12 col-sm-auto p-0">
+        {/* <div className="col-12 col-sm-auto p-0">
           <div role="heading" aria-level="1" className="h2">{title}</div>
-        </div>
+        </div> */}
       </div>
       <div className="row course-outline-tab">
         <AccountActivationAlert />
