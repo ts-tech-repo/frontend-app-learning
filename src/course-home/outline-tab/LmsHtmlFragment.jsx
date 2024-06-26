@@ -27,7 +27,7 @@ const LmsHtmlFragment = ({
             text-decoration: underline;
             display: inline-block;
             padding-top: 10px;
-            margin-left: 3px;
+            margin-left: 5px;
             font-family: "Inter", Open Sans !important;
           }
             iframe{
