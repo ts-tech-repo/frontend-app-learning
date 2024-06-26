@@ -16,6 +16,7 @@ const LmsHtmlFragment = ({
         <base href="${getConfig().LMS_BASE_URL}" target="_parent">
         <link rel="stylesheet" href="/static/${getConfig().LEGACY_THEME_NAME ? `${getConfig().LEGACY_THEME_NAME}/` : ''}css/bootstrap/lms-main.css">
         <link rel="stylesheet" type="text/css" href="${getConfig().BASE_URL}/static/LmsHtmlFragment.css">
+        <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
       </head>
       <style>
           body.small a {  
@@ -26,7 +27,8 @@ const LmsHtmlFragment = ({
             text-decoration: underline;
             display: inline-block;
             padding-top: 10px;
-            margin-left: 5px;
+            margin-left: 3px;
+            font-family: "Inter", Open Sans !important;
           }
             iframe{
               height:auto;
