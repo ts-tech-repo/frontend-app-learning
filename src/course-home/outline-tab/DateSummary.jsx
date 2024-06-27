@@ -60,9 +60,9 @@ const DateSummary = ({
             <div className="font-weight-bold mt-2">{dateBlock.title}</div>
           )}
         </div>
-        {dateBlock.description && (
+        {/* {dateBlock.description && (
           <div className="date-summary-text mt-1">{dateBlock.description}</div>
-        )}
+        )} */}
         {!linkedTitle && dateBlock.link && (
           <a
             href={dateBlock.link}
