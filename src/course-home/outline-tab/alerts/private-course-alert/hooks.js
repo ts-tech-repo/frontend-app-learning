@@ -20,7 +20,8 @@ export function usePrivateCourseAlert(courseId) {
   const isVisible = !enrolledUser && (privateOutline || authenticatedUser !== null);
   const payload = useMemo(() => ({
     anonymousUser: authenticatedUser === null,
-    canEnroll: outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false,
+    // canEnroll: outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false,
+    canEnroll: false,
     courseId,
   }), [authenticatedUser, courseId, outline]);
 
