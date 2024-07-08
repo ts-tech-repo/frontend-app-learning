@@ -57,7 +57,7 @@ const Day = ({
             year="numeric"
             {...timezoneFormatArgs}
           />
-          {badges}
+          {/* {badges} */}
         </div>
         {items.map((item) => {
           const { badges: itemBadges } = getBadgeListAndColor(date, intl, item, items);
