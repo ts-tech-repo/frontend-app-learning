@@ -71,7 +71,6 @@ const Day = ({
             <div key={item.title + item.date} className={classNames(textColor, 'small pb-1')} data-testid="dates-item">
               <div>
                 <span className="small">
-                <span className="small">item.date</span>
                   <span className="font-weight-bold">{item.assignmentType && `${item.assignmentType}: `}{title}</span>
                   {showDueDateTime && (
                     <span>
