@@ -84,8 +84,8 @@ const Day = ({
                     </span>
                   )}
                 </span>
-                {/* {itemBadges} */}
-                {/* {item.extraInfo && (
+                {itemBadges}
+                {item.extraInfo && (
                   <OverlayTrigger
                     placement="bottom"
                     overlay={
@@ -94,7 +94,7 @@ const Day = ({
                   >
                     <FontAwesomeIcon icon={faInfoCircle} className="fa-xs ml-1 text-gray-700" data-testid="dates-extra-info" />
                   </OverlayTrigger>
-                )} */}
+                )}
               </div>
               {item.description && <div className="small mb-2">{item.description}</div>}
             </div>
