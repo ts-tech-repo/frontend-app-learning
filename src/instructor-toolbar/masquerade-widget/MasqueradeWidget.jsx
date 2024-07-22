@@ -36,14 +36,14 @@ class MasqueradeWidget extends Component {
         // This was explicitly denied by the backend;
         // assume it's disabled/unavailable.
         // eslint-disable-next-line no-console
-        this.onError('Unable to get masquerade options');
+        window.location.href = 'https://ipearl.emasters.iitk.ac.in/authn/login';
       }
     }).catch((response) => {
       // There's not much we can do to recover;
       // if we can't fetch masquerade options,
       // assume it's disabled/unavailable.
       // eslint-disable-next-line no-console
-      console.error('Unable to get masquerade options', response);
+      window.location.href = 'https://ipearl.emasters.iitk.ac.in/authn/login';
     });
   }
 
