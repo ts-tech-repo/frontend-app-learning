@@ -8,7 +8,7 @@ const messages = defineMessages({
   },
   loadFailure: {
     id: 'learn.course.load.failure',
-    defaultMessage: 'There was an error loading this course.',
+    defaultMessage: `An unexpected error occurred, please click the button below to refresh the page.<br><br><button class="refresh-button" onclick="location.reload()">Refresh Page</button><br><br>If you experience repeated failures, please email support at <a href="mailto:emasters.support@ipearl.ai">emasters.support@ipearl.ai</a>.`,
     description: 'Message when a course fails to load',
   },
   loadingHonorCode: {
