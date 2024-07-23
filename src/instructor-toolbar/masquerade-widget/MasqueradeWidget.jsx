@@ -36,14 +36,14 @@ class MasqueradeWidget extends Component {
         // This was explicitly denied by the backend;
         // assume it's disabled/unavailable.
         // eslint-disable-next-line no-console
-        window.location.href = 'https://ipearl.emasters.iitk.ac.in/authn/login';
+        window.location.href = '/authn/login';
       }
     }).catch((response) => {
       // There's not much we can do to recover;
       // if we can't fetch masquerade options,
       // assume it's disabled/unavailable.
       // eslint-disable-next-line no-console
-      window.location.href = 'https://ipearl.emasters.iitk.ac.in/authn/login';
+      window.location.href = '/authn/login';
     });
   }
 
