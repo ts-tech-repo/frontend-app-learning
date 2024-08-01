@@ -35,7 +35,7 @@ function getStudioUrl(courseId, unitId) {
       nextParam = encodeURIComponent(`/course/${courseId}`);
     }
   }
-  return urlFull + "&next=" + nextParam;
+  return urlBase + "&next=" + nextParam;
 }
 
 const InstructorToolbar = (props) => {
