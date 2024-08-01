@@ -8,6 +8,7 @@ import MasqueradeWidget from './masquerade-widget';
 import { useAccessExpirationMasqueradeBanner } from '../alerts/access-expiration-alert';
 import { useCourseStartMasqueradeBanner } from '../alerts/course-start-alert';
 
+
 function getInsightsUrl(courseId) {
   const urlBase = getConfig().INSIGHTS_BASE_URL;
   let urlFull;
@@ -26,14 +27,15 @@ function getInsightsUrl(courseId) {
 function getStudioUrl(courseId, unitId) {
   const urlBase = getConfig().STUDIO_BASE_URL + "/login?from=" + getConfig().BASE_URL;
   let urlFull;
+  let nextParam;
   if (urlBase) {
     if (unitId) {
-      urlFull = `${urlBase}&next=/container/${unitId}`;
+      nextParam = encodeURIComponent(`/container/${unitId}`)
     } else if (courseId) {
-      urlFull = `${urlBase}&next=/course/${courseId}`;
+      nextParam = encodeURIComponent(`/course/${courseId}`);
     }
   }
-  return urlFull;
+  return urlFull + "&next=" + nextParam;
 }
 
 const InstructorToolbar = (props) => {
