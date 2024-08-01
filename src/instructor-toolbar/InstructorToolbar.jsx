@@ -24,13 +24,13 @@ function getInsightsUrl(courseId) {
 }
 
 function getStudioUrl(courseId, unitId) {
-  const urlBase = getConfig().STUDIO_BASE_URL;
+  const urlBase = getConfig().STUDIO_BASE_URL + "/login?from=" + getConfig().BASE_URL;
   let urlFull;
   if (urlBase) {
     if (unitId) {
-      urlFull = `${urlBase}/container/${unitId}`;
+      urlFull = `${urlBase}&next=/container/${unitId}`;
     } else if (courseId) {
-      urlFull = `${urlBase}/course/${courseId}`;
+      urlFull = `${urlBase}&next=/course/${courseId}`;
     }
   }
   return urlFull;
