@@ -104,7 +104,7 @@ const Course = ({
           </>
         )}
       </div>
-
+        <div>test1</div>
       <Sequence
         unitId={unitId}
         sequenceId={sequenceId}
@@ -113,7 +113,7 @@ const Course = ({
         nextSequenceHandler={nextSequenceHandler}
         previousSequenceHandler={previousSequenceHandler}
       />
-      <AlertList topic="sequence" />
+      <div>test2</div>
       <CelebrationModal
         courseId={courseId}
         isOpen={firstSectionCelebrationOpen}
@@ -126,6 +126,7 @@ const Course = ({
         onClose={() => setWeeklyGoalCelebrationOpen(false)}
       />
       <ContentTools course={course} />
+      <AlertList topic="sequence" />
     </SidebarProvider>
   );
 };
