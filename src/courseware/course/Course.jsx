@@ -105,7 +105,6 @@ const Course = ({
         )}
       </div>
 
-      <AlertList topic="sequence" />
       <Sequence
         unitId={unitId}
         sequenceId={sequenceId}
@@ -114,6 +113,7 @@ const Course = ({
         nextSequenceHandler={nextSequenceHandler}
         previousSequenceHandler={previousSequenceHandler}
       />
+      <AlertList topic="sequence" />
       <CelebrationModal
         courseId={courseId}
         isOpen={firstSectionCelebrationOpen}
