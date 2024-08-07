@@ -60,11 +60,10 @@ const ContentIFrame = ({
       const iframeElement = document.getElementById(elementId);
       if (iframeElement && iframeElement.contentDocument) {
         const problemHeaderExists = iframeElement.contentDocument.querySelector('.problem-header');
-        if (problemHeaderExists) {
+        const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
+        if (problemHeaderExists && !hasQuizTagClass) {
           setIframeClass('quiz-tag');
-        } else {
-          setIframeClass('');
-        }
+        } 
       }
     }
   }, [hasLoaded, iframeUrl, elementId]);
