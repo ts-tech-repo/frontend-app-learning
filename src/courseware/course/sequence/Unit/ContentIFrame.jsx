@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { ErrorPage } from '@edx/frontend-platform/react';
 import { StrictDict } from '@edx/react-unit-test-utils';
@@ -36,6 +36,8 @@ const ContentIFrame = ({
   onLoaded,
   title,
 }) => {
+  const [iframeClass, setIframeClass] = useState('');
+
   const {
     handleIFrameLoad,
     hasLoaded,
@@ -53,6 +55,19 @@ const ContentIFrame = ({
     handleModalClose,
   } = hooks.useModalIFrameData();
 
+  useEffect(() => {
+    if (hasLoaded && iframeUrl) {
+      const iframeElement = document.getElementById(elementId);
+      if (iframeElement && iframeElement.contentDocument) {
+        const problemHeaderExists = iframeElement.contentDocument.querySelector('.problem-header');
+        const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
+        if (problemHeaderExists && !hasQuizTagClass) {
+          setIframeClass('quiz-tag');
+        } 
+      }
+    }
+  }, [hasLoaded, iframeUrl, elementId]);
+
   const contentIFrameProps = {
     id: elementId,
     src: iframeUrl,
@@ -62,6 +77,7 @@ const ContentIFrame = ({
     scrolling: 'no',
     referrerPolicy: 'origin',
     onLoad: handleIFrameLoad,
+    className: iframeClass,
   };
 
   return (
