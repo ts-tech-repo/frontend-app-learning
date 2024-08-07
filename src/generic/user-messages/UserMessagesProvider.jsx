@@ -75,6 +75,14 @@ const UserMessagesProvider = ({ children }) => {
     setMessages(currentMessages => (topic === null ? [] : currentMessages.filter(message => message.topic !== topic)));
   }
 
+  function handleNetworkError() {
+    add({
+      text: "There seems to be a network issue. Please check your connection and try again.",
+      type: ALERT_TYPES.ERROR,
+      dismissible: true,
+    });
+  }
+
   useEffect(() => {
     // We only allow flash messages to persist through one refresh, then we clear them out.
     // If we want persistent messages, then add a 'persist' key to the messages and handle that
@@ -89,6 +97,7 @@ const UserMessagesProvider = ({ children }) => {
     remove,
     clear,
     messages,
+    handleNetworkError,
   }), [messages]);
 
   return (
