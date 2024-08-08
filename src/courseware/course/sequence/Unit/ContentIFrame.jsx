@@ -95,7 +95,8 @@ const ContentIFrame = ({
   return (
     <>
       {(shouldShowContent && !hasLoaded) && (
-        showError ? <div className='error_msg'>There seems to be a network issue. Please check your connection and try again.</div> : <PageLoading srMessage={loadingMessage} />
+        // custom error message for iframe
+        showError ? <div className="error_msg fade alert-content alert alert-danger show"><span >🛈 </span> There seems to be a network issue. Please check your connection and try again.</div> : <PageLoading srMessage={loadingMessage} />
       )}
       {shouldShowContent && (
         <div className="unit-iframe-wrapper">
