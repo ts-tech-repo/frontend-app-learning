@@ -31,7 +31,7 @@ const AlertList = ({
               payload={message.payload}
               {...customProps}
             >
-              {message.text}
+            There seems to be a network issue. Please check your connection and try again.
             </AlertComponent>
           </Suspense>
         );
