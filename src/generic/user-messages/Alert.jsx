@@ -31,9 +31,7 @@ function getAlertIcon(type) {
 
 const Alert = ({
   type, dismissible, children, onDismiss, stacked,
-}) => {
-  const message = type === ALERT_TYPES.ERROR ? 'There seems to be a network issue. Please check your connection and try again..' : children;
-  return (
+}) => (
   <ParagonAlert
     data-testid={`alert-container-${type}`}
     variant={getAlertVariant(type)}
@@ -42,10 +40,9 @@ const Alert = ({
     onClose={onDismiss}
     stacked={stacked}
   >
-    {message}
+    {children}
   </ParagonAlert>
 );
-};
 
 Alert.propTypes = {
   type: PropTypes.oneOf([

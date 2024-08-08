@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
-import { ErrorPage } from '@edx/frontend-platform/react';
+// import { ErrorPage } from '@edx/frontend-platform/react';
 import { StrictDict } from '@edx/react-unit-test-utils';
 import { Modal } from '@edx/paragon';
 
@@ -83,7 +83,7 @@ const ContentIFrame = ({
   return (
     <>
       {(shouldShowContent && !hasLoaded) && (
-        showError ? <ErrorPage /> : <PageLoading srMessage={loadingMessage} />
+        showError ? <div className='error_msg'>There seems to be a network issue. Please check your connection and try again.</div> : <PageLoading srMessage={loadingMessage} />
       )}
       {shouldShowContent && (
         <div className="unit-iframe-wrapper">
