@@ -140,8 +140,8 @@ subscribe(APP_READY, () => {
   );
 });
 
-subscribe(APP_INIT_ERROR, (error) => {
-  ReactDOM.render(<ErrorPage message={error.message} />, document.getElementById('root'));
+subscribe(APP_INIT_ERROR, () => {
+  ReactDOM.render(<ErrorPage message="There seems to be a network issue. Please check your connection and try again." />, document.getElementById('root'));
 });
 
 initialize({
