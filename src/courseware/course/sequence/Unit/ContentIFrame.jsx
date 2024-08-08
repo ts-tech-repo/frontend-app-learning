@@ -36,7 +36,7 @@ const ContentIFrame = ({
   onLoaded,
   title,
 }) => {
-  const [iframeClass, setIframeClass] = useState('quiz');
+  const [iframeClass, setIframeClass] = useState('');
 
   const {
     handleIFrameLoad,
@@ -59,15 +59,11 @@ const ContentIFrame = ({
     const checkIframeContent = () => {
       const iframeElement = document.getElementById(elementId);
       if (iframeElement && iframeElement.contentDocument) {
-        const problemHeaderExists = iframeElement.contentDocument.querySelector('.problem-header');
+        const problemHeaderExists = iframeElement.contentDocument.querySelector('.submit-attempt-container');
         const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
-        const hasErrorClass = iframeElement.classList.contains('outside-app');
-
         if (problemHeaderExists && !hasQuizTagClass) {
           setIframeClass('quiz-tag');
-        } else if (hasErrorClass) {
-          setIframeClass('outside-app');
-        }
+        } 
       }
     };
     const observer = new MutationObserver(() => {
