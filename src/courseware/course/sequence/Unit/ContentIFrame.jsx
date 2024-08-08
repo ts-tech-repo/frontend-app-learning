@@ -56,19 +56,28 @@ const ContentIFrame = ({
   } = hooks.useModalIFrameData();
 
   useEffect(() => {
-    if (hasLoaded && iframeUrl) {
+    const checkIframeContent = () => {
       const iframeElement = document.getElementById(elementId);
       if (iframeElement && iframeElement.contentDocument) {
         const problemHeaderExists = iframeElement.contentDocument.querySelector('.problem-header');
         const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
         const hasErrorClass = iframeElement.classList.contains('outside-app');
+
         if (problemHeaderExists && !hasQuizTagClass) {
           setIframeClass('quiz-tag');
-        } else if(hasErrorClass){
+        } else if (hasErrorClass) {
           setIframeClass('outside-app');
         }
       }
+    };
+    const observer = new MutationObserver(() => {
+      checkIframeContent();
+    });
+    const iframeElement = document.getElementById(elementId);
+    if (iframeElement && iframeElement.contentDocument) {
+      observer.observe(iframeElement.contentDocument, { childList: true, subtree: true });
     }
+    return () => observer.disconnect();
   }, [hasLoaded, iframeUrl, elementId]);
 
   const contentIFrameProps = {
