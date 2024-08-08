@@ -36,7 +36,7 @@ const ContentIFrame = ({
   onLoaded,
   title,
 }) => {
-  const [iframeClass, setIframeClass] = useState('');
+  const [iframeClass, setIframeClass] = useState('quiz');
 
   const {
     handleIFrameLoad,
@@ -61,9 +61,12 @@ const ContentIFrame = ({
       if (iframeElement && iframeElement.contentDocument) {
         const problemHeaderExists = iframeElement.contentDocument.querySelector('.problem-header');
         const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
+        const hasErrorClass = iframeElement.classList.contains('outside-app');
         if (problemHeaderExists && !hasQuizTagClass) {
           setIframeClass('quiz-tag');
-        } 
+        } else if(hasErrorClass){
+          setIframeClass('outside-app');
+        }
       }
     }
   }, [hasLoaded, iframeUrl, elementId]);

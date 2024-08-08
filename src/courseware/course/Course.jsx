@@ -104,6 +104,7 @@ const Course = ({
           </>
         )}
       </div>
+
       <AlertList topic="sequence" />
       <Sequence
         unitId={unitId}
@@ -125,7 +126,6 @@ const Course = ({
         onClose={() => setWeeklyGoalCelebrationOpen(false)}
       />
       <ContentTools course={course} />
-      
     </SidebarProvider>
   );
 };
