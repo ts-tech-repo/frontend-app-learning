@@ -31,7 +31,7 @@ const AlertList = ({
               payload={message.payload}
               {...customProps}
             >
-              {message.text} 
+              {message.text}
             </AlertComponent>
           </Suspense>
         );
