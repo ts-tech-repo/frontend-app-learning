@@ -59,9 +59,17 @@ const ContentIFrame = ({
     const checkIframeContent = () => {
       const iframeElement = document.getElementById(elementId);
       if (iframeElement && iframeElement.contentDocument) {
-        const problemHeaderExists = iframeElement.contentDocument.querySelector('.submit-attempt-container');
-        const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
-        if (problemHeaderExists && !hasQuizTagClass) {
+        const hasQuizTagClass = iframeElement.contentDocument.body.classList.contains('quiz-tag');
+        const componentClasses = [
+          'xblock-student_view-edx_sga',
+          'xblock-student_view-freetextresponse',
+          'xblock-student_view-openassessment',
+          'xblock-student_view-problem'
+        ];
+        const ComponentClassesExist = componentClasses.some(className => 
+          iframeElement.contentDocument.body.classList.contains(className)
+        );
+        if (!hasQuizTagClass && ComponentClassesExist) {
           setIframeClass('quiz-tag');
         } 
       }
