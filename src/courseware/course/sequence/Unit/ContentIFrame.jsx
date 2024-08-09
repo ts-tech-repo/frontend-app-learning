@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { ErrorPage } from '@edx/frontend-platform/react';
+// import { ErrorPage } from '@edx/frontend-platform/react';
 import { StrictDict } from '@edx/react-unit-test-utils';
 import { Modal } from '@edx/paragon';
 
@@ -36,6 +36,8 @@ const ContentIFrame = ({
   onLoaded,
   title,
 }) => {
+  const [iframeClass, setIframeClass] = useState('');
+
   const {
     handleIFrameLoad,
     hasLoaded,
@@ -53,6 +55,27 @@ const ContentIFrame = ({
     handleModalClose,
   } = hooks.useModalIFrameData();
 
+  useEffect(() => {
+    const checkIframeContent = () => {
+      const iframeElement = document.getElementById(elementId);
+      if (iframeElement && iframeElement.contentDocument) {
+        const problemHeaderExists = iframeElement.contentDocument.querySelector('.xblock-student_view-edx_sga') || iframeElement.contentDocument.querySelector('.xblock-student_view-freetextresponse') || iframeElement.contentDocument.querySelector('.xblock-student_view-openassessment') || iframeElement.contentDocument.querySelector('.xblock-student_view-problem');
+        const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
+        if (problemHeaderExists && !hasQuizTagClass) {
+          setIframeClass('quiz-tag');
+        } 
+      }
+    };
+    const observer = new MutationObserver(() => {
+      checkIframeContent();
+    });
+    const iframeElement = document.getElementById(elementId);
+    if (iframeElement && iframeElement.contentDocument) {
+      observer.observe(iframeElement.contentDocument, { childList: true, subtree: true });
+    }
+    return () => observer.disconnect();
+  }, [hasLoaded, iframeUrl, elementId]);
+
   const contentIFrameProps = {
     id: elementId,
     src: iframeUrl,
@@ -62,12 +85,14 @@ const ContentIFrame = ({
     scrolling: 'no',
     referrerPolicy: 'origin',
     onLoad: handleIFrameLoad,
+    className: iframeClass,
   };
 
   return (
     <>
       {(shouldShowContent && !hasLoaded) && (
-        showError ? <ErrorPage /> : <PageLoading srMessage={loadingMessage} />
+        // custom error message for iframe
+        showError ? <div className="error_msg fade alert-content alert alert-danger show"><span >🛈 </span> There seems to be a network issue. Please check your connection and try again.</div> : <PageLoading srMessage={loadingMessage} />
       )}
       {shouldShowContent && (
         <div className="unit-iframe-wrapper">
