@@ -104,7 +104,6 @@ const Course = ({
           </>
         )}
       </div>
-        <div>test1</div>
       <Sequence
         unitId={unitId}
         sequenceId={sequenceId}
@@ -113,7 +112,6 @@ const Course = ({
         nextSequenceHandler={nextSequenceHandler}
         previousSequenceHandler={previousSequenceHandler}
       />
-      <div>test2</div>
       <CelebrationModal
         courseId={courseId}
         isOpen={firstSectionCelebrationOpen}
