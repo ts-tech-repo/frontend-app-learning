@@ -25,6 +25,7 @@ class MasqueradeWidget extends Component {
       options: [],
       shouldShowUserNameInput: false,
       masqueradeUsername: null,
+      masqueradeUseremail: null,
     };
   }
 
@@ -98,6 +99,7 @@ class MasqueradeWidget extends Component {
         autoFocus: false,
         masquerade: 'Specific Student...',
         masqueradeUsername: active.userName,
+        masqueradeUseremail: active.userEmail,
         shouldShowUserNameInput: true,
       });
     } else if (active.groupName) {
@@ -115,6 +117,7 @@ class MasqueradeWidget extends Component {
       options,
       shouldShowUserNameInput,
       masqueradeUsername,
+      masqueradeUseremail,
     } = this.state;
     const specificLearnerInputText = this.props.intl.formatMessage(messages.placeholder);
     return (
@@ -137,7 +140,7 @@ class MasqueradeWidget extends Component {
               id="masquerade-search"
               className="col-4 form-control"
               autoFocus={autoFocus}
-              defaultValue={masqueradeUsername}
+              defaultValue={masqueradeUseremail}
               onError={(errorMessage) => this.onError(errorMessage)}
               onSubmit={(payload) => this.onSubmit(payload)}
             />
