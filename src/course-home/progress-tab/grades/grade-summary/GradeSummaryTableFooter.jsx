@@ -22,7 +22,7 @@ const GradeSummaryTableFooter = ({ intl }) => {
   } = useModel('progress', courseId);
 
   const bgColor = isPassing ? 'bg-success-100' : 'bg-warning-100';
-  const totalGrade = (percent * 100).toFixed(2);
+  const totalGrade = (percent * 100);
 
   const isLocaleRtl = isRtl(getLocale());
 
