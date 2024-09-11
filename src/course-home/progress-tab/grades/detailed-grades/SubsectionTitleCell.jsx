@@ -55,7 +55,7 @@ const SubsectionTitleCell = ({ intl, subsection }) => {
           <Collapsible.Visible whenOpen><Icon src={ArrowDropUp} /></Collapsible.Visible>
         </Collapsible.Trigger>
         */}
-        <span className="small d-inline ml-4 pl-1">
+        <span className="small d-inline pl-1">
           {gradesFeatureIsFullyLocked || subsection.learnerHasAccess ? ''
             : (
               <Icon
