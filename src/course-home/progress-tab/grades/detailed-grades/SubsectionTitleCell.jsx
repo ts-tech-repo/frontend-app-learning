@@ -45,6 +45,7 @@ const SubsectionTitleCell = ({ intl, subsection }) => {
   return (
     <Collapsible.Advanced>
       <Row className="w-100 m-0">
+        {/* #SA || hidedProblemScoreSection
         <Collapsible.Trigger
           className="mr-1 position-absolute"
           aria-label={intl.formatMessage(messages.problemScoreToggleAltText, { subsectionTitle: displayName })}
@@ -53,6 +54,7 @@ const SubsectionTitleCell = ({ intl, subsection }) => {
           <Collapsible.Visible whenClosed><Icon src={ArrowDropDown} /></Collapsible.Visible>
           <Collapsible.Visible whenOpen><Icon src={ArrowDropUp} /></Collapsible.Visible>
         </Collapsible.Trigger>
+        */}
         <span className="small d-inline ml-4 pl-1">
           {gradesFeatureIsFullyLocked || subsection.learnerHasAccess ? ''
             : (
@@ -80,7 +82,7 @@ const SubsectionTitleCell = ({ intl, subsection }) => {
           )}
         </span>
       </Row>
-      {/* 
+      {/* #SA || hidedProblemScoreSection
       <Collapsible.Body className="d-flex w-100">
         <div className="col">
           { subsection.override && (
