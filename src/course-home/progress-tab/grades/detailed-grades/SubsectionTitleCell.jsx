@@ -80,6 +80,7 @@ const SubsectionTitleCell = ({ intl, subsection }) => {
           )}
         </span>
       </Row>
+      {/* 
       <Collapsible.Body className="d-flex w-100">
         <div className="col">
           { subsection.override && (
@@ -97,6 +98,7 @@ const SubsectionTitleCell = ({ intl, subsection }) => {
           <ProblemScoreDrawer problemScores={problemScores} subsection={subsection} />
         </div>
       </Collapsible.Body>
+      */}
     </Collapsible.Advanced>
   );
 };
