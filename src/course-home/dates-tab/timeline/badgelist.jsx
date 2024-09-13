@@ -60,7 +60,7 @@ function getBadgeListAndColor(date, intl, item, items) {
     },
     {
       message: messages.dueNext,
-      shownForDay: !isToday && assignments.some(isDueNext),
+      shownForDay: !isToday && assignments.every(isDueNext),
       shownForItem: x => isLearnerAssignment(x) && isDueNext(x),
       bg: 'bg-gray-500',
       className: 'text-white',
@@ -85,6 +85,7 @@ function getBadgeListAndColor(date, intl, item, items) {
     <>
       {badgesInfo.map(b => {
         let shown = b.shownForDay;
+        console.log(shown,'shownnnnnn')
         if (item) {
           if (b.shownForDay) {
             shown = false; // don't double up, if the day already has this badge
