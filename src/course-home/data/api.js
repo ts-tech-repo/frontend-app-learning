@@ -73,6 +73,8 @@ function normalizeAssignmentPolicies(assignmentPolicies, sectionScores) {
       gradeByAssignmentType[assignmentType].grades.push(numPointsEarned ? numPointsEarned / numPointsPossible : 0);
       // Record the created assignment
       gradeByAssignmentType[assignmentType].numAssignmentsCreated = numAssignmentsCreated;
+      console.log("numPointsEarned:::: ", numPointsEarned);
+      console.log("numPointsPossible:::: ", numPointsPossible);
     });
   });
 
