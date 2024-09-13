@@ -81,7 +81,6 @@ function getBadgeListAndColor(date, intl, item, items) {
     <>
       {badgesInfo.map(b => {
         let shown = b.shownForDay;
-        console.log(shown,'shownnnnnn')
         if (item) {
           if (b.shownForDay) {
             shown = false; // don't double up, if the day already has this badge
