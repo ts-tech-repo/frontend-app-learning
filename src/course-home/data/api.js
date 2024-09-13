@@ -20,10 +20,6 @@ const calculateAssignmentTypeGrades = (points, assignmentWeight, numDroppable) =
     // exists in edx-platform.
     averageGrade = (points.reduce((a, b) => a + b, 0) / points.length);
     weightedGrade = averageGrade * assignmentWeight;
-    console.log("points: ", points);
-    console.log("averageGrade: ", averageGrade);
-    console.log("weightedGrade: ", weightedGrade);
-    console.log("assignmentWeight: ", assignmentWeight);
   }
   return { averageGrade, weightedGrade };
 };
@@ -73,8 +69,6 @@ function normalizeAssignmentPolicies(assignmentPolicies, sectionScores) {
       gradeByAssignmentType[assignmentType].grades.push(numPointsEarned ? numPointsEarned / numPointsPossible : 0);
       // Record the created assignment
       gradeByAssignmentType[assignmentType].numAssignmentsCreated = numAssignmentsCreated;
-      console.log("numPointsEarned:::: ", numPointsEarned);
-      console.log("numPointsPossible:::: ", numPointsPossible);
     });
   });
 
