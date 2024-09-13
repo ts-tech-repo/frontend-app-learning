@@ -19,10 +19,6 @@ function isPastDue(assignment) {
   return !isComplete(assignment) && (new Date(assignment.date) < new Date());
 }
 
-function isDueNext(assignment) {
-  return !isComplete(assignment) && (new Date(assignment.date) > new Date());
-}
-
 function isUnreleased(assignment) {
   return !assignment.link;
 }
@@ -60,8 +56,8 @@ function getBadgeListAndColor(date, intl, item, items) {
     },
     {
       message: messages.dueNext,
-      shownForDay: !isToday && assignments.every(isDueNext),
-      shownForItem: x => isLearnerAssignment(x) && isDueNext(x),
+      shownForDay: !isToday && assignments.some(x => x.dueNext),
+      shownForItem: x => x.dueNext,
       bg: 'bg-gray-500',
       className: 'text-white',
     },
