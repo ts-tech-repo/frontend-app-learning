@@ -19,8 +19,9 @@ const calculateAssignmentTypeGrades = (points, assignmentWeight, numDroppable) =
     // reflect what a learner's grade would be, however, we must have parity with the current grading behavior that
     // exists in edx-platform.
     averageGrade = (points.reduce((a, b) => a + b, 0) / points.length);
-    console.log("averageGrade: ", averageGrade);
     weightedGrade = averageGrade * assignmentWeight;
+    console.log("points: ", points);
+    console.log("averageGrade: ", averageGrade);
     console.log("weightedGrade: ", weightedGrade);
   }
   return { averageGrade, weightedGrade };
