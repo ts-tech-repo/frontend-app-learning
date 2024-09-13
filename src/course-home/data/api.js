@@ -23,6 +23,7 @@ const calculateAssignmentTypeGrades = (points, assignmentWeight, numDroppable) =
     console.log("points: ", points);
     console.log("averageGrade: ", averageGrade);
     console.log("weightedGrade: ", weightedGrade);
+    console.log("assignmentWeight: ", assignmentWeight);
   }
   return { averageGrade, weightedGrade };
 };
