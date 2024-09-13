@@ -17,7 +17,7 @@ const ProblemScoreDrawer = ({ intl, problemScores, subsection }) => {
         <ul className="list-unstyled row w-100 m-0" aria-labelledby="problem-score-label">
           {problemScores.map((problemScore, i) => (
             // eslint-disable-next-line react/no-array-index-key
-            <li key={i} className="ml-3">{problemScore.earned}{isLocaleRtl ? '\\' : '/'}{problemScore.possible}</li>
+            <li key={i} className="ml-3">{problemScore.earned.toFixed(2)}{isLocaleRtl ? '\\' : '/'}{problemScore.possible.toFixed(2)}</li>
           ))}
         </ul>
       </div>
