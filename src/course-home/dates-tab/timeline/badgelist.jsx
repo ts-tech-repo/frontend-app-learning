@@ -80,12 +80,8 @@ function getBadgeListAndColor(date, intl, item, items) {
   const badges = (
     <>
       {badgesInfo.map(b => {
-      let shown = false;
-      if (!item) {
-        // Show for the whole day if there's no specific item
-        shown = b.shownForDay;
-      } else {
-        // Show for individual items based on shownForItem
+      let shown = b.shownForDay; 
+      if (item) {
         shown = b.shownForItem && b.shownForItem(item);
       }
 
