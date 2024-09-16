@@ -84,26 +84,28 @@ function getBadgeListAndColor(date, intl, item, items) {
   const badges = (
     <>
       {badgesInfo.map(b => {
-      let shown = b.shownForDay; 
-      if (item) {
-        shown = b.shownForItem && b.shownForItem(item);
-      }
+        let shown = b.shownForDay;
+        if (item) {
+          if (b.shownForDay) {
+            shown = false; // don't double up, if the day already has this badge
+          } else {
+            shown = b.shownForItem && b.shownForItem(item);
+          }
+        }
+        if (!shown) {
+          return null;
+        }
 
-      if (!shown) {
-        return null;
-      }
-
-      if (!color && !isInFuture) {
-        color = b.bg;
-      }
-
-      return (
-        <Badge key={b.message.id} className={classNames('ml-2', b.bg, b.className)} data-testid="dates-badge">
-          {b.icon && <FontAwesomeIcon icon={b.icon} className="mr-1" />}
-          {intl.formatMessage(b.message)}
-        </Badge>
-      );
-    })}
+        if (!color && !isInFuture) {
+          color = b.bg;
+        }
+        return (
+          <Badge key={b.message.id} className={classNames('ml-2', b.bg, b.className)} data-testid="dates-badge">
+            {b.icon && <FontAwesomeIcon icon={b.icon} className="mr-1" />}
+            {intl.formatMessage(b.message)}
+          </Badge>
+        );
+      })}
     </>
   );
   if (!color && isInFuture) {
