@@ -33,8 +33,12 @@ const SequenceLink = ({
   // const {
   //   userTimezone,
   // } = useModel('outline', courseId);
-  const { userTimezone, ...rest } = useModel('outline', courseId);
-  console.log('Model data:', rest);
+
+  // const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
+  // console.log(timezoneFormatArgs)
+  const {
+    datesWidget: { userTimezone } = {},
+  } = useModel('outline', courseId);
   
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
   console.log(timezoneFormatArgs, userTimezone);
