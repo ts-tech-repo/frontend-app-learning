@@ -77,7 +77,7 @@ const Day = ({
                       <span className="mx-1">due</span>
                       <FormattedTime
                         value={item.date}
-                        timeZoneName="long"
+                        timeZoneName="short"
                         {...timezoneFormatArgs}
                       />
                     </span>
