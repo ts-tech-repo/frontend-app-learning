@@ -30,18 +30,10 @@ const SequenceLink = ({
     showLink,
     title,
   } = sequence;
-  // const {
-  //   userTimezone,
-  // } = useModel('outline', courseId);
-
-  // const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
-  // console.log(timezoneFormatArgs)
   const {
     datesWidget: { userTimezone } = {},
   } = useModel('outline', courseId);
-  
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
-  console.log(timezoneFormatArgs, userTimezone);
   const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   const displayTitle = showLink ? coursewareUrl : title;
 
@@ -57,7 +49,7 @@ const SequenceLink = ({
             day="numeric"
             month="short"
             year="numeric"
-            timeZoneName="long"
+            timeZoneName="short"
             value={due}
             {...timezoneFormatArgs}
           />
@@ -79,7 +71,7 @@ const SequenceLink = ({
             day="numeric"
             month="short"
             year="numeric"
-            timeZoneName="long"
+            timeZoneName="short"
             value={due}
             {...timezoneFormatArgs}
           />
