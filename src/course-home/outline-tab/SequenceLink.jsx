@@ -49,7 +49,7 @@ const SequenceLink = ({
             day="numeric"
             month="short"
             year="numeric"
-            timeZoneName="long"
+            timeZoneName="short"
             value={due}
             {...timezoneFormatArgs}
           />
@@ -71,7 +71,7 @@ const SequenceLink = ({
             day="numeric"
             month="short"
             year="numeric"
-            timeZoneName="long"
+            timeZoneName="short"
             value={due}
             {...timezoneFormatArgs}
           />
