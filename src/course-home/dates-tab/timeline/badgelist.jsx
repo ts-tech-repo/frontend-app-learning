@@ -23,6 +23,10 @@ function isUnreleased(assignment) {
   return !assignment.link;
 }
 
+function isDueNext(assignment) {
+  return !isComplete(assignment) && (new Date(assignment.date) > new Date());
+}
+
 // Pass a null item if you want to get a whole day's badge list, not just one item's list.
 // Returns an object with 'color' and 'badges' properties.
 function getBadgeListAndColor(date, intl, item, items) {
@@ -56,8 +60,8 @@ function getBadgeListAndColor(date, intl, item, items) {
     },
     {
       message: messages.dueNext,
-      shownForDay: !isToday && assignments.some(x => x.dueNext),
-      shownForItem: x => x.dueNext,
+      shownForDay: !isToday && assignments.some(isDueNext),
+      shownForItem: x => isLearnerAssignment(x) && isDueNext(x),
       bg: 'bg-gray-500',
       className: 'text-white',
     },
