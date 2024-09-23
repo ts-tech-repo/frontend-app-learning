@@ -37,6 +37,7 @@ const NotificationTray = ({ intl }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { setTimeout(onNotificationSeen, 3000); }, []);
 
+  console.log(messages);
   return (
     <SidebarBase
       title={intl.formatMessage(messages.notificationTitle)}
