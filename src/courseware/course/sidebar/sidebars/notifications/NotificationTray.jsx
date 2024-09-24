@@ -39,6 +39,7 @@ const NotificationTray = ({ intl }) => {
 
   console.log(messages);
   console.log(verifiedMode, offer);
+  console.log(course);
   return (
     <SidebarBase
       title={intl.formatMessage(messages.notificationTitle)}
