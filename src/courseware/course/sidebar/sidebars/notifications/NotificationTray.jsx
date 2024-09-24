@@ -38,7 +38,7 @@ const NotificationTray = ({ intl }) => {
   useEffect(() => { setTimeout(onNotificationSeen, 3000); }, []);
 
   console.log(messages);
-  console.log(verifiedMode);
+  console.log(verifiedMode, offer);
   return (
     <SidebarBase
       title={intl.formatMessage(messages.notificationTitle)}
