@@ -56,7 +56,6 @@ const NotificationTrigger = ({
     onClick();
   };
 
-  console.log(notificationStatus);
   return (
     <SidebarTriggerBase onClick={handleClick} ariaLabel={intl.formatMessage(messages.openNotificationTrigger)}>
       <NotificationIcon status={notificationStatus} notificationColor="bg-danger-500" />
