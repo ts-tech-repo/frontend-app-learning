@@ -30,6 +30,8 @@ const SequenceLink = ({
     showLink,
     title,
   } = sequence;
+  console.log(complete, description, due, showLink, title);
+  console.log(sequence);
   const {
     datesWidget: { userTimezone } = {},
   } = useModel('outline', courseId);
