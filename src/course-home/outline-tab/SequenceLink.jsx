@@ -48,6 +48,7 @@ const SequenceLink = ({
         assignmentDue: (
           <FormattedTime
             key={`${id}-due`}
+            hour12={false}
             day="numeric"
             month="short"
             year="numeric"
