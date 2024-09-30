@@ -67,6 +67,7 @@ const Day = ({
           const title = showLink ? (<u><a href={item.link} className="text-reset">{item.title}</a></u>) : item.title;
           const available = item.learnerHasAccess && (item.link || !isLearnerAssignment(item));
           const textColor = available ? 'text-primary-700' : 'text-gray-500';
+
           return (
             <div key={item.title + item.date} className={classNames(textColor, 'small pb-1')} data-testid="dates-item">
               <div>
@@ -77,7 +78,7 @@ const Day = ({
                       <span className="mx-1">due</span>
                       <FormattedTime
                         value={item.date}
-                        timeZoneName="short"
+                        timeZoneName="long"
                         {...timezoneFormatArgs}
                       />
                     </span>
