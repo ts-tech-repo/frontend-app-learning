@@ -16,6 +16,12 @@ import EffortEstimate from '../../shared/effort-estimate';
 import { useModel } from '../../generic/model-store';
 import messages from './messages';
 
+const formatTimezoneOffset = (timezoneOffset) => {
+  const offsetHours = timezoneOffset / 60;
+  const sign = offsetHours >= 0 ? '+' : '-';
+  return `${sign}${Math.abs(offsetHours)}`;
+};
+
 const SequenceLink = ({
   id,
   intl,
@@ -30,11 +36,11 @@ const SequenceLink = ({
     showLink,
     title,
   } = sequence;
-  console.log(complete, description, due, showLink, title);
-  console.log(sequence);
+  
   const {
     datesWidget: { userTimezone } = {},
   } = useModel('outline', courseId);
+
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
   const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   const displayTitle = showLink ? coursewareUrl : title;
@@ -46,16 +52,18 @@ const SequenceLink = ({
       description="Used below an assignment title"
       values={{
         assignmentDue: (
-          <FormattedTime
-            key={`${id}-due`}
-            hour12={false}
-            day="numeric"
-            month="short"
-            year="numeric"
-            timeZoneName="shortOffset"
-            value={due}
-            {...timezoneFormatArgs}
-          />
+          <>
+            <FormattedTime
+              key={`${id}-due`}
+              hour12={false}
+              day="numeric"
+              month="short"
+              year="numeric"
+              value={due}
+              {...timezoneFormatArgs}
+            />
+            {` ${formatTimezoneOffset(due.getTimezoneOffset())}`}
+          </>
         ),
         description: description || '',
       }}
@@ -69,15 +77,17 @@ const SequenceLink = ({
       description="Used below an assignment title"
       values={{
         assignmentDue: (
-          <FormattedTime
-            key={`${id}-due`}
-            day="numeric"
-            month="short"
-            year="numeric"
-            timeZoneName="shortOffset"
-            value={due}
-            {...timezoneFormatArgs}
-          />
+          <>
+            <FormattedTime
+              key={`${id}-due`}
+              day="numeric"
+              month="short"
+              year="numeric"
+              value={due}
+              {...timezoneFormatArgs}
+            />
+            {` ${formatTimezoneOffset(due.getTimezoneOffset())}`}
+          </>
         ),
         description: description || '',
       }}
