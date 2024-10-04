@@ -32,6 +32,7 @@ const Day = ({
   } = useModel('courseHomeMeta', courseId);
 
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
+  console.log(timezoneFormatArgs);
 
   const { color, badges } = getBadgeListAndColor(date, intl, null, items);
 
