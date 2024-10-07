@@ -22,8 +22,9 @@ const Timeline = () => {
   let foundToday = false;
   courseDateBlocks.forEach(courseDateBlock => {
     const dateInfo = { ...courseDateBlock };
-    console.log(dateInfo)
+    
     const parsedDate = new Date(dateInfo.date);
+    console.log(parsedDate)
 
     if (!foundNextDue && parsedDate >= now && isLearnerAssignment(dateInfo) && !dateInfo.complete) {
       foundNextDue = true;
