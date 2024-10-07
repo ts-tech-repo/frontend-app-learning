@@ -59,7 +59,7 @@ const Timeline = () => {
   if (groupedDates.length) {
     groupedDates[groupedDates.length - 1].last = true;
   }
-
+  console.log(groupedDates)
   return (
     <ul className="list-unstyled m-0 mt-4 pt-2">
       {groupedDates.map((groupedDate) => (
