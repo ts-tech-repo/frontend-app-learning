@@ -15,6 +15,9 @@ const Timeline = () => {
     courseDateBlocks,
   } = useModel('dates', courseId);
 
+  const {
+    userTimezone,
+  } = useModel('courseHomeMeta', courseId);
   // Group date items by day (assuming they are sorted in first place) and add some metadata
   const groupedDates = [];
   const now = new Date();
@@ -23,7 +26,7 @@ const Timeline = () => {
   courseDateBlocks.forEach(courseDateBlock => {
     const dateInfo = { ...courseDateBlock };
     
-    console.log(Date.parse(dateInfo.date).toString())
+    console.log(userTimezone)
     const parsedDate = new Date(dateInfo.date);
 
     if (!foundNextDue && parsedDate >= now && isLearnerAssignment(dateInfo) && !dateInfo.complete) {
