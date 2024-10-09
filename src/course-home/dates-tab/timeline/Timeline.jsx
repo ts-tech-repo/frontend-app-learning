@@ -15,6 +15,9 @@ const Timeline = () => {
     courseDateBlocks,
   } = useModel('dates', courseId);
 
+  const {
+    userTimezone,
+  } = useModel('courseHomeMeta', courseId);
   // Group date items by day (assuming they are sorted in first place) and add some metadata
   const groupedDates = [];
   const now = new Date();
@@ -22,7 +25,9 @@ const Timeline = () => {
   let foundToday = false;
   courseDateBlocks.forEach(courseDateBlock => {
     const dateInfo = { ...courseDateBlock };
-    const parsedDate = new Date(dateInfo.date);
+    
+    console.log(userTimezone)
+    const parsedDate = userTimezone ? new Date(new Date(dateInfo.date).toLocaleString("en-US", {timeZone: userTimezone})) : new Date(dateInfo.date);
 
     if (!foundNextDue && parsedDate >= now && isLearnerAssignment(dateInfo) && !dateInfo.complete) {
       foundNextDue = true;
@@ -59,7 +64,6 @@ const Timeline = () => {
   if (groupedDates.length) {
     groupedDates[groupedDates.length - 1].last = true;
   }
-
   return (
     <ul className="list-unstyled m-0 mt-4 pt-2">
       {groupedDates.map((groupedDate) => (
