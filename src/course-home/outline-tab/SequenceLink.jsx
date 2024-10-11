@@ -33,11 +33,7 @@ const SequenceLink = ({
   const {
     datesWidget: { userTimezone } = {},
   } = useModel('outline', courseId);
-  
-  console.log('Model:', useModel('outline', courseId)); 
-  console.log('datesWidget:', useModel('outline', courseId)?.datesWidget);
-  console.log('userTimezone:', userTimezone); 
-
+  console.log(userTimezone)
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
   const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   const displayTitle = showLink ? coursewareUrl : title;
