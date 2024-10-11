@@ -79,6 +79,7 @@ const Day = ({
                       <FormattedTime
                         value={item.date}
                         timeZoneName="short"
+                        hour12={false}
                         {...timezoneFormatArgs}
                       />
                     </span>
