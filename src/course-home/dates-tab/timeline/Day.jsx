@@ -32,11 +32,6 @@ const Day = ({
   } = useModel('courseHomeMeta', courseId);
 
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
-  const myStyle = {
-    width: '300px',
-    height: '300px',
-    border: '2px solid black'
-  }
 
   const { color, badges } = getBadgeListAndColor(date, intl, null, items);
 
@@ -47,10 +42,8 @@ const Day = ({
       {!first && <div className="dates-line-top border-1 border-left border-gray-900 bg-gray-900" />}
 
       {/* Dot */}
-      if (color === "custom-date-styling") {
-        <div className={classNames(color, 'dates-dot border border-gray-900')}  style={myStyle}/>
-      }
-      {/* <div className={classNames(color, 'dates-dot border border-gray-900')} /> */}
+      <div className={classNames(color, 'dates-dot border border-gray-900')}/>
+        
 
       {/* Bottom Line */}
       {!last && <div className="dates-line-bottom border-1 border-left border-gray-900 bg-gray-900" />}
