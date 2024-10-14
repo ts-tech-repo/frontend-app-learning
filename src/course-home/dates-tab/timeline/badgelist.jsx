@@ -32,6 +32,7 @@ function isUnreleased(assignment) {
 function getBadgeListAndColor(date, intl, item, items) {
   const now = new Date();
   const assignments = items.filter(isLearnerAssignment);
+  const tillToday = daycmp(date, now) < 0;
   const isToday = daycmp(date, now) === 0;
   const isInFuture = daycmp(date, now) > 0;
 
@@ -110,6 +111,10 @@ function getBadgeListAndColor(date, intl, item, items) {
   );
   if (!color && isInFuture) {
     color = 'bg-gray-900';
+  }
+
+  if (tillToday) {
+    color = 'custom';
   }
 
   return {
