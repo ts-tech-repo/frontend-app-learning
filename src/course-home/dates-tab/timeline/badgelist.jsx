@@ -114,7 +114,7 @@ function getBadgeListAndColor(date, intl, item, items) {
   }
 
   if (tillToday) {
-    color = 'custom';
+    color = 'custom-date-styling';
   }
 
   return {
