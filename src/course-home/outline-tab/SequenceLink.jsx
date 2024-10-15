@@ -1,39 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 import {
   FormattedMessage,
   FormattedTime,
   injectIntl,
   intlShape,
-} from '@edx/frontend-platform/i18n';
-import { faCheckCircle as fasCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle as farCheckCircle } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from "@edx/frontend-platform/i18n";
+import { faCheckCircle as fasCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle as farCheckCircle } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import EffortEstimate from '../../shared/effort-estimate';
-import { useModel } from '../../generic/model-store';
-import messages from './messages';
+import EffortEstimate from "../../shared/effort-estimate";
+import { useModel } from "../../generic/model-store";
+import messages from "./messages";
 
-const SequenceLink = ({
-  id,
-  intl,
-  courseId,
-  first,
-  sequence,
-}) => {
-  const {
-    complete,
-    description,
-    due,
-    showLink,
-    title,
-  } = sequence;
-  const {
-    datesWidget: { userTimezone } = {},
-  } = useModel('outline', courseId);
-  console.log(userTimezone)
+const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
+  const { complete, description, due, showLink, title } = sequence;
+  const { datesWidget: { userTimezone } = {} } = useModel("outline", courseId);
+  console.log(userTimezone);
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
   const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   const displayTitle = showLink ? coursewareUrl : title;
@@ -56,7 +42,7 @@ const SequenceLink = ({
             {...timezoneFormatArgs}
           />
         ),
-        description: description || '',
+        description: description || "",
       }}
     />
   );
@@ -79,14 +65,18 @@ const SequenceLink = ({
             {...timezoneFormatArgs}
           />
         ),
-        description: description || '',
+        description: description || "",
       }}
     />
   );
 
   return (
     <li>
-      <div className={classNames('', { 'mt-2 pt-2 border-top border-light': !first })}>
+      <div
+        className={classNames("", {
+          "mt-2 pt-2 border-top border-light": !first,
+        })}
+      >
         <div className="row w-100 m-0">
           <div className="col-auto p-0">
             {complete ? (
@@ -110,13 +100,18 @@ const SequenceLink = ({
           <div className="col-10 p-0 ml-3 text-break">
             <span className="align-middle">{displayTitle}</span>
             <span className="sr-only">
-              , {intl.formatMessage(complete ? messages.completedAssignment : messages.incompleteAssignment)}
+              ,{" "}
+              {intl.formatMessage(
+                complete
+                  ? messages.completedAssignment
+                  : messages.incompleteAssignment
+              )}
             </span>
             <EffortEstimate className="ml-3 align-middle" block={sequence} />
           </div>
         </div>
         <div className="row w-100 m-0 ml-3 pl-3">
-          <small className="text-body pl-2">
+          <small className="text-body pl-2 quince-d-testing">
             {due ? dueDateMessage : noDueDateMessage}
           </small>
         </div>
