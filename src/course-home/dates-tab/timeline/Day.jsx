@@ -66,7 +66,7 @@ const Day = ({
           ? {
               borderColor: '#15376d',
               '--important-border-color': '#15376d',
-              border: '2px solid var(--important-border-color) !important',
+              border: '1px solid var(--important-border-color) !important',
             }
           : {}
       }
