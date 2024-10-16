@@ -46,8 +46,11 @@ const Day = ({
         style={color === 'custom-date-styling' 
           ? { 
               backgroundColor: '#15376d',
+              borderColor: '#15376d',
               '--important-background-color': '#15376d',
-              background: 'var(--important-background-color) !important'
+              '--important-border-color': '#15376d',
+              background: 'var(--important-background-color) !important',
+              border: '2px solid var(--important-border-color) !important'
             } 
           : {}
         }
