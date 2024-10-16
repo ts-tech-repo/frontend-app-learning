@@ -25,7 +25,7 @@ const Timeline = () => {
   let foundToday = false;
   courseDateBlocks.forEach(courseDateBlock => {
     const dateInfo = { ...courseDateBlock };
-    const parsedDate = userTimezone ? new Intl.DateTimeFormat("en-us", {timeZone : "Africa/Algiers",dateStyle: 'full', timeStyle: 'long'}).format(new Date(dateInfo.date)) : new Date(dateInfo.date);
+    const parsedDate = userTimezone ? new Date(new Date(dateInfo.date).toLocaleDateString("en-US", {timeZone: userTimezone})) : new Date(dateInfo.date);
     if (!foundNextDue && parsedDate >= now && isLearnerAssignment(dateInfo) && !dateInfo.complete) {
       foundNextDue = true;
       dateInfo.dueNext = true;
