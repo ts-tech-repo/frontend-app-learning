@@ -42,7 +42,8 @@ const Day = ({
       {!first && <div className="dates-line-top border-1 border-left border-gray-900 bg-gray-900" />}
 
       {/* Dot */}
-      <div className={classNames(color, 'dates-dot border border-gray-900')}/>
+      <div className={classNames(color, 'dates-dot border border-gray-900')} style={color === 'custom-date-styling' ? { background: '#15376d', important: true } : {}}/>
+
         
 
       {/* Bottom Line */}
