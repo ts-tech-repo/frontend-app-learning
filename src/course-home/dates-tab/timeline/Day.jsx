@@ -38,16 +38,19 @@ const Day = ({
   return (
     <li className="dates-day pb-4" data-testid="dates-day">
       {/* Top Line */}
-      {!first && <div className="dates-line-top border-1 border-left border-gray-900 bg-gray-900" 
+     {!first && (
+    <div 
+      className="dates-line-top border-1 border-left border-gray-900 bg-gray-900"
       style={color === 'custom-date-styling' 
         ? { 
             borderColor: '#15376d',
-            '--important-border-color': '#15376d',
-            border: '2px solid var(--important-border-color) !important'
+            border: '2px solid #15376d',
+            cssText: 'border: 2px solid #15376d !important; border-color: #15376d !important;'
           } 
         : {}
       }
-      />}
+    />
+  )}
 
       {/* Dot */}
       <div 
