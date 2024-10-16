@@ -35,7 +35,7 @@ function getBadgeListAndColor(date, intl, item, items) {
   const tillToday = daycmp(date, now) < 0;
   const isToday = daycmp(date, now) === 0;
   const isInFuture = daycmp(date, now) > 0;
-  console.log(dateDebug)
+  console.log(date)
   // This badge info list is in order of priority (they will appear left to right in this order and the first badge
   // sets the color of the dot in the timeline).
   const badgesInfo = [
