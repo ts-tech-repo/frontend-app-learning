@@ -40,6 +40,7 @@ const Timeline = () => {
         foundToday = true;
         groupedDates.push({
           date: now,
+          unparsedDate: now,
           items: [],
         });
       }
@@ -49,6 +50,7 @@ const Timeline = () => {
       // Add new grouped date
       groupedDates.push({
         date: parsedDate,
+        unparsedDate: dateInfo.date,
         items: [dateInfo],
         first: groupedDates.length === 0,
       });
@@ -57,7 +59,7 @@ const Timeline = () => {
     }
   });
   if (!foundToday) {
-    groupedDates.push({ date: now, items: [] });
+    groupedDates.push({ date: now, unparsedDate: now, items: [] });
   }
   if (groupedDates.length) {
     groupedDates[groupedDates.length - 1].last = true;

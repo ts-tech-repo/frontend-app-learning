@@ -23,6 +23,7 @@ const Day = ({
   intl,
   items,
   last,
+  unparsedDate,
 }) => {
   const {
     courseId,
@@ -36,7 +37,7 @@ const Day = ({
   const { color, badges } = getBadgeListAndColor(date, intl, null, items);
   
   console.log("--------------------------");
-  console.log(userTimezone, (typeof date), date);
+  console.log(userTimezone, unparsedDate, (typeof date), date);
   return (
     <li className="dates-day pb-4" data-testid="dates-day">
       {/* Top Line */}
