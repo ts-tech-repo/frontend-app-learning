@@ -41,10 +41,36 @@ const Day = ({
       {!first && <div className="dates-line-top border-1 border-left border-gray-900 bg-gray-900" />}
 
       {/* Dot */}
-      <div className={classNames(color, 'dates-dot border border-gray-900')} />
+      <div 
+        className={classNames(color, 'dates-dot border border-gray-900')} 
+        style={color === 'custom-date-styling' 
+          ? { 
+              backgroundColor: '#15376d',
+              borderColor: '#15376d',
+              '--important-background-color': '#15376d',
+              '--important-border-color': '#15376d',
+              background: 'var(--important-background-color) !important',
+              border: '2px solid var(--important-border-color) !important'
+            } 
+          : {}
+        }
+      />
+
+
+        
 
       {/* Bottom Line */}
-      {!last && <div className="dates-line-bottom border-1 border-left border-gray-900 bg-gray-900" />}
+      {!last && (<div className="dates-line-bottom border-1 border-left border-gray-900 bg-gray-900"
+      style={
+        color === 'custom-date-styling'
+          ? {
+              borderColor: '#15376d',
+              '--important-border-color': '#15376d',
+              border: '1px solid var(--important-border-color) !important',
+            }
+          : {}
+      }
+      />)}
 
       {/* Content */}
       <div className="d-inline-block ml-3 pl-2">
