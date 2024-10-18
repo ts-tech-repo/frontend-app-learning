@@ -79,7 +79,7 @@ const Day = ({
       <div className="d-inline-block ml-3 pl-2">
         <div className="row w-100 m-0 mb-1 align-items-center text-primary-700" data-testid="dates-header">
           <FormattedDate
-            value={date}
+            value={unparsedDate}
             day="numeric"
             month="short"
             weekday="short"
