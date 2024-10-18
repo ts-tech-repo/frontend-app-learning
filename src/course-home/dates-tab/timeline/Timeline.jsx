@@ -25,7 +25,7 @@ const Timeline = () => {
   let foundToday = false;
   courseDateBlocks.forEach(courseDateBlock => {
     const dateInfo = { ...courseDateBlock };
-    console.log("DateInfo: ", dateInfo);
+    
     const parsedDate = userTimezone ? new Date(new Date(dateInfo.date).toLocaleDateString("en-US", {timeZone: userTimezone})) : new Date(dateInfo.date);
     if (!foundNextDue && parsedDate >= now && isLearnerAssignment(dateInfo) && !dateInfo.complete) {
       foundNextDue = true;
@@ -64,7 +64,7 @@ const Timeline = () => {
   if (groupedDates.length) {
     groupedDates[groupedDates.length - 1].last = true;
   }
-  console.log(groupedDates)
+  
   return (
     <ul className="list-unstyled m-0 mt-4 pt-2">
       {groupedDates.map((groupedDate) => (
