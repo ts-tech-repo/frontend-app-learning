@@ -19,11 +19,12 @@ import messages from "./messages";
 const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
   const { complete, description, due, showLink, title } = sequence;
   const { datesWidget: { userTimezone } = {} } = useModel("outline", courseId);
-  console.log(userTimezone);
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
   const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   const displayTitle = showLink ? coursewareUrl : title;
 
+  console.log(complete, description, due, showLink, title)
+  console.log(sequence);
   const dueDateMessage = (
     <FormattedMessage
       id="learning.outline.sequence-due-date-set"
