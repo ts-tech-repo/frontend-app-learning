@@ -32,6 +32,7 @@ function isDueNext(assignment) {
 function getBadgeListAndColor(date, intl, item, items) {
   const now = new Date();
   const assignments = items.filter(isLearnerAssignment);
+  const tillToday = daycmp(date, now) < 0;
   const isToday = daycmp(date, now) === 0;
   const isInFuture = daycmp(date, now) > 0;
 
@@ -63,7 +64,7 @@ function getBadgeListAndColor(date, intl, item, items) {
       shownForDay: !isToday && assignments.some(isDueNext),
       shownForItem: x => isLearnerAssignment(x) && isDueNext(x),
       bg: 'bg-gray-500',
-      className: 'text-white',
+      className: 'text-dark',
     },
     {
       message: messages.unreleased,
@@ -110,6 +111,10 @@ function getBadgeListAndColor(date, intl, item, items) {
   );
   if (!color && isInFuture) {
     color = 'bg-gray-900';
+  }
+
+  if (tillToday) {
+    color = 'custom-date-styling';
   }
 
   return {
