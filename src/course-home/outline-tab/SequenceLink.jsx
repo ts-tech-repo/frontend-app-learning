@@ -30,9 +30,7 @@ const SequenceLink = ({
     showLink,
     title,
   } = sequence;
-  const {
-    userTimezone,
-  } = useModel('outline', courseId);
+  const { datesWidget: { userTimezone } = {} } = useModel("outline", courseId);
 
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
 
@@ -48,6 +46,7 @@ const SequenceLink = ({
         assignmentDue: (
           <FormattedTime
             key={`${id}-due`}
+            hour12={false}
             day="numeric"
             month="short"
             year="numeric"
@@ -70,6 +69,7 @@ const SequenceLink = ({
         assignmentDue: (
           <FormattedTime
             key={`${id}-due`}
+            hour12={false}
             day="numeric"
             month="short"
             year="numeric"

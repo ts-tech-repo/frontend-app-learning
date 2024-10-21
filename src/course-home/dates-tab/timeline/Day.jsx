@@ -23,6 +23,7 @@ const Day = ({
   intl,
   items,
   last,
+  unparsedDate,
 }) => {
   const {
     courseId,
@@ -76,7 +77,7 @@ const Day = ({
       <div className="d-inline-block ml-3 pl-2">
         <div className="row w-100 m-0 mb-1 align-items-center text-primary-700" data-testid="dates-header">
           <FormattedDate
-            value={date}
+            value={unparsedDate}
             day="numeric"
             month="short"
             weekday="short"
@@ -104,7 +105,8 @@ const Day = ({
                       <span className="mx-1">due</span>
                       <FormattedTime
                         value={item.date}
-                        timeZoneName="long"
+                        timeZoneName="short"
+                        hour12={false}
                         {...timezoneFormatArgs}
                       />
                     </span>
