@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 
 // import { ErrorPage } from '@edx/frontend-platform/react';
-import { StrictDict } from '@edx/react-unit-test-utils';
-import { Modal } from '@edx/paragon';
+import { StrictDict } from "@edx/react-unit-test-utils";
+import { Modal } from "@edx/paragon";
 
-import PageLoading from '../../../../generic/PageLoading';
-import * as hooks from './hooks';
+import PageLoading from "../../../../generic/PageLoading";
+import * as hooks from "./hooks";
 
 /**
  * Feature policy for iframe, allowing access to certain courseware-related media.
@@ -18,13 +18,12 @@ import * as hooks from './hooks';
  * This policy was selected in conference with the edX Security Working Group.
  * Changes to it should be vetted by them (security@edx.org).
  */
-export const IFRAME_FEATURE_POLICY = (
-  'microphone *; camera *; midi *; geolocation *; encrypted-media *, clipboard-write *'
-);
+export const IFRAME_FEATURE_POLICY =
+  "microphone *; camera *; midi *; geolocation *; encrypted-media *, clipboard-write *";
 
 export const testIDs = StrictDict({
-  contentIFrame: 'content-iframe-test-id',
-  modalIFrame: 'modal-iframe-test-id',
+  contentIFrame: "content-iframe-test-id",
+  modalIFrame: "modal-iframe-test-id",
 });
 
 const ContentIFrame = ({
@@ -36,34 +35,42 @@ const ContentIFrame = ({
   onLoaded,
   title,
 }) => {
-  const [iframeClass, setIframeClass] = useState('');
+  const [iframeClass, setIframeClass] = useState("");
 
-  const {
-    handleIFrameLoad,
-    hasLoaded,
-    iframeHeight,
-    showError,
-  } = hooks.useIFrameBehavior({
-    elementId,
-    id,
-    iframeUrl,
-    onLoaded,
-  });
+  const { handleIFrameLoad, hasLoaded, iframeHeight, showError } =
+    hooks.useIFrameBehavior({
+      elementId,
+      id,
+      iframeUrl,
+      onLoaded,
+    });
 
-  const {
-    modalOptions,
-    handleModalClose,
-  } = hooks.useModalIFrameData();
+  const { modalOptions, handleModalClose } = hooks.useModalIFrameData();
 
   useEffect(() => {
     const checkIframeContent = () => {
       const iframeElement = document.getElementById(elementId);
       if (iframeElement && iframeElement.contentDocument) {
-        const problemHeaderExists = iframeElement.contentDocument.querySelector('.xblock-student_view-edx_sga') || iframeElement.contentDocument.querySelector('.xblock-student_view-freetextresponse') || iframeElement.contentDocument.querySelector('.xblock-student_view-openassessment') || iframeElement.contentDocument.querySelector('.xblock-student_view-problem');
-        const hasQuizTagClass = iframeElement.classList.contains('quiz-tag');
+        const problemHeaderExists =
+          iframeElement.contentDocument.querySelector(
+            ".xblock-student_view-edx_sga"
+          ) ||
+          iframeElement.contentDocument.querySelector(
+            ".xblock-student_view-freetextresponse"
+          ) ||
+          iframeElement.contentDocument.querySelector(
+            ".xblock-student_view-openassessment"
+          ) ||
+          iframeElement.contentDocument.querySelector(
+            ".xblock-student_view-problem"
+          ) ||
+          iframeElement.contentDocument.querySelector(
+            ".xblock-student_view-lti_consumer"
+          );
+        const hasQuizTagClass = iframeElement.classList.contains("quiz-tag");
         if (problemHeaderExists && !hasQuizTagClass) {
-          setIframeClass('quiz-tag');
-        } 
+          setIframeClass("quiz-tag");
+        }
       }
     };
     const observer = new MutationObserver(() => {
@@ -71,7 +78,10 @@ const ContentIFrame = ({
     });
     const iframeElement = document.getElementById(elementId);
     if (iframeElement && iframeElement.contentDocument) {
-      observer.observe(iframeElement.contentDocument, { childList: true, subtree: true });
+      observer.observe(iframeElement.contentDocument, {
+        childList: true,
+        subtree: true,
+      });
     }
     return () => observer.disconnect();
   }, [hasLoaded, iframeUrl, elementId]);
@@ -82,36 +92,49 @@ const ContentIFrame = ({
     allow: IFRAME_FEATURE_POLICY,
     allowFullScreen: true,
     height: iframeHeight,
-    scrolling: 'no',
-    referrerPolicy: 'origin',
+    scrolling: "no",
+    referrerPolicy: "origin",
     onLoad: handleIFrameLoad,
     className: iframeClass,
   };
 
   return (
     <>
-      {(shouldShowContent && !hasLoaded) && (
+      {shouldShowContent &&
+        !hasLoaded &&
         // custom error message for iframe
-        showError ? <div className="error_msg fade alert-content alert alert-danger show"><span >🛈 </span> There seems to be a network issue. Please check your connection and try again.</div> : <PageLoading srMessage={loadingMessage} />
-      )}
+        (showError ? (
+          <div className="error_msg fade alert-content alert alert-danger show">
+            <span>🛈 </span> There seems to be a network issue. Please check your
+            connection and try again.
+          </div>
+        ) : (
+          <PageLoading srMessage={loadingMessage} />
+        ))}
       {shouldShowContent && (
         <div className="unit-iframe-wrapper">
-          <iframe title={title} {...contentIFrameProps} data-testid={testIDs.contentIFrame} />
+          <iframe
+            title={title}
+            {...contentIFrameProps}
+            data-testid={testIDs.contentIFrame}
+          />
         </div>
       )}
       {modalOptions.isOpen && (
         <Modal
-          body={modalOptions.body
-            ? <div className="unit-modal">{ modalOptions.body }</div>
-            : (
+          body={
+            modalOptions.body ? (
+              <div className="unit-modal">{modalOptions.body}</div>
+            ) : (
               <iframe
                 title={modalOptions.title}
                 allow={IFRAME_FEATURE_POLICY}
                 frameBorder="0"
                 src={modalOptions.url}
-                style={{ width: '100%', height: modalOptions.height }}
+                style={{ width: "100%", height: modalOptions.height }}
               />
-            )}
+            )
+          }
           dialogClassName="modal-lti"
           onClose={handleModalClose}
           open
