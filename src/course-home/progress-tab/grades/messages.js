@@ -178,6 +178,11 @@ const messages = defineMessages({
     defaultMessage: 'Score',
     description: 'It indicate how many points the learner have socred scored in particular assignment, or exam',
   },
+  feedback: {
+    id: 'progress.feedback',
+    defaultMessage: 'Feedback',
+    description: 'It indicate feedback received by learner on particular assignment, or exam',
+  },
   weight: {
     id: 'progress.weight',
     defaultMessage: 'Weight',
