@@ -10,6 +10,12 @@ import { useModel } from '../../../../generic/model-store';
 import messages from '../messages';
 import SubsectionTitleCell from './SubsectionTitleCell';
 
+<style>
+  .pgn__data-table {`
+    table-layout: fixed;
+  `}
+</style>
+
 const DetailedGradesTable = ({ intl }) => {
   const {
     courseId,
