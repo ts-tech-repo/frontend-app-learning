@@ -41,6 +41,15 @@ const DetailedGradesTable = ({ intl }) => {
 
       return (
         <div className="my-3" key={`${chapter.displayName}-grades-table`}>
+          <style>
+              {`
+              .edx-datatable-table {
+                  table-layout: fixed !important;
+                  max-width: 100% !important;
+              }
+              `}
+          </style>
+
           <DataTable
             data={detailedGradesData}
             itemCount={detailedGradesData.length}
@@ -65,7 +74,7 @@ const DetailedGradesTable = ({ intl }) => {
               },
             ]}
           >
-            <DataTable.Table style={{ tableLayout: 'fixed !important', maxWidth: '100% !important' }} />
+            <DataTable.Table className="edx-datatable-table" />
           </DataTable>
         </div>
       );
