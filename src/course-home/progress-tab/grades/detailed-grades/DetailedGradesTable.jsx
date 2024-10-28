@@ -65,7 +65,7 @@ const DetailedGradesTable = ({ intl }) => {
               },
             ]}
           >
-            <DataTable.Table style={{ tableLayout: 'fixed', maxWidth: '100%' }} />
+            <DataTable.Table style={{ tableLayout: 'fixed !important', maxWidth: '100% !important' }} />
           </DataTable>
         </div>
       );
