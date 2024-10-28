@@ -42,7 +42,6 @@ const DetailedGradesTable = ({ intl }) => {
       return (
         <div className="my-3" key={`${chapter.displayName}-grades-table`}>
           <DataTable
-            tableStyle={{ tableLayout: 'fixed', maxWidth: '100%' }}
             data={detailedGradesData}
             itemCount={detailedGradesData.length}
             columns={[
@@ -66,7 +65,7 @@ const DetailedGradesTable = ({ intl }) => {
               },
             ]}
           >
-            <DataTable.Table />
+            <DataTable.Table style={{ tableLayout: 'fixed', maxWidth: '100%' }} />
           </DataTable>
         </div>
       );
