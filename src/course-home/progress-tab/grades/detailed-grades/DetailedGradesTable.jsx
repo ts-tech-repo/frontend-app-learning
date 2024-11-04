@@ -33,7 +33,6 @@ const DetailedGradesTable = ({ intl }) => {
         return null;
       }
 
-      console.log("letterGradeExists: ", letterGradeExists);
       const detailedGradesData = subsectionScores.map((subsection) => ({
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
         score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
