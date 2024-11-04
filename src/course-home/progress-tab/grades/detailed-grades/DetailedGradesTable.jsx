@@ -10,7 +10,7 @@ import { useModel } from '../../../../generic/model-store';
 import messages from '../messages';
 import SubsectionTitleCell from './SubsectionTitleCell';
 
-const DetailedGradesTable = ({ intl, letterGradeExists }) => {
+const DetailedGradesTable = ({ intl }) => {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -36,7 +36,7 @@ const DetailedGradesTable = ({ intl, letterGradeExists }) => {
       console.log("letterGradeExists: ", letterGradeExists);
       const detailedGradesData = subsectionScores.map((subsection) => ({
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
-        score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.numPointsEarned.toFixed(2)}{isLocaleRtl ? '\\' : '/'}{subsection.numPointsPossible.toFixed(2)}</span>,
+        score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letter_grade ? subsection.letter_grade : subsection.numPointsEarned.toFixed(2)}{subsection.letter_grade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letter_grade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
         feedback: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection?.override?.reason || '-'}</span>,
       }));
 

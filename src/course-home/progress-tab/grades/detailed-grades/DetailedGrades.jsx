@@ -12,7 +12,7 @@ import DetailedGradesTable from './DetailedGradesTable';
 
 import messages from '../messages';
 
-const DetailedGrades = ({ intl, letterGradeExists }) => {
+const DetailedGrades = ({ intl }) => {
   const { administrator } = getAuthenticatedUser();
   const {
     courseId,
@@ -62,7 +62,7 @@ const DetailedGrades = ({ intl, letterGradeExists }) => {
         </div>
       )}
       {hasSectionScores && (
-        <DetailedGradesTable letterGradeExists={letterGradeExists} />
+        <DetailedGradesTable />
       )}
       {!hasSectionScores && (
         <p className="small">{intl.formatMessage(messages.detailedGradesEmpty)}</p>
