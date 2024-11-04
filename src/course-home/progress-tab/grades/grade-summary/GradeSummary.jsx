@@ -14,7 +14,6 @@ const GradeSummary = () => {
     gradingPolicy: {
       assignmentPolicies,
     },
-    sectionScores,
   } = useModel('progress', courseId);
 
   const [allOfSomeAssignmentTypeIsLocked, setAllOfSomeAssignmentTypeIsLocked] = useState(false);
@@ -22,29 +21,6 @@ const GradeSummary = () => {
   if (assignmentPolicies.length === 0) {
     return null;
   }
-
-  let letter_grade_exists = false;
-  sectionScores.map((chapter) => {
-    const subsectionScores = chapter.subsections.filter(
-      (subsection) => !!(
-        subsection.hasGradedAssignment
-        && subsection.showGrades
-        && (subsection.numPointsPossible > 0 || subsection.numPointsEarned > 0)),
-    );
-
-    if (subsectionScores.length === 0) {
-      return null;
-    }
-
-    chapter.subsections.filter((subsection) => {
-      console.log(subsection.letterGrade);
-      if (subsection.letterGrade) {
-        letter_grade_exists = true;
-      }
-    });
-  });
-
-  console.log("letter_grade_exists: ", letter_grade_exists);
 
   return (
     <section className="text-dark-700 mb-4">
