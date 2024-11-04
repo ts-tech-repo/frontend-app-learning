@@ -36,9 +36,12 @@ const GradeSummary = () => {
       return null;
     }
 
-    subsectionScores.map((subsection) => ({
-      letter_grade_exists: letter_grade_exists || false
-    }));
+    chapter.subsections.filter((subsection) => {
+      console.log(subsection.letterGrade);
+      if (subsection.letterGrade) {
+        letter_grade_exists = true;
+      }
+    });
   });
 
   console.log("letter_grade_exists: ", letter_grade_exists);
