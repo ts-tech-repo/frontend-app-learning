@@ -65,7 +65,7 @@ const ProgressTab = () => {
           {!wideScreen && <CertificateStatus />}
           {/* <CourseGrade /> */}
           <div className={`grades my-4 p-4 rounded raised-card ${applyLockedOverlay}`} aria-hidden={gradesFeatureIsFullyLocked}>
-            { !letterGradeExists && <GradeSummary /> }
+            {<GradeSummary /> }
             <DetailedGrades />
           </div>
         </div>
