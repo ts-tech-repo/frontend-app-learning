@@ -31,7 +31,7 @@ const ProgressTab = () => {
     return null;
   }
 
-  let letterGradeExists = false;
+  let allLetterGrade = true;
   sectionScores.map((chapter) => {
     const subsectionScores = chapter.subsections.filter(
       (subsection) => !!(
@@ -47,12 +47,12 @@ const ProgressTab = () => {
     chapter.subsections.filter((subsection) => {
       console.log(subsection.letterGrade);
       if (subsection.letterGrade) {
-        letterGradeExists = true;
+        allLetterGrade = false;
       }
     });
   });
 
-  console.log("letter_grade_exists: ", letterGradeExists);
+  console.log("allLetterGrade: ", allLetterGrade);
 
   const wideScreen = windowWidth >= breakpoints.large.minWidth;
   return (
@@ -65,7 +65,7 @@ const ProgressTab = () => {
           {!wideScreen && <CertificateStatus />}
           {/* <CourseGrade /> */}
           <div className={`grades my-4 p-4 rounded raised-card ${applyLockedOverlay}`} aria-hidden={gradesFeatureIsFullyLocked}>
-            {<GradeSummary /> }
+            { !allLetterGrade && <GradeSummary /> }
             <DetailedGrades />
           </div>
         </div>
