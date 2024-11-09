@@ -31,7 +31,7 @@ const ProgressTab = () => {
     return null;
   }
 
-  let allLetterGrade = true;
+  let allLetterGrade = false;
   sectionScores.map((chapter) => {
     const subsectionScores = chapter.subsections.filter(
       (subsection) => !!(
@@ -47,7 +47,7 @@ const ProgressTab = () => {
     chapter.subsections.filter((subsection) => {
       console.log(subsection.letterGrade);
       if (subsection.letterGrade) {
-        allLetterGrade = false;
+        allLetterGrade = true;
       }
     });
   });
