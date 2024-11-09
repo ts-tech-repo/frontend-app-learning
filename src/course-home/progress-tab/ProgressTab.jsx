@@ -46,7 +46,7 @@ const ProgressTab = () => {
 
     chapter.subsections.filter((subsection) => {
       console.log(subsection.letterGrade);
-      allLetterGrade = allLetterGrade && subsection.letterGrade;
+      allLetterGrade = allLetterGrade && Boolean(subsection.letterGrade);
     });
   });
 
