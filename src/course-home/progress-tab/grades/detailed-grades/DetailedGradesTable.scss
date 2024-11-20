@@ -2,17 +2,21 @@
     table-layout: fixed;
 }
 
-.feedback-truncated {
+.feedback-truncated,
+.feedback-truncated p {
+    margin-bottom: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.feedback-expanded {
+.feedback-expanded,
+.feedback-expanded p {
+    margin-bottom: 0;
     white-space: normal;
     word-wrap: break-word;
 }
 
 .more-less-btn {
-    text-decoration: none;
+    text-decoration: underline;
 }
