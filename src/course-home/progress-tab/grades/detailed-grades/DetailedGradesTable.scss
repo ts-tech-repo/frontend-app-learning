@@ -2,6 +2,17 @@
     table-layout: fixed;
 }
 
-#feedback-column p{
-    text-align: right !important;
+.feedback-truncated {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.feedback-expanded {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.more-less-btn {
+    text-decoration: none;
 }

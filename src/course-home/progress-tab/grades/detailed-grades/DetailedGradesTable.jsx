@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -21,6 +21,14 @@ const DetailedGradesTable = ({ intl }) => {
   } = useModel('progress', courseId);
 
   const isLocaleRtl = isRtl(getLocale());
+  const [expandedFeedback, setExpandedFeedback] = useState({});
+  const toggleFeedback = (subsectionName) => {
+    setExpandedFeedback((prev) => ({
+      ...prev,
+      [subsectionName]: !prev[subsectionName],
+    }));
+  };
+
   return (
     sectionScores.map((chapter) => {
       const subsectionScores = chapter.subsections.filter(
@@ -34,11 +42,27 @@ const DetailedGradesTable = ({ intl }) => {
         return null;
       }
 
-      const detailedGradesData = subsectionScores.map((subsection) => ({
+      const detailedGradesData = subsectionScores.map((subsection) => {
+        const isExpanded = expandedFeedback[subsection.displayName];
+        const feedback_data = subsection?.override?.reason || subsection?.comment || '-';
+        return{
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
         score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
-        feedback: <span id="feedback-column" className={subsection.learnerHasAccess ? '' : 'greyed-out'} dangerouslySetInnerHTML={{__html: subsection?.override?.reason || subsection?.comment || '-'}}></span>,
-      }));
+        feedback: (
+          <div>
+              <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'} dangerouslySetInnerHTML={{ __html: feedback_data }} />
+              {subsection.learnerHasAccess && (
+                <span>
+                  {isExpanded && feedback_data!=='-' ? (
+                    <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>less</a>
+                  ) : (
+                    <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>more</a>
+                  )}
+                </span>
+              )}
+            </div>
+        ),
+      }});
 
       return (
         <div className="my-3" key={`${chapter.displayName}-grades-table`}>
@@ -55,14 +79,14 @@ const DetailedGradesTable = ({ intl }) => {
               {
                 Header: `${intl.formatMessage(messages.score)}`,
                 accessor: 'score',
-                headerClassName: 'justify-content-end h5 mb-0',
-                cellClassName: 'align-top text-right small',
+                headerClassName: 'justify-content-start h5 mb-0',
+                cellClassName: 'align-top text-left small',
               },
               {
                 Header: `${intl.formatMessage(messages.feedback)}`,
                 accessor: 'feedback',
-                headerClassName: 'justify-content-end h5 mb-0',
-                cellClassName: 'align-top text-right small',
+                headerClassName: 'justify-content-start h5 mb-0',
+                cellClassName: 'align-top text-left small',
               },
             ]}
           >
