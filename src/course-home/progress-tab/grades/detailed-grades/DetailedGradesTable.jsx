@@ -45,15 +45,15 @@ const DetailedGradesTable = ({ intl }) => {
       const detailedGradesData = subsectionScores.map((subsection) => {
         const isExpanded = expandedFeedback[subsection.displayName];
         const feedback_data = subsection?.override?.reason || subsection?.comment || '-';
-        return{
-        subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
-        score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
-        feedback: (
-          <div>
+        return {
+          subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
+          score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
+          feedback: (
+            <div>
               <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'} dangerouslySetInnerHTML={{ __html: feedback_data }} />
-              {subsection.learnerHasAccess && (
+              {subsection.learnerHasAccess && feedback_data !== '-' && (
                 <p>
-                  {isExpanded && feedback_data!=='-' ? (
+                  {isExpanded ? (
                     <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>less</a>
                   ) : (
                     <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>more</a>
@@ -61,8 +61,9 @@ const DetailedGradesTable = ({ intl }) => {
                 </p>
               )}
             </div>
-        ),
-      }});
+          ),
+        }
+      });
 
       return (
         <div className="my-3" key={`${chapter.displayName}-grades-table`}>
