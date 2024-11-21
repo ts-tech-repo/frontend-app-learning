@@ -4,6 +4,7 @@
 
 .feedback-truncated,
 .feedback-truncated p {
+    display: block;
     margin-bottom: 0;
     white-space: nowrap;
     overflow: hidden;
