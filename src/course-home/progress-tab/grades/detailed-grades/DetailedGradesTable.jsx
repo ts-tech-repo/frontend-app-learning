@@ -33,9 +33,10 @@ const DetailedGradesTable = ({ intl }) => {
         return null;
       }
 
+      //#SA || letter_grade changes
       const detailedGradesData = subsectionScores.map((subsection) => ({
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
-        score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.numPointsEarned.toFixed(2)}{isLocaleRtl ? '\\' : '/'}{subsection.numPointsPossible.toFixed(2)}</span>,
+        score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
       }));
 
       return (

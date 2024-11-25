@@ -18,7 +18,7 @@ const ProgressTab = () => {
   } = useSelector(state => state.courseHome);
 
   const {
-    gradesFeatureIsFullyLocked, disableProgressGraph,
+    gradesFeatureIsFullyLocked, disableProgressGraph, sectionScores,
   } = useModel('progress', courseId);
 
   const applyLockedOverlay = gradesFeatureIsFullyLocked ? 'locked-overlay' : '';
@@ -31,6 +31,26 @@ const ProgressTab = () => {
     return null;
   }
 
+  //#SA || letter_grade changes
+  let allLetterGrade = true;
+  sectionScores.map((chapter) => {
+    const subsectionScores = chapter.subsections.filter(
+      (subsection) => !!(
+        subsection.hasGradedAssignment
+        && subsection.showGrades
+        && (subsection.numPointsPossible > 0 || subsection.numPointsEarned > 0)),
+    );
+
+    if (subsectionScores.length === 0) {
+      return null;
+    }
+
+    chapter.subsections.filter((subsection) => {
+      console.log(subsection.letterGrade);
+      allLetterGrade = allLetterGrade && Boolean(subsection.letterGrade);
+    });
+  });
+
   const wideScreen = windowWidth >= breakpoints.large.minWidth;
   return (
     <>
@@ -42,7 +62,7 @@ const ProgressTab = () => {
           {!wideScreen && <CertificateStatus />}
           {/* <CourseGrade /> */}
           <div className={`grades my-4 p-4 rounded raised-card ${applyLockedOverlay}`} aria-hidden={gradesFeatureIsFullyLocked}>
-            <GradeSummary />
+            { !allLetterGrade && <GradeSummary /> }
             <DetailedGrades />
           </div>
         </div>
