@@ -42,21 +42,22 @@ const DetailedGradesTable = ({ intl }) => {
         return null;
       }
 
-        const detailedGradesData = subsectionScores.map((subsection) => {
+      const detailedGradesData = subsectionScores.map((subsection) => {
         const isExpanded = expandedFeedback[subsection.displayName];
-        const feedback_data = { dangerouslySetInnerHTML: { __html: subsection?.override?.reason || subsection?.comment || '-' } };
-        const feedbackText = feedback_data.dangerouslySetInnerHTML.__html;
-        const shouldTruncate = feedbackText.length > 15 && !isExpanded;  
+        const feedback_data = subsection?.override?.reason || subsection?.comment || '-';
+        const feedbackText = feedback_data.replace(/<[^>]*>/g, '');
+        const shouldTruncate = feedbackText.length > 15 && !isExpanded;
         return {
           subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
           score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
           feedback: (
             <div>
-              <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'} >
-              {shouldTruncate ? `${feedbackText.slice(0, 15)}... ` : feedbackText}</span>
-              {subsection.learnerHasAccess && feedbackText !== '-' && shouldTruncate && (
+              <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'}>
+                {shouldTruncate ? feedbackText.slice(0,15) + '... ' : feedbackText}
+              </span>    
+              {subsection.learnerHasAccess && feedbackText !== '-' && feedbackText.length > 15 && (
                 <span>
-                    <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>{isExpanded ? 'less' : 'more'}</a>
+                  <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>{isExpanded ? 'less' : 'more'}</a>
                 </span>
               )}
             </div>

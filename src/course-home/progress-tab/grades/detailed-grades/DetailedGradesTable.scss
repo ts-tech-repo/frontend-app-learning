@@ -2,13 +2,11 @@
     table-layout: fixed;
 }
 
-.feedback-truncated,
-.feedback-truncated p {
+.feedback-truncated {
     margin-bottom: 0;
 }
 
-.feedback-expanded,
-.feedback-expanded p {
+.feedback-expanded {
     margin-bottom: 0;
     white-space: normal;
     word-wrap: break-word;
