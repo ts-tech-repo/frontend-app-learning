@@ -52,7 +52,7 @@ const DetailedGradesTable = ({ intl }) => {
             <div>
               <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'} 
               dangerouslySetInnerHTML={{ __html: feedback_data.length > 10 ? feedback_data.slice(0, 10) + '... ' : feedback_data }} />
-              {subsection.learnerHasAccess && feedback_data !== '-' && (
+              {subsection.learnerHasAccess && feedback_data !== '-' && feedback_data.length > 10 && (
                 <span>
                   {isExpanded ? (
                     <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>less</a>
