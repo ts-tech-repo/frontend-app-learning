@@ -50,15 +50,16 @@ const DetailedGradesTable = ({ intl }) => {
           score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
           feedback: (
             <div>
-              <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'} dangerouslySetInnerHTML={{ __html: feedback_data }} />
+              <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'} 
+              dangerouslySetInnerHTML={{ __html: feedback_data.length > 10 ? feedback_data.slice(0, 10) + '... ' : feedback_data }} />
               {subsection.learnerHasAccess && feedback_data !== '-' && (
-                <p>
+                <span>
                   {isExpanded ? (
                     <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>less</a>
                   ) : (
                     <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>more</a>
                   )}
-                </p>
+                </span>
               )}
             </div>
           ),
@@ -81,13 +82,13 @@ const DetailedGradesTable = ({ intl }) => {
                 Header: `${intl.formatMessage(messages.score)}`,
                 accessor: 'score',
                 headerClassName: 'justify-content-start h5 mb-0',
-                cellClassName: 'align-top text-left small',
+                cellClassName: 'align-center text-left small',
               },
               {
                 Header: `${intl.formatMessage(messages.feedback)}`,
                 accessor: 'feedback',
                 headerClassName: 'justify-content-start h5 mb-0',
-                cellClassName: 'align-top text-left small',
+                cellClassName: 'align-center text-left small',
               },
             ]}
           >
