@@ -15,3 +15,8 @@
 .more-less-btn {
     text-decoration: underline;
 }
+@media screen and (max-width: 480px) {
+    #score-column{
+        font-size: 14px !important;
+    }
+}
