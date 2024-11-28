@@ -18,5 +18,8 @@
 @media screen and (max-width: 480px) {
     #score-column{
         font-size: 14px !important;
+        font-weight: 500;
+        display: block;
+        overflow: visible;
     }
 }
