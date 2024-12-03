@@ -20,6 +20,15 @@ const DetailedGradesTable = ({ intl }) => {
   } = useModel('progress', courseId);
 
   const isLocaleRtl = isRtl(getLocale());
+
+  // #AK || feedback/comment changes
+  const [expandedFeedback, setExpandedFeedback] = useState({});
+  const toggleFeedback = (subsectionName) => {
+    setExpandedFeedback((prev) => ({
+      ...prev,
+      [subsectionName]: !prev[subsectionName],
+    }));
+  };
   return (
     sectionScores.map((chapter) => {
       const subsectionScores = chapter.subsections.filter(
@@ -34,10 +43,29 @@ const DetailedGradesTable = ({ intl }) => {
       }
 
       //#SA || letter_grade changes
-      const detailedGradesData = subsectionScores.map((subsection) => ({
+      // #AK || feedback/comment changes
+      const detailedGradesData = subsectionScores.map((subsection) => {
+        const isExpanded = expandedFeedback[subsection.displayName];
+        const feedback_data = subsection?.override?.reason || subsection?.comment || '-';
+        const feedbackText = feedback_data.replace(/<[^>]*>/g, '');
+        const shouldTruncate = feedbackText.length > 15 && !isExpanded;
+        return {
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
         score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
-      }));
+        feedback: (
+          <div>
+            <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'}>
+              {shouldTruncate ? feedbackText.slice(0,15) + '... ' : feedbackText}
+            </span>    
+            {subsection.learnerHasAccess && feedbackText !== '-' && feedbackText.length > 15 && (
+              <span>
+                <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>{isExpanded ? 'less' : 'more'}</a>
+              </span>
+            )}
+          </div>
+        ),
+      }
+  });
 
       return (
         <div className="my-3" key={`${chapter.displayName}-grades-table`}>
@@ -54,8 +82,14 @@ const DetailedGradesTable = ({ intl }) => {
               {
                 Header: `${intl.formatMessage(messages.score)}`,
                 accessor: 'score',
-                headerClassName: 'justify-content-end h5 mb-0',
-                cellClassName: 'align-top text-right small',
+                headerClassName: 'justify-content-start h5 mb-0',
+                cellClassName: 'align-center text-left small',
+              },
+              {
+                Header: `${intl.formatMessage(messages.feedback)}`,
+                accessor: 'feedback',
+                headerClassName: 'justify-content-start h5 mb-0',
+                cellClassName: 'align-center text-left small',
               },
             ]}
           >

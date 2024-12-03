@@ -1,0 +1,25 @@
+.pgn__data-table {
+    table-layout: fixed;
+}
+
+.feedback-truncated {
+    margin-bottom: 0;
+}
+
+.feedback-expanded {
+    margin-bottom: 0;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.more-less-btn {
+    text-decoration: underline;
+}
+@media screen and (max-width: 480px) {
+    .score-column{
+        font-size: 14px !important;
+        font-weight: 500;
+        display: block;
+        overflow: visible;
+    }
+}

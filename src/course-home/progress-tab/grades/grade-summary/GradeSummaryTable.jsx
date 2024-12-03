@@ -88,7 +88,7 @@ const GradeSummaryTable = ({ intl, setAllOfSomeAssignmentTypeIsLocked }) => {
     />
   );
 
-  const getCell = (locked, value) => <span className={locked ? 'greyed-out' : ''}>{value}</span>;
+  const getCell = (locked, value) => <span className={locked ? 'score-column greyed-out' : 'score-column'}>{value}</span>;
 
   return (
     <>
