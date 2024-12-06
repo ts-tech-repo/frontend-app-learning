@@ -44,7 +44,7 @@ const DetailedGradesTable = ({ intl }) => {
 
       const detailedGradesData = subsectionScores.map((subsection) => {
         const isExpanded = expandedFeedback[subsection.displayName];
-        const feedback_data = subsection?.override?.reason || subsection?.comment || '-';
+        const feedback_data = subsection?.comment || '-';
         const feedbackText = feedback_data.replace(/<[^>]*>/g, '');
         const shouldTruncate = feedbackText.length > 15 && !isExpanded;
         return {
