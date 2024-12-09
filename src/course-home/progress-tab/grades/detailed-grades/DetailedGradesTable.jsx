@@ -53,7 +53,7 @@ const DetailedGradesTable = ({ intl }) => {
         (subsection) => !!(
           subsection.hasGradedAssignment
           && subsection.showGrades
-          && (subsection.numPointsPossible >= 0 || subsection.numPointsEarned > 0)),
+          && (subsection.numPointsPossible > 0 || subsection.numPointsEarned > 0)),
       );
 
       if (subsectionScores.length === 0) {
