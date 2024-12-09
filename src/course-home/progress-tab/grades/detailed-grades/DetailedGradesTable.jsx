@@ -34,16 +34,16 @@ const DetailedGradesTable = ({ intl }) => {
     const feedbackText = subsection.comment.replace(/<[^>]*>/g, '');
     const shouldTruncate = feedbackText.length > 15 && !isExpanded;
     return (
-          <div>
-              <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'}>
-                {shouldTruncate ? feedbackText.slice(0,15) + '... ' : feedbackText}
-              </span>    
-              {subsection.learnerHasAccess && feedbackText !== '-' && feedbackText.length > 15 && (
-                <span>
-                  <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>{isExpanded ? 'less' : 'more'}</a>
-                </span>
-              )}
-          </div>
+      <div>
+        <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'}>
+          {shouldTruncate ? feedbackText.slice(0, 15) + '... ' : feedbackText}
+        </span>
+        {subsection.learnerHasAccess && feedbackText !== '-' && feedbackText.length > 15 && (
+          <span>
+            <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>{isExpanded ? 'less' : 'more'}</a>
+          </span>
+        )}
+      </div>
     );
   };
   return (
@@ -63,7 +63,7 @@ const DetailedGradesTable = ({ intl }) => {
       // #AK || feedback/comment changes
       const detailedGradesData = subsectionScores.map((subsection) => ({
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
-        score: <span className={subsection.learnerHasAccess ? 'score-column' : 'score-column greyed-out'}>{subsection.numPointsEarned.toFixed(2)}{isLocaleRtl ? '\\' : '/'}{subsection.numPointsPossible.toFixed(2)}</span>,
+        score: <span className={subsection.learnerHasAccess ? 'score-column' : 'score-column greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
         feedback: subsection.comment ? getFormattedFeedbackData(subsection) : '-',
       }));
 
