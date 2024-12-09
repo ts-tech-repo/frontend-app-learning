@@ -29,6 +29,23 @@ const DetailedGradesTable = ({ intl }) => {
       [subsectionName]: !prev[subsectionName],
     }));
   };
+  const getFormattedFeedbackData = (subsection) => {
+    const isExpanded = expandedFeedback[subsection.displayName];
+    const feedbackText = subsection.comment.replace(/<[^>]*>/g, '');
+    const shouldTruncate = feedbackText.length > 15 && !isExpanded;
+    return (
+      <div>
+        <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'}>
+          {shouldTruncate ? feedbackText.slice(0, 15) + '... ' : feedbackText}
+        </span>
+        {subsection.learnerHasAccess && feedbackText !== '-' && feedbackText.length > 15 && (
+          <span>
+            <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>{isExpanded ? 'less' : 'more'}</a>
+          </span>
+        )}
+      </div>
+    );
+  };
   return (
     sectionScores.map((chapter) => {
       const subsectionScores = chapter.subsections.filter(
@@ -44,28 +61,11 @@ const DetailedGradesTable = ({ intl }) => {
 
       //#SA || letter_grade changes
       // #AK || feedback/comment changes
-      const detailedGradesData = subsectionScores.map((subsection) => {
-        const isExpanded = expandedFeedback[subsection.displayName];
-        const feedback_data = subsection?.comment || '-';
-        const feedbackText = feedback_data.replace(/<[^>]*>/g, '');
-        const shouldTruncate = feedbackText.length > 15 && !isExpanded;
-        return {
+      const detailedGradesData = subsectionScores.map((subsection) => ({
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
         score: <span className={subsection.learnerHasAccess ? 'score-column' : 'score-column greyed-out'}>{subsection.letterGrade ? subsection.letterGrade : subsection.numPointsEarned.toFixed(2)}{subsection.letterGrade ? '' : (isLocaleRtl ? '\\' : '/')}{subsection.letterGrade ? '' : subsection.numPointsPossible.toFixed(2)}</span>,
-        feedback: (
-          <div>
-            <span id="feedback-column" className={subsection.learnerHasAccess ? (isExpanded ? 'feedback-expanded' : 'feedback-truncated') : 'greyed-out'}>
-              {shouldTruncate ? feedbackText.slice(0,15) + '... ' : feedbackText}
-            </span>    
-            {subsection.learnerHasAccess && feedbackText !== '-' && feedbackText.length > 15 && (
-              <span>
-                <a className="more-less-btn" href="#" onClick={(e) => { e.preventDefault(); toggleFeedback(subsection.displayName); }}>{isExpanded ? 'less' : 'more'}</a>
-              </span>
-            )}
-          </div>
-        ),
-      }
-  });
+        feedback: subsection.comment ? getFormattedFeedbackData(subsection) : '-',
+      }));
 
       return (
         <div className="my-3" key={`${chapter.displayName}-grades-table`}>
