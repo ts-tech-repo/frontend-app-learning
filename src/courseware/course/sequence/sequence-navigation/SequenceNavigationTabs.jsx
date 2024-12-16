@@ -8,6 +8,7 @@ import useIndexOfLastVisibleChild from '../../../../generic/tabs/useIndexOfLastV
 const SequenceNavigationTabs = ({
   unitIds, unitId, showCompletion, onNavigate, unitCount
 }) => {
+  console.log(unitCount,"unitCount")
   const [
     indexOfLastVisibleChild,
     containerRef,
@@ -35,7 +36,7 @@ const SequenceNavigationTabs = ({
           </div>
         </div>
       )}
-      {shouldDisplayDropdown && unitCount > 13 && (
+      {shouldDisplayDropdown && unitCount > 12 && (
         <SequenceNavigationDropdown
           unitId={unitId}
           onNavigate={onNavigate}
