@@ -9,6 +9,8 @@ const SequenceNavigationTabs = ({
   unitIds, unitId, showCompletion, onNavigate, unitCount
 }) => {
   console.log(unitCount,"unitCount")
+  console.log(unitId,"unitId")
+  console.log(unitId.length,"unitId.length")
  
   const [
     indexOfLastVisibleChild,
