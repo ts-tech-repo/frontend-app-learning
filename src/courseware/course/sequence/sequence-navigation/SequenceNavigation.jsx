@@ -45,11 +45,6 @@ const SequenceNavigation = ({
   const shouldDisplayNotificationTriggerInSequence = useWindowSize().width < breakpoints.small.minWidth;
 
   const renderUnitButtons = () => {
-    console.log(isLocked,"isLocked");
-    console.log(sequence.unitIds,"sequence.unitIds");
-    console.log(unitId,"unitId");
-    console.log(sequence.unitIds,"sequence.unitIds");
-    console.log(unitId,"unitId");
     if (isLocked) {
       return (
         <UnitButton unitId={unitId} title="" contentType="lock" isActive onClick={() => {}} />
@@ -66,6 +61,7 @@ const SequenceNavigation = ({
         unitId={unitId}
         showCompletion={sequence.showCompletion}
         onNavigate={onNavigate}
+        unitCount={sequence.unitIds.length} 
       />
     );
   };

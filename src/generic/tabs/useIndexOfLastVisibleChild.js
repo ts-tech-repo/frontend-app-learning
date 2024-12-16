@@ -70,12 +70,7 @@ export default function useIndexOfLastVisibleChild() {
         nextIndexOfLastVisibleChild: -1,
       });
 
-    // Check if the number of child nodes exceeds 13
-    console.log(childNodesArr);
-    if (childNodesArr.length > 13) {
-      setIndexOfLastVisibleChild(nextIndexOfLastVisibleChild);
-    }
-
+    setIndexOfLastVisibleChild(nextIndexOfLastVisibleChild);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowSize, containerElementRef.current]);
 
