@@ -14,7 +14,7 @@ const SequenceNavigationTabs = ({
     invisibleStyle,
   ] = useIndexOfLastVisibleChild();
   const shouldDisplayDropdown = indexOfLastVisibleChild === -1;
-
+  console.log(shouldDisplayDropdown);
   return (
     <div style={{ flexBasis: '100%', minWidth: 0 }}>
       <div className="sequence-navigation-tabs-container" ref={containerRef}>
