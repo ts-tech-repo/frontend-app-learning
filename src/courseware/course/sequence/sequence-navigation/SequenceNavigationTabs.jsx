@@ -9,13 +9,15 @@ const SequenceNavigationTabs = ({
   unitIds, unitId, showCompletion, onNavigate, unitCount
 }) => {
   console.log(unitCount,"unitCount")
-  console.log(shouldDisplayDropdown,"shouldDisplayDropdown")
+ 
   const [
     indexOfLastVisibleChild,
     containerRef,
     invisibleStyle,
   ] = useIndexOfLastVisibleChild();
   const shouldDisplayDropdown = indexOfLastVisibleChild === -1;
+  console.log(shouldDisplayDropdown,"shouldDisplayDropdown")
+  console.log(indexOfLastVisibleChild,"indexOfLastVisibleChild")
 
   return (
     <div style={{ flexBasis: '100%', minWidth: 0 }}>
