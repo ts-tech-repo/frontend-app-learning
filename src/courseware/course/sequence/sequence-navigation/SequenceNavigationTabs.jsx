@@ -9,6 +9,7 @@ const SequenceNavigationTabs = ({
   unitIds, unitId, showCompletion, onNavigate, unitCount
 }) => {
   console.log(unitCount,"unitCount")
+  console.log(shouldDisplayDropdown,"shouldDisplayDropdown")
   const [
     indexOfLastVisibleChild,
     containerRef,
