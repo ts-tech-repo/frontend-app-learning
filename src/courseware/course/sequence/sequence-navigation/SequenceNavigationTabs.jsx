@@ -6,52 +6,41 @@ import SequenceNavigationDropdown from './SequenceNavigationDropdown';
 import useIndexOfLastVisibleChild from '../../../../generic/tabs/useIndexOfLastVisibleChild';
 
 const SequenceNavigationTabs = ({
-  unitIds, unitId, showCompletion, onNavigate, unitCount
+  unitIds, unitId, showCompletion, onNavigate,
 }) => {
-  console.log(unitCount,"unitCount")
-  console.log(unitId,"unitId")
-  console.log(unitId.length,"unitId.length")
- 
   const [
     indexOfLastVisibleChild,
     containerRef,
     invisibleStyle,
   ] = useIndexOfLastVisibleChild();
   const shouldDisplayDropdown = indexOfLastVisibleChild === -1;
-  console.log(shouldDisplayDropdown,"shouldDisplayDropdown")
-  console.log(indexOfLastVisibleChild,"indexOfLastVisibleChild")
 
   return (
     <div style={{ flexBasis: '100%', minWidth: 0 }}>
-      {unitCount < 14 ? (
-        <div className="sequence-navigation-tabs-container" ref={containerRef}>
-          <div
-            className="sequence-navigation-tabs d-flex flex-grow-1"
-            style={shouldDisplayDropdown ? invisibleStyle : null}
-          >
-            {unitIds.map(buttonUnitId => (
-              <UnitButton
-                key={buttonUnitId}
-                unitId={buttonUnitId}
-                isActive={unitId === buttonUnitId}
-                showCompletion={showCompletion}
-                onClick={onNavigate}
-              />
-            ))}
-          </div>
+      <div className="sequence-navigation-tabs-container" ref={containerRef}>
+        <div
+          className="sequence-navigation-tabs d-flex flex-grow-1"
+          style={shouldDisplayDropdown ? invisibleStyle : null}
+        >
+          {unitIds.map(buttonUnitId => (
+            <UnitButton
+              key={buttonUnitId}
+              unitId={buttonUnitId}
+              isActive={unitId === buttonUnitId}
+              showCompletion={showCompletion}
+              onClick={onNavigate}
+            />
+          ))}
         </div>
-      ) :
-       ( <>
-        {console.log("coming here")}
-          <SequenceNavigationDropdown
-            unitId={unitId}
-            onNavigate={onNavigate}
-            showCompletion={showCompletion}
-            unitIds={unitIds}
-          />
-        </>)
-        }
-
+      </div>
+      {shouldDisplayDropdown && (
+        <SequenceNavigationDropdown
+          unitId={unitId}
+          onNavigate={onNavigate}
+          showCompletion={showCompletion}
+          unitIds={unitIds}
+        />
+      )}
     </div>
   );
 };
