@@ -7,7 +7,6 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useEventListener } from '../../../../generic/hooks';
 import messages from '../../messages';
 import SidebarContext from '../SidebarContext';
-import $ from 'jquery';
 
 const SidebarBase = ({
   intl,
@@ -39,17 +38,17 @@ const SidebarBase = ({
 
   useEffect(() => {
     setIsHidden(true);
-
+  
     const handleClick = () => {
       setIsHidden(false);
     };
-
-    $(document).on('click', '.notification-btn[aria-label="Show discussions tray"]', handleClick);
-
+    const buttons = document.querySelectorAll('.notification-btn[aria-label="Show discussions tray"]');
+    buttons.forEach(button => button.addEventListener('click', handleClick));
     return () => {
-      $(document).off('click', '.notification-btn[aria-label="Show discussions tray"]', handleClick);
+      buttons.forEach(button => button.removeEventListener('click', handleClick));
     };
   }, []);
+  
 
   return (
     <section
