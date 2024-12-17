@@ -9,8 +9,6 @@ const SequenceNavigationTabs = ({
   unitIds, unitId, showCompletion, onNavigate, unitCount
 }) => {
   console.log(unitCount,"unitCount")
-  console.log(unitId,"unitId")
-  console.log(unitId.length,"unitId.length")
  
   const [
     indexOfLastVisibleChild,
@@ -23,7 +21,7 @@ const SequenceNavigationTabs = ({
 
   return (
     <div style={{ flexBasis: '100%', minWidth: 0 }}>
-      {unitCount < 14 ? (
+      {unitCount < 14 && (
         <div className="sequence-navigation-tabs-container" ref={containerRef}>
           <div
             className="sequence-navigation-tabs d-flex flex-grow-1"
@@ -40,15 +38,15 @@ const SequenceNavigationTabs = ({
             ))}
           </div>
         </div>
-      ) : (
+      )}
+      {(shouldDisplayDropdown || unitCount > 12) && (
         <>
-        {console.log("coming here")}
-          <SequenceNavigationDropdown
-            unitId={unitId}
-            onNavigate={onNavigate}
-            showCompletion={showCompletion}
-            unitIds={unitIds}
-          />
+        <SequenceNavigationDropdown
+          unitId={unitId}
+          onNavigate={onNavigate}
+          showCompletion={showCompletion}
+          unitIds={unitIds}
+        />
         </>
       )}
     </div>
