@@ -38,9 +38,9 @@ export default function useIndexOfLastVisibleChild() {
   const windowSize = useWindowSize();
 
   useLayoutEffect(() => {
-    // if (!containerElementRef.current) {
-    //   return;
-    // }
+    if (!containerElementRef.current) {
+      return;
+    }
 
     const containingRect = containerElementRef.current.getBoundingClientRect();
 
