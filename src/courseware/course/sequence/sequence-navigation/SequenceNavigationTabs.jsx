@@ -39,7 +39,7 @@ const SequenceNavigationTabs = ({
           </div>
         </div>
       )}
-      {(shouldDisplayDropdown || unitCount > 12) && (
+      {(shouldDisplayDropdown === true || unitCount > 12) && (
         <>
         <SequenceNavigationDropdown
           unitId={unitId}
