@@ -49,9 +49,7 @@ const OutlineTab = ({ intl }) => {
       weeklyLearningGoalEnabled,
     } = {},
     datesBannerInfo,
-    datesWidget: {
-      courseDateBlocks,
-    } = {},
+    datesWidget,
     enableProctoredExams,
     offer,
     timeOffsetMillis,
@@ -80,7 +78,7 @@ const OutlineTab = ({ intl }) => {
 
   const rootCourseId = courseBlocks?.courses && Object.keys(courseBlocks?.courses)[0];
 
-  const hasDeadlines = courseDateBlocks && courseDateBlocks.some(x => x.dateType === 'assignment-due-date');
+  const hasDeadlines = datesWidget?.courseDateBlocks && datesWidget?.courseDateBlocks.some(x => x.dateType === 'assignment-due-date');
 
   const logUpgradeToShiftDatesLinkClick = () => {
     sendTrackEvent('edx.bi.ecommerce.upsell_links_clicked', {
