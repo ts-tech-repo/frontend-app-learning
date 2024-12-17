@@ -51,12 +51,13 @@ const OutlineTab = ({ intl }) => {
     datesBannerInfo,
     datesWidget: {
       courseDateBlocks,
-    },
+    } = {},
     enableProctoredExams,
     offer,
     timeOffsetMillis,
     verifiedMode,
-  } = useModel('outline', courseId);
+  } = useModel('outline', courseId) || {};
+  console.log(useModel('outline', courseId), "debugging")
 
   const {
     marketingUrl,
