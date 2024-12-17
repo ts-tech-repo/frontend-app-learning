@@ -7,6 +7,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useEventListener } from '../../../../generic/hooks';
 import messages from '../../messages';
 import SidebarContext from '../SidebarContext';
+import $ from 'jquery';
 
 const SidebarBase = ({
   intl,
@@ -26,10 +27,6 @@ const SidebarBase = ({
 
   const [isHidden, setIsHidden] = useState(true);
 
-  useEffect(() => {
-    setIsHidden(true);
-  }, []);
-
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
     if (type === 'learning.events.sidebar.close') {
@@ -39,6 +36,20 @@ const SidebarBase = ({
   }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
+
+  useEffect(() => {
+    setIsHidden(true);
+
+    const handleClick = () => {
+      setIsHidden(false);
+    };
+
+    $(document).on('click', '.notification-btn[aria-label="Show discussions tray"]', handleClick);
+
+    return () => {
+      $(document).off('click', '.notification-btn[aria-label="Show discussions tray"]', handleClick);
+    };
+  }, []);
 
   return (
     <section
