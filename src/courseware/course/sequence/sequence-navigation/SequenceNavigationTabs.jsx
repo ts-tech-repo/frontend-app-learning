@@ -23,16 +23,7 @@ const SequenceNavigationTabs = ({
 
   return (
     <div style={{ flexBasis: '100%', minWidth: 0 }}>
-      {shouldDisplayDropdown === true || unitCount > 12 ? (
-        <>
-          <SequenceNavigationDropdown
-            unitId={unitId}
-            onNavigate={onNavigate}
-            showCompletion={showCompletion}
-            unitIds={unitIds}
-          />
-        </>
-      ) : (
+      {unitCount < 14 ? (
         <div className="sequence-navigation-tabs-container" ref={containerRef}>
           <div
             className="sequence-navigation-tabs d-flex flex-grow-1"
@@ -49,7 +40,17 @@ const SequenceNavigationTabs = ({
             ))}
           </div>
         </div>
-      )}
+      ) : (shouldDisplayDropdown === true || unitCount > 12) ? (
+        <>
+        {console.log("coming here")}
+          <SequenceNavigationDropdown
+            unitId={unitId}
+            onNavigate={onNavigate}
+            showCompletion={showCompletion}
+            unitIds={unitIds}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
