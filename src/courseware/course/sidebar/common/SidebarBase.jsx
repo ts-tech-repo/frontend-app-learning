@@ -3,7 +3,7 @@ import { Icon, IconButton } from '@edx/paragon';
 import { ArrowBackIos, Close } from '@edx/paragon/icons';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useEventListener } from '../../../../generic/hooks';
 import messages from '../../messages';
 import SidebarContext from '../SidebarContext';
@@ -24,6 +24,12 @@ const SidebarBase = ({
     currentSidebar,
   } = useContext(SidebarContext);
 
+  const [isHidden, setIsHidden] = useState(true);
+
+  useEffect(() => {
+    setIsHidden(true);
+  }, []);
+
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
     if (type === 'learning.events.sidebar.close') {
@@ -39,7 +45,7 @@ const SidebarBase = ({
       className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
         'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
         'min-vh-100': !shouldDisplayFullScreen,
-        'd-none': currentSidebar !== sidebarId,
+        'd-none': currentSidebar !== sidebarId || isHidden,
       }, className)}
       data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
