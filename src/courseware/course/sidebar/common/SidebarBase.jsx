@@ -26,10 +26,6 @@ const SidebarBase = ({
 
   const [isHidden, setIsHidden] = useState(true);
 
-  useEffect(() => {
-    setIsHidden(true);
-  }, []);
-
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
     if (type === 'learning.events.sidebar.close') {
@@ -39,6 +35,20 @@ const SidebarBase = ({
   }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
+
+  useEffect(() => {
+    setIsHidden(true);
+  
+    const handleClick = () => {
+      setIsHidden(false);
+    };
+    const buttons = document.querySelectorAll('.notification-btn[aria-label="Show discussions tray"]');
+    buttons.forEach(button => button.addEventListener('click', handleClick));
+    return () => {
+      buttons.forEach(button => button.removeEventListener('click', handleClick));
+    };
+  }, []);
+  
 
   return (
     <section
