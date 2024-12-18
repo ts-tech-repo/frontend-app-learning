@@ -36,9 +36,13 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    toggleSidebar(null);
-  });
-
+    const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
+    
+    if (button) {
+      button.click();
+    }
+  }, []);
+  
 
   return (
     <section
@@ -51,7 +55,6 @@ const SidebarBase = ({
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
       aria-label={ariaLabel}
     >
-      {console.log(shouldDisplayFullScreen,sidebarId,currentSidebar)}
       {shouldDisplayFullScreen ? (
         <div
           className="pt-2 pb-2.5 border-bottom border-light-400 d-flex align-items-center ml-2"
