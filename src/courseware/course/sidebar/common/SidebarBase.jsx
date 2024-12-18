@@ -36,30 +36,12 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const section = document.querySelector(`[data-testid="sidebar-${sidebarId}"]`);
     const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
-  
-    if (!section || !button) return;
-  
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' || mutation.type === 'childList') {
-          button.click();
-        }
-      });
-    });
-  
-    observer.observe(section, {
-      attributes: true, 
-      childList: true, 
-      subtree: false,  
-    });
-  
-    return () => {
-      observer.disconnect();
-    };
-  }, [sidebarId]);
-  
+    
+    if (button) {
+      button.click();
+    }
+  }, [shouldDisplayFullScreen]);
   
 
   return (
