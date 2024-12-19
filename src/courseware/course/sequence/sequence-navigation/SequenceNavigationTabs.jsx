@@ -6,7 +6,7 @@ import SequenceNavigationDropdown from './SequenceNavigationDropdown';
 import useIndexOfLastVisibleChild from '../../../../generic/tabs/useIndexOfLastVisibleChild';
 
 const SequenceNavigationTabs = ({
-  unitIds, unitId, showCompletion, onNavigate,
+  unitIds, unitId, showCompletion, onNavigate, unitCount
 }) => {
   const [
     indexOfLastVisibleChild,
@@ -14,10 +14,15 @@ const SequenceNavigationTabs = ({
     invisibleStyle,
   ] = useIndexOfLastVisibleChild();
   const shouldDisplayDropdown = indexOfLastVisibleChild === -1;
+  console.log(shouldDisplayDropdown,"shouldDisplayDropdown")
+  console.log(invisibleStyle,"invisibleStyle")
+  console.log(unitCount,"unitCount")
 
   return (
     <div style={{ flexBasis: '100%', minWidth: 0 }}>
-      <div className="sequence-navigation-tabs-container" ref={containerRef}>
+      {
+        unitCount <= 13 &&
+        <div className="sequence-navigation-tabs-container" ref={containerRef}>
         <div
           className="sequence-navigation-tabs d-flex flex-grow-1"
           style={shouldDisplayDropdown ? invisibleStyle : null}
@@ -33,7 +38,9 @@ const SequenceNavigationTabs = ({
           ))}
         </div>
       </div>
-      {shouldDisplayDropdown && (
+      }
+      
+      {(shouldDisplayDropdown || unitCount > 13) && (
         <SequenceNavigationDropdown
           unitId={unitId}
           onNavigate={onNavigate}
