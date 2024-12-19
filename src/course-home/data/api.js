@@ -266,6 +266,7 @@ export async function getProgressTabData(courseId, targetUserId) {
     return camelCasedData;
   } catch (error) {
     const httpErrorStatus = error?.response?.status;
+    console.log(error)
     if (httpErrorStatus === 404) {
       global.location.replace(`${getConfig().LMS_BASE_URL}/courses/${courseId}/progress`);
       return {};
@@ -273,6 +274,7 @@ export async function getProgressTabData(courseId, targetUserId) {
     if (httpErrorStatus === 401) {
       // The backend sends this for unenrolled and unauthenticated learners, but we handle those cases by examining
       // courseAccess in the metadata call, so just ignore this status for now.
+      global.location.replace(`${getConfig().LMS_BASE_URL}/courses/${courseId}/home`);
       return {};
     }
     if (httpErrorStatus === 403) {
