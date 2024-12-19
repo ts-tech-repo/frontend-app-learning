@@ -9,10 +9,10 @@ const useScheduledContentAlert = (courseId) => {
   const {
     courseBlocks: {
       courses,
-    },
+    } = {},
     datesWidget: {
       datesTabLink,
-    },
+    } = {},
   } = useModel('outline', courseId);
 
   const hasScheduledContent = (
