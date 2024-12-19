@@ -39,7 +39,7 @@ function useCertificateStatusAlert(courseId) {
   const {
     datesWidget: {
       courseDateBlocks,
-    },
+    } = {},
     certData,
     hasEnded,
     userHasPassingGrade,
@@ -52,7 +52,7 @@ function useCertificateStatusAlert(courseId) {
     certWebViewUrl,
     certificateAvailableDate,
   } = certData || {};
-  const endBlock = courseDateBlocks.find(b => b.dateType === 'course-end-date');
+  const endBlock = courseDateBlocks && courseDateBlocks?.find(b => b.dateType === 'course-end-date');
   const isVerifiedEnrollmentMode = (
     enrollmentMode !== null
     && enrollmentMode !== undefined
