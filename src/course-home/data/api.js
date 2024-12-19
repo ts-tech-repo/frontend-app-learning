@@ -274,7 +274,7 @@ export async function getProgressTabData(courseId, targetUserId) {
     if (httpErrorStatus === 401) {
       // The backend sends this for unenrolled and unauthenticated learners, but we handle those cases by examining
       // courseAccess in the metadata call, so just ignore this status for now.
-      global.location.replace(`/courses/${courseId}/home`);
+      // global.location.replace(`/learner-dashboard/courses/${courseId}/home`);
       return {};
     }
     if (httpErrorStatus === 403) {
