@@ -61,6 +61,7 @@ const SequenceNavigation = ({
         unitId={unitId}
         showCompletion={sequence.showCompletion}
         onNavigate={onNavigate}
+        unitCount={sequence.unitIds.length} 
       />
     );
   };
