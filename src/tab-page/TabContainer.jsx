@@ -31,7 +31,7 @@ const TabContainer = (props) => {
 
   useEffect(() => {
     console.log(fetch, "fetchfetchfetch")
-  }, [])
+  }, [fetch, tab])
 
   // The courseId from the store is the course we HAVE loaded.  If the URL changes,
   // we don't want the application to adjust to it until it has actually loaded the new data.
