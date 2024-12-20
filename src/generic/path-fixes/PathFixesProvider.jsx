@@ -29,7 +29,7 @@ const PathFixesProvider = ({ children }) => {
       search: location.search,
     });
 
-    return (<Navigate to={newLocation} replace />);
+    return (<Navigate to={newLocation} />);
   }
 
   return children; // pass through
