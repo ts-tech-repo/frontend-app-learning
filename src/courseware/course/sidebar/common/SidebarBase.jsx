@@ -34,14 +34,11 @@ const SidebarBase = ({
   }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
-
+console.log(sidebarId,"sidebarId")
+console.log(toggleSidebar,"toggleSidebar")
   useEffect(() => {
-    const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
-    
-    if (button) {
-      button.click();
-    }
-  }, []);
+    toggleSidebar(null);
+  },[toggleSidebar]);
   
 
   return (
