@@ -23,6 +23,7 @@ const TabContainer = (props) => {
     if (isProgressTab) {
       dispatch(fetch(courseIdFromUrl, targetUserId));
     } else {
+      console.log(courseIdFromUrl, targetUserId, "fetch happened")
       dispatch(fetch(courseIdFromUrl));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
