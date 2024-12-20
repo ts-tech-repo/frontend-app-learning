@@ -44,6 +44,7 @@ import LiveTab from "./course-home/live-tab/LiveTab";
 import CourseAccessErrorPage from "./generic/CourseAccessErrorPage";
 import DecodePageRoute from "./decode-page-route";
 import { DECODE_ROUTES, ROUTES } from "./constants";
+import { SecondLevelErrorBoundary } from "./components/ErrorBoundary";
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
