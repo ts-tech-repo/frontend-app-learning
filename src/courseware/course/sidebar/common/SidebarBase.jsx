@@ -38,7 +38,9 @@ const SidebarBase = ({
 console.log(sidebarId,"sidebarId")
 console.log(currentSidebar,"currentSidebar")
   useEffect(() => {
-    toggleSidebar(null);
+    if(currentSidebar == sidebarId){
+      toggleSidebar(null);
+    }
   },[currentSidebar]);
   
 
