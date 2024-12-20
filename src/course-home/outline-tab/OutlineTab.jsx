@@ -55,7 +55,6 @@ const OutlineTab = ({ intl }) => {
     timeOffsetMillis,
     verifiedMode,
   } = useModel('outline', courseId) || {};
-  console.log(useModel('outline', courseId), "debugging")
 
   const {
     marketingUrl,

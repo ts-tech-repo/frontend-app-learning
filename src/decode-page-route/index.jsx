@@ -40,7 +40,7 @@ const DecodePageRoute = ({ children }) => {
 
     // if the url get decoded, reroute to the decoded url
     if (newUrl !== pathname) {
-      return <Navigate to={newUrl} replace />;
+      return <Navigate to={newUrl} />;
     }
   }
 

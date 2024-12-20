@@ -25,7 +25,7 @@ const StartOrResumeCourseCard = ({ intl }) => {
     resumeCourse: {
       hasVisitedCourse,
       url: resumeCourseUrl,
-    },
+    } = {},
   } = useModel('outline', courseId);
 
   if (!resumeCourseUrl) {
