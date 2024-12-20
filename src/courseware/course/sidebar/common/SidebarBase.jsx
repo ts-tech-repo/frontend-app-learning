@@ -39,7 +39,7 @@ console.log(sidebarId,"sidebarId")
 console.log(toggleSidebar,"toggleSidebar")
   useEffect(() => {
     toggleSidebar(null);
-  },[toggleSidebar]);
+  },[sidebarId]);
   
 
   return (
