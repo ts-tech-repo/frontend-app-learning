@@ -20,18 +20,13 @@ const TabContainer = (props) => {
 
   useEffect(() => {
     // The courseId from the URL is the course we WANT to load.
-    console.log(courseIdFromUrl, targetUserId, "fetch happened")
     if (isProgressTab) {
       dispatch(fetch(courseIdFromUrl, targetUserId));
     } else {
       dispatch(fetch(courseIdFromUrl));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [courseIdFromUrl, targetUserId]);
-
-  useEffect(() => {
-    console.log(fetch, "fetchfetchfetch")
-  }, [fetch, tab])
+  }, [courseIdFromUrl, targetUserId, fetch, tab]);
 
   // The courseId from the store is the course we HAVE loaded.  If the URL changes,
   // we don't want the application to adjust to it until it has actually loaded the new data.
