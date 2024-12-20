@@ -34,10 +34,11 @@ const SidebarBase = ({
   }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
-
+console.log(sidebarId,"sidebarId")
+console.log(toggleSidebar,"toggleSidebar")
   useEffect(() => {
     toggleSidebar(null);
-  },[sidebarId,toggleSidebar]);
+  },[toggleSidebar]);
   
 
   return (
