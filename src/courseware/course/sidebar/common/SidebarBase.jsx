@@ -36,10 +36,11 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 console.log(sidebarId,"sidebarId")
+console.log(receiveMessage,"receiveMessage")
 console.log(toggleSidebar,"toggleSidebar")
   useEffect(() => {
     toggleSidebar(null);
-  },[sidebarId]);
+  },[receiveMessage]);
   
 
   return (
