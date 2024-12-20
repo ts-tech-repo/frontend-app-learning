@@ -27,6 +27,7 @@ const SidebarBase = ({
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
+    console.log(type,"type")
     if (type === 'learning.events.sidebar.close') {
       toggleSidebar(null);
     }
@@ -35,10 +36,10 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 console.log(sidebarId,"sidebarId")
-console.log(toggleSidebar,"toggleSidebar")
+console.log(currentSidebar,"currentSidebar")
   useEffect(() => {
     toggleSidebar(null);
-  },[toggleSidebar]);
+  },[currentSidebar]);
   
 
   return (
