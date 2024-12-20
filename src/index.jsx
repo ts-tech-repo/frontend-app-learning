@@ -56,7 +56,7 @@ subscribe(APP_READY, () => {
           type="image/x-icon"
         />
       </Helmet>
-      <SecondLevelErrorBoundary>
+      {/* <SecondLevelErrorBoundary> */}
         <PathFixesProvider>
           <NoticesProvider>
             <UserMessagesProvider>
@@ -186,7 +186,7 @@ subscribe(APP_READY, () => {
             </UserMessagesProvider>
           </NoticesProvider>
         </PathFixesProvider>
-      </SecondLevelErrorBoundary>
+      {/* </SecondLevelErrorBoundary> */}
     </AppProvider>,
     document.getElementById("root")
   );
