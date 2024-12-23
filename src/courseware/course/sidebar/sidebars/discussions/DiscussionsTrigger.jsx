@@ -17,6 +17,7 @@ export const ID = 'DISCUSSIONS';
 const DiscussionsTrigger = ({
   intl,
   onClick,
+  showSidebar,
 }) => {
   const {
     unitId,
@@ -43,7 +44,13 @@ const DiscussionsTrigger = ({
   }
 
   return (
-    <SidebarTriggerBase onClick={onClick} ariaLabel={intl.formatMessage(messages.openDiscussionsTrigger)}>
+    <SidebarTriggerBase 
+      onClick={() => { 
+        onClick();
+        showSidebar();
+      }} 
+      ariaLabel={intl.formatMessage(messages.openDiscussionsTrigger)}
+    >
       <Icon src={QuestionAnswer} className="m-0 m-auto" />
     </SidebarTriggerBase>
   );
@@ -52,6 +59,7 @@ const DiscussionsTrigger = ({
 DiscussionsTrigger.propTypes = {
   intl: intlShape.isRequired,
   onClick: PropTypes.func.isRequired,
+  showSidebar: PropTypes.func.isRequired,
 };
 
 export default injectIntl(DiscussionsTrigger);
