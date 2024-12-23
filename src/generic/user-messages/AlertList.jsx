@@ -25,7 +25,7 @@ const AlertList = ({ topic, className, customAlerts, customProps }) => {
         console.log(message, message?.text, AlertComponent, "debugging");
         return (
           <Suspense key={message.id} fallback={null}>
-            {/* <AlertComponent
+            <AlertComponent
               type={message.type}
               dismissible={message.dismissible}
               onDismiss={() => remove(message.id)}
@@ -33,7 +33,7 @@ const AlertList = ({ topic, className, customAlerts, customProps }) => {
               {...customProps}
             >
               {message.text}
-            </AlertComponent> */}
+            </AlertComponent>
           </Suspense>
         );
       })}
