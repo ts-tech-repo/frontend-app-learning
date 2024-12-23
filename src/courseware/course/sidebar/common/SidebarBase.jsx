@@ -25,12 +25,14 @@ const SidebarBase = ({
     currentSidebar,
   } = useContext(SidebarContext);
 
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
     console.log(type,"type")
     if (type === 'learning.events.sidebar.close') {
       toggleSidebar(null);
+      setIsSidebarVisible(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sidebarId, toggleSidebar]);
@@ -42,12 +44,17 @@ const SidebarBase = ({
   useEffect(() => {
     if(currentSidebar == null){
       toggleSidebar(null);
+      setIsSidebarVisible(false);
     }
   });
   
 
+  const showSidebar = () => {
+    setIsSidebarVisible(true);
+  };
+
   return (
-    currentSidebar === null || currentSidebar === sidebarId ? null : (
+    isSidebarVisible && (currentSidebar === null || currentSidebar === sidebarId) ? null : (
       <section
         className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
           'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
