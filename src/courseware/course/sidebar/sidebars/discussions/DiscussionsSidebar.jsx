@@ -29,6 +29,7 @@ const DiscussionsSidebar = ({ intl }) => {
       sidebarId={ID}
       width="50rem"
       showTitleBar={false}
+      className="d-none"
     >
       <iframe
         src={`${discussionsUrl}?inContextSidebar`}
