@@ -130,7 +130,6 @@ const OutlineTab = ({ intl }) => {
         <div className="col-12">
           <AlertList
             topic="outline-private-alerts"
-            className={"this-is-for-debugging"}
             customAlerts={{
               ...privateCourseAlert,
             }}
