@@ -18,93 +18,78 @@ const SidebarBase = ({
   showTitleBar,
   width,
 }) => {
-  console.log(intl,title,ariaLabel,sidebarId,className,children,showTitleBar,width);
   const {
     toggleSidebar,
     shouldDisplayFullScreen,
     currentSidebar,
   } = useContext(SidebarContext);
 
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
+
+  useEffect(() => {
+    setIsHidden(true);
+  }, []);
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
-    console.log(type,"type")
     if (type === 'learning.events.sidebar.close') {
       toggleSidebar(null);
-      setIsSidebarVisible(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
-  console.log(sidebarId,"sidebarId")
-  console.log(currentSidebar,"currentSidebar")
-
-  useEffect(() => {
-    if(currentSidebar == null){
-      toggleSidebar(null);
-      setIsSidebarVisible(false);
-    }
-  });
-  
-
-  const showSidebar = () => {
-    setIsSidebarVisible(true);
-  };
 
   return (
-    isSidebarVisible && (currentSidebar === null || currentSidebar === sidebarId) ? null : (
-      <section
-        className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
-          'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
-          'min-vh-100': !shouldDisplayFullScreen,
-          'd-none': currentSidebar !== sidebarId ,
-        }, className)}
-        data-testid={`sidebar-${sidebarId}`}
-        style={{ width: shouldDisplayFullScreen ? '100%' : width }}
-        aria-label={ariaLabel}
-      >
-        {shouldDisplayFullScreen ? (
-          <div
-            className="pt-2 pb-2.5 border-bottom border-light-400 d-flex align-items-center ml-2"
-            onClick={() => toggleSidebar(null)}
-            onKeyDown={() => toggleSidebar(null)}
-            role="button"
-            tabIndex="0"
-            alt={intl.formatMessage(messages.responsiveCloseNotificationTray)}
-          >
-            <Icon src={ArrowBackIos} />
-            <span className="font-weight-bold m-2 d-inline-block">
-              {intl.formatMessage(messages.responsiveCloseNotificationTray)}
-            </span>
+    <section
+      className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
+        'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
+        'min-vh-100': !shouldDisplayFullScreen,
+        'd-none': currentSidebar !== sidebarId || isHidden,
+      }, className)}
+      data-testid={`sidebar-${sidebarId}`}
+      style={{ width: shouldDisplayFullScreen ? '100%' : width }}
+      aria-label={ariaLabel}
+    >
+      {shouldDisplayFullScreen ? (
+        <div
+          className="pt-2 pb-2.5 border-bottom border-light-400 d-flex align-items-center ml-2"
+          onClick={() => toggleSidebar(null)}
+          onKeyDown={() => toggleSidebar(null)}
+          role="button"
+          tabIndex="0"
+          alt={intl.formatMessage(messages.responsiveCloseNotificationTray)}
+        >
+          <Icon src={ArrowBackIos} />
+          <span className="font-weight-bold m-2 d-inline-block">
+            {intl.formatMessage(messages.responsiveCloseNotificationTray)}
+          </span>
+        </div>
+      ) : null}
+      {showTitleBar && (
+        <>
+          <div className="d-flex align-items-center">
+            <span className="p-2.5 d-inline-block">{title}</span>
+            {shouldDisplayFullScreen
+              ? null
+              : (
+                <div className="d-inline-flex mr-2 mt-1.5 ml-auto">
+                  <IconButton
+                    src={Close}
+                    size="sm"
+                    iconAs={Icon}
+                    onClick={() => toggleSidebar(null)}
+                    variant="primary"
+                    alt={intl.formatMessage(messages.closeNotificationTrigger)}
+                  />
+                </div>
+              )}
           </div>
-        ) : null}
-        {showTitleBar && (
-          <>
-            <div className="d-flex align-items-center">
-              <span className="p-2.5 d-inline-block">{title}</span>
-              {shouldDisplayFullScreen
-                ? null
-                : (
-                  <div className="d-inline-flex mr-2 mt-1.5 ml-auto">
-                    <IconButton
-                      src={Close}
-                      size="sm"
-                      iconAs={Icon}
-                      onClick={() => toggleSidebar(null)}
-                      variant="primary"
-                      alt={intl.formatMessage(messages.closeNotificationTrigger)}
-                    />
-                  </div>
-                )}
-            </div>
-            <div className="py-1 bg-gray-100 border-top border-bottom border-light-400" />
-          </>
-        )}
-        {children}
-      </section>
-    )
+          <div className="py-1 bg-gray-100 border-top border-bottom border-light-400" />
+        </>
+      )}
+      {children}
+    </section>
   );
 };
 
