@@ -34,7 +34,7 @@ const DiscussionsTrigger = ({
   const { toggleSidebar } = useContext(SidebarContext);
   useEffect(() => {
     toggleSidebar(null);
-  }, []);
+  }, [tabs]);
 
   useEffect(() => {
     if (baseUrl && edxProvider) {
