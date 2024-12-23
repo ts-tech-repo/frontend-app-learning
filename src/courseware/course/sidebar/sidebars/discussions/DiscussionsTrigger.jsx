@@ -31,6 +31,9 @@ const DiscussionsTrigger = ({
     [tabs],
   );
 
+  const { toggleSidebar } = useContext(SidebarContext);
+  toggleSidebar(null);
+
   useEffect(() => {
     if (baseUrl && edxProvider) {
       dispatch(getCourseDiscussionTopics(courseId));

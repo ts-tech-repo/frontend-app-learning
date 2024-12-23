@@ -37,11 +37,11 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 console.log(sidebarId,"sidebarId")
 console.log(currentSidebar,"currentSidebar")
-  useEffect(() => {
-    if(currentSidebar == null){
-      toggleSidebar(null);
-    }
-  });
+  // useEffect(() => {
+  //   if(currentSidebar == null){
+  //     toggleSidebar(null);
+  //   }
+  // });
   
 
   return (
