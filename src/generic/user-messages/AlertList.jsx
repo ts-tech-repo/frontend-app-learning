@@ -22,7 +22,20 @@ const AlertList = ({ topic, className, customAlerts, customProps }) => {
     <div className={className}>
       {topicMessages.map((message) => {
         const AlertComponent = getAlertComponent(message.code);
-        console.log(message, message?.text, AlertComponent, "debugging");
+        console.log(
+          message,
+          message?.text,
+          <AlertComponent
+            type={message.type}
+            dismissible={message.dismissible}
+            onDismiss={() => remove(message.id)}
+            payload={message.payload}
+            {...customProps}
+          >
+            {message.text}
+          </AlertComponent>,
+          "debugging"
+        );
         return (
           <Suspense key={message.id} fallback={null}>
             <AlertComponent
