@@ -14,6 +14,10 @@ export const DEFAULT_HEIGHT = '100vh';
 const useModalIFrameBehavior = () => {
   const [isOpen, setIsOpen] = useKeyedState(stateKeys.isOpen, false);
   const [options, setOptions] = useKeyedState(stateKeys.options, { height: DEFAULT_HEIGHT });
+  
+  console.log(isOpen, "isOpen");
+  console.log(setOptions, "setOptions");
+  console.log(stateKeys, "stateKeys");
 
   const receiveMessage = React.useCallback(({ data }) => {
     const { type, payload } = data;
