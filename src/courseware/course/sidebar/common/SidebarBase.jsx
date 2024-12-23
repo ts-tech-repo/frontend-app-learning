@@ -36,13 +36,14 @@ const SidebarBase = ({
   }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
-console.log(sidebarId,"sidebarId")
-console.log(currentSidebar,"currentSidebar")
-  // useEffect(() => {
-  //   if(currentSidebar == null){
-  //     toggleSidebar(null);
-  //   }
-  // });
+  console.log(sidebarId,"sidebarId")
+  console.log(currentSidebar,"currentSidebar")
+
+  useEffect(() => {
+    if(currentSidebar == null){
+      toggleSidebar(null);
+    }
+  });
   
 
   return (
@@ -50,7 +51,7 @@ console.log(currentSidebar,"currentSidebar")
       className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
         'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
         'min-vh-100': !shouldDisplayFullScreen,
-        'd-block': currentSidebar == sidebarId ,
+        'd-none': currentSidebar !== sidebarId ,
       }, className)}
       data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
