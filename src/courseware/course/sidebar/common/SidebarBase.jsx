@@ -17,7 +17,6 @@ const SidebarBase = ({
   children,
   showTitleBar,
   width,
-  setIsHidden,
 }) => {
   const {
     toggleSidebar,
@@ -55,10 +54,7 @@ const SidebarBase = ({
       {shouldDisplayFullScreen ? (
         <div
           className="pt-2 pb-2.5 border-bottom border-light-400 d-flex align-items-center ml-2"
-          onClick={() => {
-            toggleSidebar(null);
-            setIsHidden(false);
-          }}
+          onClick={() => toggleSidebar(null)}
           onKeyDown={() => toggleSidebar(null)}
           role="button"
           tabIndex="0"
@@ -106,7 +102,6 @@ SidebarBase.propTypes = {
   children: PropTypes.element.isRequired,
   showTitleBar: PropTypes.bool,
   width: PropTypes.string,
-  setIsHidden: PropTypes.func,
 };
 
 SidebarBase.defaultProps = {
