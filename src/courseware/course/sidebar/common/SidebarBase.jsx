@@ -31,7 +31,7 @@ const SidebarBase = ({
     const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
     
     if (button) {
-      setIsHidden(false);
+      button.onclick = () => setIsHidden(false);
     }
   }, []);
 
