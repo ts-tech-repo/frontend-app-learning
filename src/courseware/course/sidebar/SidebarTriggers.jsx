@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { breakpoints, useWindowSize } from '@edx/paragon';
 import SidebarContext from './SidebarContext';
 import { SIDEBAR_ORDER, SIDEBARS } from './sidebars';
@@ -12,6 +12,17 @@ const SidebarTriggers = () => {
 
   const isMobileView = useWindowSize().width < breakpoints.small.minWidth;
 
+  const [showTriggers, setShowTriggers] = useState(false);
+
+  const handleTriggerClick = (sidebarId) => {
+    toggleSidebar(sidebarId);
+    setShowTriggers(true);
+  };
+
+  if (!showTriggers) {
+    return null;
+  }
+
   return (
     <div className="d-flex ml-auto">
       {SIDEBAR_ORDER.map((sidebarId) => {
@@ -23,7 +34,7 @@ const SidebarTriggers = () => {
             style={{ borderBottom: isActive ? '2px solid' : null }}
             key={sidebarId}
           >
-            <Trigger onClick={() => toggleSidebar(sidebarId)} key={sidebarId} />
+            <Trigger onClick={() => handleTriggerClick(sidebarId)} key={sidebarId} />
           </div>
         );
       })}
