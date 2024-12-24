@@ -51,7 +51,7 @@ const SidebarBase = ({
   
   useEffect(() => {    
     toggleSidebar(null)
-  }, [currentSidebar]);
+  }, []);
 
   return (
     <section
