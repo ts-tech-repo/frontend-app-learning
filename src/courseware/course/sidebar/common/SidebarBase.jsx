@@ -35,9 +35,19 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  useEffect(() => {    
-      toggleSidebar(null)
-  }, []);
+  useEffect(() => {
+    const handleSequenceNavigationClick = (event) => {
+      if (event.target.closest('#courseware-sequenceNavigation .btn-link')) {
+        toggleSidebar(null);
+      }
+    };
+
+    document.addEventListener('click', handleSequenceNavigationClick);
+
+    return () => {
+      document.removeEventListener('click', handleSequenceNavigationClick);
+    };
+  }, [toggleSidebar]);
   
 
   return (
