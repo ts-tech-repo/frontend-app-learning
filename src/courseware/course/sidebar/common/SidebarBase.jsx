@@ -28,6 +28,11 @@ const SidebarBase = ({
 
   useEffect(() => {
     setIsHidden(true);
+    const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
+    
+    if (button) {
+      setIsHidden(false);
+    }
   }, []);
 
   const receiveMessage = useCallback(({ data }) => {
