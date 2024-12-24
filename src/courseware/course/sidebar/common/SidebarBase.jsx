@@ -63,7 +63,7 @@ const SidebarBase = ({
       data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
       aria-label={ariaLabel}
-    >{currentSidebar == sidebarId && "true"}
+    >
       {shouldDisplayFullScreen ? (
         <div
           className="pt-2 pb-2.5 border-bottom border-light-400 d-flex align-items-center ml-2"
