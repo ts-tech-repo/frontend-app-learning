@@ -35,13 +35,9 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  // useEffect(() => {
-  //   const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
-    
-  //   if (button) {
-  //     button.click();
-  //   }
-  // }, []);
+  useEffect(() => {    
+      toggleSidebar(null)
+  }, []);
   
 
   return (
