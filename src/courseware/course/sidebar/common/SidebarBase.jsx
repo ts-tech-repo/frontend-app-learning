@@ -49,6 +49,9 @@ const SidebarBase = ({
     };
   }, [toggleSidebar]);
   
+  useEffect(() => {    
+    toggleSidebar(null)
+  }, []);
 
   return (
     <section
