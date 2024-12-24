@@ -28,11 +28,11 @@ const SidebarBase = ({
 
   useEffect(() => {
     setIsHidden(true);
-    const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
+    const buttons = document.querySelectorAll('nav#courseware-sequenceNavigation .btn-link, .notification-btn[aria-label="Show discussions tray"]');
     
-    if (button) {
+    buttons.forEach(button => {
       button.onclick = () => setIsHidden(false);
-    }
+    });
   }, []);
 
   const receiveMessage = useCallback(({ data }) => {
