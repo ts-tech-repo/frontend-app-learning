@@ -49,15 +49,15 @@ const SidebarBase = ({
   //   };
   // }, [toggleSidebar]);
   
-
+  useEffect(() => {    
+    toggleSidebar(null);
+  }, []);
   const { unitId,  courseId } = useContext(SidebarContext);
   useEffect(() => {    
     setTimeout(() => toggleSidebar(null), 1000);
   }, [unitId,  courseId]);
+
   
-  useEffect(() => {    
-    toggleSidebar(null);
-  }, []);
 
   return (
     <section
