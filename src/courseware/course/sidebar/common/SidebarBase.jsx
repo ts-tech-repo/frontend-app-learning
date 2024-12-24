@@ -24,6 +24,16 @@ const SidebarBase = ({
     currentSidebar,
   } = useContext(SidebarContext);
 
+  const [isHidden, setIsHidden] = useState(true);
+
+  useEffect(() => {
+    setIsHidden(true);
+    const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
+    
+    if (button) {
+      button.onclick = () => setIsHidden(false);
+    }
+  }, []);
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
@@ -35,21 +45,12 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  // useEffect(() => {
-  //   const button = document.querySelector('.notification-btn[aria-label="Show discussions tray"]');
-    
-  //   if (button) {
-  //     button.click();
-  //   }
-  // }, []);
-  
-
   return (
     <section
       className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
         'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
         'min-vh-100': !shouldDisplayFullScreen,
-        'd-none': currentSidebar !== sidebarId,
+        'd-none': currentSidebar !== sidebarId || isHidden,
       }, className)}
       data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}

@@ -91,7 +91,7 @@ const Course = ({
           isStaff={isStaff}
           unitId={unitId}
         />
-        {/* {shouldDisplayTriggers && (
+        {shouldDisplayTriggers && (
           <>
             <Chat
               enabled={course.learningAssistantEnabled}
@@ -102,7 +102,7 @@ const Course = ({
             />
             <SidebarTriggers />
           </>
-        )} */}
+        )}
       </div>
       <Sequence
         unitId={unitId}
