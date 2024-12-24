@@ -37,7 +37,7 @@ const SidebarBase = ({
 
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
-      if (event.target.closest('#courseware-sequenceNavigation .btn-link')) {
+      if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link')) {
         toggleSidebar(null);
       }
     };
