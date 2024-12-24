@@ -52,7 +52,7 @@ const SidebarBase = ({
 
   const { unitId,  courseId } = useContext(SidebarContext);
   useEffect(() => {    
-    toggleSidebar(null)
+    setTimeout(() => toggleSidebar(null), 1000);
   }, [unitId,  courseId]);
 
   return (
