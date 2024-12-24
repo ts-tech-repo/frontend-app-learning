@@ -35,25 +35,29 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  useEffect(() => {
-    const handleSequenceNavigationClick = (event) => {
-      if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link')) {
-        toggleSidebar(null);
-      }
-    };
+  // useEffect(() => {
+  //   const handleSequenceNavigationClick = (event) => {
+  //     if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link')) {
+  //       toggleSidebar(null);
+  //     }
+  //   };
 
-    document.addEventListener('click', handleSequenceNavigationClick);
+  //   document.addEventListener('click', handleSequenceNavigationClick);
 
-    return () => {
-      document.removeEventListener('click', handleSequenceNavigationClick);
-    };
-  }, [toggleSidebar]);
+  //   return () => {
+  //     document.removeEventListener('click', handleSequenceNavigationClick);
+  //   };
+  // }, [toggleSidebar]);
   
 
   const { unitId,  courseId } = useContext(SidebarContext);
   useEffect(() => {    
     setTimeout(() => toggleSidebar(null), 1000);
   }, [unitId,  courseId]);
+  
+  useEffect(() => {    
+    toggleSidebar(null);
+  }, []);
 
   return (
     <section
