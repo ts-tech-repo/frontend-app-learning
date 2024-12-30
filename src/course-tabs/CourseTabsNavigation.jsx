@@ -25,7 +25,7 @@ const CourseTabsNavigation = ({ activeTabSlug, className, tabs, intl }) => {
                 active: slug === activeTabSlug,
               })}
               to={url}
-              replace
+              // replace={false}
             >
               {title}
             </Link>
