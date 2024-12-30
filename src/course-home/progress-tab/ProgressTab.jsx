@@ -45,12 +45,9 @@ const ProgressTab = () => {
     }
 
     chapter.subsections.filter((subsection) => {
-      console.log(subsection.letterGrade);
       allLetterGrade = allLetterGrade && Boolean(subsection.letterGrade);
     });
   });
-
-  console.log("allLetterGrade: ", allLetterGrade);
 
   const wideScreen = windowWidth >= breakpoints.large.minWidth;
   return (

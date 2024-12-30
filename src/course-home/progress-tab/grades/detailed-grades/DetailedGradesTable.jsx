@@ -47,8 +47,6 @@ const DetailedGradesTable = ({ intl }) => {
     );
   };
 
-  console.log('#Aman courseId:', courseId);
-  console.log('#Aman sectionScores:', sectionScores);
   return (
     sectionScores.map((chapter) => {
       const subsectionScores = chapter.subsections.filter(
@@ -59,7 +57,6 @@ const DetailedGradesTable = ({ intl }) => {
       );
 
       if (subsectionScores.length === 0) {
-        console.log('#Aman No subsections');
         return null;
       }
 
@@ -69,7 +66,6 @@ const DetailedGradesTable = ({ intl }) => {
         feedback: subsection.comment ? getFormattedFeedbackData(subsection) : '-',
       }));
 
-      console.log('Detailed grades data for chapter:', chapter.displayName, detailedGradesData);
 
       return (
         <div className="my-3" key={`${chapter.displayName}-grades-table`}>
