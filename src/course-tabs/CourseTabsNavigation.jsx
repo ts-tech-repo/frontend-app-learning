@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 import messages from "./messages";
 import Tabs from "../generic/tabs/Tabs";
-import replace from "core-js/fn/symbol/replace";
 
 const CourseTabsNavigation = ({ activeTabSlug, className, tabs, intl }) => {
   const navigate = useNavigate();
