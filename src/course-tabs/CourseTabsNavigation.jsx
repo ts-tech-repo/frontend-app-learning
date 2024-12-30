@@ -2,16 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { injectIntl, intlShape } from "@edx/frontend-platform/i18n";
 import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 
 import messages from "./messages";
 import Tabs from "../generic/tabs/Tabs";
 
 const CourseTabsNavigation = ({ activeTabSlug, className, tabs, intl }) => {
-  const navigate = useNavigate();
-
   return (
     <div
       id="courseTabsNavigation"
@@ -28,7 +24,6 @@ const CourseTabsNavigation = ({ activeTabSlug, className, tabs, intl }) => {
               className={classNames("nav-item flex-shrink-0 nav-link", {
                 active: slug === activeTabSlug,
               })}
-              // onClick={() => }
               to={url}
               replace
             >
