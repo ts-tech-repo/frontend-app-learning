@@ -112,7 +112,7 @@ const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
           </div>
         </div>
         <div className="row w-100 m-0 ml-3 pl-3">
-          <small className="text-body pl-2 quince-d-testing">
+          <small className="text-body pl-2">
             {due ? dueDateMessage : noDueDateMessage}
           </small>
         </div>
