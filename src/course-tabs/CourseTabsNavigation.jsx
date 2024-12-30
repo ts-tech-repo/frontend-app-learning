@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import messages from "./messages";
 import Tabs from "../generic/tabs/Tabs";
+import replace from "core-js/fn/symbol/replace";
 
 const CourseTabsNavigation = ({ activeTabSlug, className, tabs, intl }) => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const CourseTabsNavigation = ({ activeTabSlug, className, tabs, intl }) => {
               className={classNames("nav-item flex-shrink-0 nav-link", {
                 active: slug === activeTabSlug,
               })}
-              onClick={() => navigate(url)}
+              onClick={() => navigate(url, { replace: true })}
               // href={url}
             >
               {title}
