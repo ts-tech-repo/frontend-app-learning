@@ -55,7 +55,7 @@ const Section = ({ courseId, defaultOpen, expand, intl, section }) => {
         )}
       </div>
       <div className="col-10 ml-3 p-0 font-weight-bold text-dark-500">
-        <span className="align-middle debugging">{title}</span>
+        <span className="align-middle">{title}</span>
         <span className="sr-only">
           ,{" "}
           {intl.formatMessage(

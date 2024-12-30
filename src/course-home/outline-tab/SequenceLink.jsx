@@ -20,7 +20,7 @@ const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
   const { complete, description, due, showLink, title } = sequence;
   const { datesWidget: { userTimezone } = {} } = useModel("outline", courseId);
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
-  const coursewareUrl = <Link replace to={`/course/${courseId}/${id}`}>{title}</Link>;
+  const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   const displayTitle = showLink ? coursewareUrl : title;
 
   console.log(complete, description, due, showLink, title)
@@ -99,7 +99,7 @@ const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
             )}
           </div>
           <div className="col-10 p-0 ml-3 text-break">
-            <span className="align-middle debugging">{displayTitle}</span>
+            <span className="align-middle">{displayTitle}</span>
             <span className="sr-only">
               ,{" "}
               {intl.formatMessage(
