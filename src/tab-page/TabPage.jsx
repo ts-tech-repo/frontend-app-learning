@@ -78,7 +78,7 @@ const TabPage = ({ intl, ...props }) => {
       {(!['loading', 'loaded', 'denied'].includes(courseStatus)) && (
         <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
           {/* {intl.formatMessage(messages.failure)} */}
-          There seems to be a network issue. Please check your connection and try again.
+          There seems to be a network issue. Please check your connection and try againnn.
         </p>
       )}
       <Footer />
