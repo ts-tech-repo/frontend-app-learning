@@ -99,7 +99,7 @@ const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
             )}
           </div>
           <div className="col-10 p-0 ml-3 text-break">
-            <span className="align-middle">{displayTitle}</span>
+            <span className="align-middle debugging">{displayTitle}</span>
             <span className="sr-only">
               ,{" "}
               {intl.formatMessage(
