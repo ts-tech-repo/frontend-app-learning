@@ -73,12 +73,6 @@ const SidebarBase = ({
       data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
       aria-label={ariaLabel}
-      key={currentSidebar}
-      ref={(sectionRef) => {
-        if (sectionRef && currentSidebar !== sidebarId) {
-          toggleSidebar(null);
-        }
-      }}
     >
       {shouldDisplayFullScreen ? (
         <div
