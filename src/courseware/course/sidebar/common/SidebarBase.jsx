@@ -75,8 +75,9 @@ const SidebarBase = ({
       aria-label={ariaLabel}
       key={currentSidebar}
       ref={(sectionRef) => {
-        if (sectionRef) {
+        if (sectionRef && !sectionRef.hasLoaded) {
           toggleSidebar(null);
+          sectionRef.hasLoaded = true;
         }
       }}
     >
