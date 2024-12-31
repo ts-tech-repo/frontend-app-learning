@@ -23,8 +23,6 @@ const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
   const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   const displayTitle = showLink ? coursewareUrl : title;
 
-  console.log(complete, description, due, showLink, title)
-  console.log(sequence);
   const dueDateMessage = (
     <FormattedMessage
       id="learning.outline.sequence-due-date-set"
@@ -112,7 +110,7 @@ const SequenceLink = ({ id, intl, courseId, first, sequence }) => {
           </div>
         </div>
         <div className="row w-100 m-0 ml-3 pl-3">
-          <small className="text-body pl-2 quince-d-testing">
+          <small className="text-body pl-2">
             {due ? dueDateMessage : noDueDateMessage}
           </small>
         </div>

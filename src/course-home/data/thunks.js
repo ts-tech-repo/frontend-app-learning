@@ -62,8 +62,8 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
         }));
       }
     } catch (e) {
-      // dispatch(fetchTabFailure({ courseId }));
-      // logError(e);
+      dispatch(fetchTabFailure({ courseId }));
+      logError(e);
     }
   };
 }
