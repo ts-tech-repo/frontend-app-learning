@@ -106,7 +106,7 @@ const ContentIFrame = ({
         (showError ? (
           <div className="error_msg fade alert-content alert alert-danger show">
             <span>🛈 </span> There seems to be a network issue. Please check your
-            connection and try again later.
+            connection and try again.
           </div>
         ) : (
           <PageLoading srMessage={loadingMessage} />
