@@ -17,7 +17,7 @@ const useScheduledContentAlert = (courseId) => {
 
   const hasScheduledContent = (
     !!courses
-    && !!Object.values(courses)?.find(course => course.hasScheduledContent === true)
+    && !!Object?.values(courses)?.find(course => course?.hasScheduledContent === true)
   );
   const { isEnrolled } = useModel('courseHomeMeta', courseId);
   const payload = useMemo(() => ({
