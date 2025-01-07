@@ -57,6 +57,7 @@ function getBadgeListAndColor(date, intl, item, items) {
       shownForDay: assignments.length && assignments.every(isPastDue),
       shownForItem: x => isLearnerAssignment(x) && isPastDue(x),
       bg: 'bg-red',
+      variant: "danger",
       className: 'text-white',
     },
     {
@@ -101,7 +102,7 @@ function getBadgeListAndColor(date, intl, item, items) {
           color = b.bg;
         }
         return (
-          <Badge key={b.message.id} className={classNames('ml-2', b.bg, b.className)} data-testid="dates-badge">
+          <Badge key={b.message.id} variant={b?.variant || "primary"} className={classNames('ml-2', b.bg, b.className)} data-testid="dates-badge">
             {b.icon && <FontAwesomeIcon icon={b.icon} className="mr-1" />}
             {intl.formatMessage(b.message)}
           </Badge>
