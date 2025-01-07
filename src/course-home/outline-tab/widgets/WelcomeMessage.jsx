@@ -18,7 +18,7 @@ const WelcomeMessage = ({ courseId, intl }) => {
 
   const [display, setDisplay] = useState(true);
 
-  const shortWelcomeMessageHtml = truncate(welcomeMessageHtml, 100, { byWords: true, keepWhitespaces: true });
+  const shortWelcomeMessageHtml = welcomeMessageHtml && truncate(welcomeMessageHtml, 100, { byWords: true, keepWhitespaces: true });
   const messageCanBeShortened = shortWelcomeMessageHtml && shortWelcomeMessageHtml?.length < welcomeMessageHtml?.length;
   const [showShortMessage, setShowShortMessage] = useState(messageCanBeShortened);
   const dispatch = useDispatch();
