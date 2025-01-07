@@ -15,11 +15,11 @@ export function useCourseEndAlert(courseId) {
   const {
     datesWidget: {
       courseDateBlocks,
-    },
+    } = {},
     userTimezone,
   } = useModel('outline', courseId);
 
-  const endBlock = courseDateBlocks.find(b => b.dateType === 'course-end-date');
+  const endBlock = courseDateBlocks && courseDateBlocks?.find(b => b.dateType === 'course-end-date');
   const endDate = endBlock ? new Date(endBlock.date) : null;
   const delta = endBlock ? endDate - new Date() : 0;
   const isVisible = isEnrolled && endBlock && delta > 0 && delta < WARNING_PERIOD_MS;

@@ -9,15 +9,15 @@ const useScheduledContentAlert = (courseId) => {
   const {
     courseBlocks: {
       courses,
-    },
+    } = {},
     datesWidget: {
       datesTabLink,
-    },
+    } = {},
   } = useModel('outline', courseId);
 
   const hasScheduledContent = (
     !!courses
-    && !!Object.values(courses).find(course => course.hasScheduledContent === true)
+    && !!Object.values(courses)?.find(course => course.hasScheduledContent === true)
   );
   const { isEnrolled } = useModel('courseHomeMeta', courseId);
   const payload = useMemo(() => ({

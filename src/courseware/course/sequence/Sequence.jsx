@@ -211,7 +211,8 @@ const Sequence = ({
   // sequence status 'failed' and any other unexpected sequence status.
   return (
     <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
-      {intl.formatMessage(messages.loadFailure)}
+      {/* {intl.formatMessage(messages.loadFailure)} */}
+      There seems to be a network issue. Please check your connection and try again.
     </p>
   );
 };

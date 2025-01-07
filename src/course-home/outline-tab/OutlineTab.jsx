@@ -43,23 +43,18 @@ const OutlineTab = ({ intl }) => {
 
   const {
     accessExpiration,
-    courseBlocks: {
-      courses,
-      sections,
-    },
+    courseBlocks,
     courseGoals: {
       selectedGoal,
       weeklyLearningGoalEnabled,
     } = {},
     datesBannerInfo,
-    datesWidget: {
-      courseDateBlocks,
-    },
+    datesWidget,
     enableProctoredExams,
     offer,
     timeOffsetMillis,
     verifiedMode,
-  } = useModel('outline', courseId);
+  } = useModel('outline', courseId) || {};
 
   const {
     marketingUrl,
@@ -80,9 +75,9 @@ const OutlineTab = ({ intl }) => {
   const privateCourseAlert = usePrivateCourseAlert(courseId);
   const scheduledContentAlert = useScheduledContentAlert(courseId);
 
-  const rootCourseId = courses && Object.keys(courses)[0];
+  const rootCourseId = courseBlocks?.courses && Object.keys(courseBlocks?.courses)[0];
 
-  const hasDeadlines = courseDateBlocks && courseDateBlocks.some(x => x.dateType === 'assignment-due-date');
+  const hasDeadlines = datesWidget?.courseDateBlocks && datesWidget?.courseDateBlocks.some(x => x.dateType === 'assignment-due-date');
 
   const logUpgradeToShiftDatesLinkClick = () => {
     sendTrackEvent('edx.bi.ecommerce.upsell_links_clicked', {
@@ -169,13 +164,13 @@ const OutlineTab = ({ intl }) => {
                 </div>
               </div>
               <ol id="courseHome-outline" className="list-unstyled">
-                {courses[rootCourseId].sectionIds.map((sectionId) => (
+                {courseBlocks?.courses[rootCourseId].sectionIds.map((sectionId) => (
                   <Section
                     key={sectionId}
                     courseId={courseId}
-                    defaultOpen={sections[sectionId].resumeBlock}
+                    defaultOpen={courseBlocks?.sections[sectionId].resumeBlock}
                     expand={expandAll}
-                    section={sections[sectionId]}
+                    section={courseBlocks?.sections[sectionId]}
                   />
                 ))}
               </ol>
