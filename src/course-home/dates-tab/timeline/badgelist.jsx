@@ -64,7 +64,7 @@ function getBadgeListAndColor(date, intl, item, items) {
       message: messages.dueNext,
       shownForDay: !isToday && assignments.some(isDueNext),
       shownForItem: x => isLearnerAssignment(x) && isDueNext(x),
-      bg: 'bg-gray-500',
+      bg: 'bg-warning-300',
       variant: "warning",
       className: 'text-dark',
     },
