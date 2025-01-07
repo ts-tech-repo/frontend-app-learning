@@ -24,7 +24,7 @@ const Timeline = () => {
   const now = new Date();
   let foundNextDue = false;
   let foundToday = false;
-  courseDateBlocks.forEach(courseDateBlock => {
+  courseDateBlocks && courseDateBlocks?.forEach(courseDateBlock => {
     const dateInfo = { ...courseDateBlock };
     const parsedDate = userTimezone ? new Date(new Date(dateInfo.date).toLocaleDateString("en-US", {timeZone: userTimezone})) : new Date(dateInfo.date);
 
