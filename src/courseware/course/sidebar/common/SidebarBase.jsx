@@ -18,14 +18,7 @@ const SidebarBase = ({
   showTitleBar,
   width,
 }) => {
-  console.log(intl,
-    title,
-    ariaLabel,
-    sidebarId,
-    className,
-    children,
-    showTitleBar,
-    width);
+ 
   const {
     toggleSidebar,
     shouldDisplayFullScreen,
@@ -45,7 +38,7 @@ const SidebarBase = ({
 
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
-      if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link')) {
+      if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
         toggleSidebar(null);
       }
     };
