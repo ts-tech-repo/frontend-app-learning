@@ -41,7 +41,7 @@ function getRandomFactoid(intl, streakLength) {
       }}
     />),
   ];
-  return factoids[Math.floor(Math.random() * (factoids.length))];
+  return factoids[Math.floor(Math.random() * (factoids?.length))];
 }
 
 async function calculateVoucherDiscount(voucher, sku, username) {
