@@ -18,14 +18,7 @@ const SidebarBase = ({
   showTitleBar,
   width,
 }) => {
-  console.log(intl,
-    title,
-    ariaLabel,
-    sidebarId,
-    className,
-    children,
-    showTitleBar,
-    width);
+ 
   const {
     toggleSidebar,
     shouldDisplayFullScreen,
