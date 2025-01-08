@@ -46,6 +46,7 @@ const SidebarBase = ({
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
       if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link')) {
+        document.querySelector('.previous-btn').removeAttribute('disabled');
         toggleSidebar(null);
       }
     };
