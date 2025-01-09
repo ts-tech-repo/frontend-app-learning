@@ -37,10 +37,15 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const videoElement = document.querySelector('.is-playing .video-player video');
-    if (videoElement) {
-      videoElement.click();
-    }
+    const navigationElements = document.querySelectorAll('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]');
+    navigationElements.forEach(element => {
+      element.addEventListener('click', () => {
+        const videoElement = document.querySelector('.is-playing .video-player video');
+        if (videoElement) {
+          videoElement.click();
+        }
+      });
+    });
   })
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
