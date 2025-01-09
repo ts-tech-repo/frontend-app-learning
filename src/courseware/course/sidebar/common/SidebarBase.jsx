@@ -37,9 +37,14 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
+    const videoElement = document.querySelector('.is-playing .video-player video');
+    if (videoElement) {
+      videoElement.click();
+    }
+  })
+  useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
       if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
-        document.querySelector('.is-playing .video-player video').click();
         toggleSidebar(null);
       }
     };
