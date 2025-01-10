@@ -37,7 +37,7 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const iframe = document.querySelector('iframe'); 
+    const iframe = document.querySelector('iframe');
     if (!iframe) {
       console.error('Iframe not found in the parent document.');
       return;
@@ -52,12 +52,18 @@ const SidebarBase = ({
         const iframeDocument = iframe.contentWindow.document;
         const videoElement = iframeDocument.querySelector('.is-playing .video-player video');
         const playElement = iframeDocument.querySelector('.control.video_control.pause');
-        if (videoElement) {
-          // videoElement.click();
-          playElement.click();
-          console.log('Video clicked successfully inside the iframe.');
+        
+        if (playElement) {
+          const mouseEvent = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+          });
+  
+          playElement.dispatchEvent(mouseEvent);
+          console.log('Simulated user click on the video control inside the iframe.');
         } else {
-          console.log('Video element not found in the iframe.');
+          console.log('Play/pause control element not found in the iframe.');
         }
       } catch (error) {
         console.error('Unable to interact with the video element in the iframe:', error);
@@ -73,7 +79,8 @@ const SidebarBase = ({
         element.removeEventListener('click', handleClick);
       });
     };
-  }); 
+  }, []); 
+   
   
 
   useEffect(() => {
