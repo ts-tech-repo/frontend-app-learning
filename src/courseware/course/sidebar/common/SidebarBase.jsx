@@ -60,8 +60,8 @@ const SidebarBase = ({
         element.removeEventListener('click', handleClick);
       });
     };
-  }, []);
-  
+  });
+
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
       if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
