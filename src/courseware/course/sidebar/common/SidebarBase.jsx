@@ -37,49 +37,30 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const iframe = document.querySelector('iframe');
-    if (!iframe) {
-      console.error('Iframe not found in the parent document.');
-      return;
-    }
-  
     const navigationElements = document.querySelectorAll(
       '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
     );
-  
     const handleClick = () => {
       try {
-        const iframeDocument = iframe.contentWindow.document;
-        const videoElement = iframeDocument.querySelector('.is-playing .video-player video');
-        const playElement = iframeDocument.querySelector('.control.video_control.pause');
-        
-        if (playElement) {
-          const mouseEvent = new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-            view: window,
-          });
-  
-          playElement.dispatchEvent(mouseEvent);
-          console.log('Simulated user click on the video control inside the iframe.');
-        } else {
-          console.log('Play/pause control element not found in the iframe.');
+        const videoElement = window.parent.document.querySelector('.is-playing .video-player video');
+        if (videoElement) {
+          videoElement.click();
         }
       } catch (error) {
-        console.error('Unable to interact with the video element in the iframe:', error);
+        console.error('Unable to interact with the video element in the parent document:', error);
       }
     };
-  
-    navigationElements.forEach((element) => {
+
+    navigationElements.forEach(element => {
       element.addEventListener('click', handleClick);
     });
-  
+
     return () => {
-      navigationElements.forEach((element) => {
+      navigationElements.forEach(element => {
         element.removeEventListener('click', handleClick);
       });
     };
-  }, []); 
+  });
    
   
 
