@@ -51,8 +51,10 @@ const SidebarBase = ({
       try {
         const iframeDocument = iframe.contentWindow.document;
         const videoElement = iframeDocument.querySelector('.is-playing .video-player video');
+        const playElement = iframeDocument.querySelector('.control.video_control.pause');
         if (videoElement) {
-          videoElement.click();
+          // videoElement.click();
+          playElement.click();
           console.log('Video clicked successfully inside the iframe.');
         } else {
           console.log('Video element not found in the iframe.');
