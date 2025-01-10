@@ -40,7 +40,8 @@ const SidebarBase = ({
     const navigationElements = document.querySelectorAll(
       '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
     );
-    const handleClick = () => {
+
+    const handleClick = (event) => {
       try {
         const videoElement = window.parent.document.querySelector('.is-playing .video-player video');
         if (videoElement) {
@@ -51,16 +52,15 @@ const SidebarBase = ({
       }
     };
 
-    navigationElements.forEach(element => {
-      element.addEventListener('click', handleClick);
+    navigationElements.forEach((element) => {
+      element.addEventListener('mousedown', handleClick); 
     });
-
     return () => {
-      navigationElements.forEach(element => {
-        element.removeEventListener('click', handleClick);
+      navigationElements.forEach((element) => {
+        element.removeEventListener('mousedown', handleClick);
       });
     };
-  });
+  }, []);
 
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
