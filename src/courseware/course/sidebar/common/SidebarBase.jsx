@@ -37,16 +37,31 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const navigationElements = document.querySelectorAll('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]');
-    navigationElements.forEach(element => {
-      element.addEventListener('click', () => {
-        const videoElement = document.querySelector('.is-playing .video-player video');
+    const navigationElements = document.querySelectorAll(
+      '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
+    );
+    const handleClick = () => {
+      try {
+        const videoElement = window.parent.document.querySelector('.is-playing .video-player video');
         if (videoElement) {
           videoElement.click();
         }
-      });
+      } catch (error) {
+        console.error('Unable to interact with the video element in the parent document:', error);
+      }
+    };
+
+    navigationElements.forEach(element => {
+      element.addEventListener('click', handleClick);
     });
-  },[])
+
+    return () => {
+      navigationElements.forEach(element => {
+        element.removeEventListener('click', handleClick);
+      });
+    };
+  }, []);
+  
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
       if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
