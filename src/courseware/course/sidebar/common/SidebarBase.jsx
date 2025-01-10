@@ -37,30 +37,42 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
+    const iframe = document.querySelector('iframe'); 
+    if (!iframe) {
+      console.error('Iframe not found in the parent document.');
+      return;
+    }
+  
     const navigationElements = document.querySelectorAll(
       '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
     );
-
-    const handleClick = (event) => {
+  
+    const handleClick = () => {
       try {
-        const videoElement = window.parent.document.querySelector('.is-playing .video-player video');
+        const iframeDocument = iframe.contentWindow.document;
+        const videoElement = iframeDocument.querySelector('.is-playing .video-player video');
         if (videoElement) {
           videoElement.click();
+          console.log('Video clicked successfully inside the iframe.');
+        } else {
+          console.log('Video element not found in the iframe.');
         }
       } catch (error) {
-        console.error('Unable to interact with the video element in the parent document:', error);
+        console.error('Unable to interact with the video element in the iframe:', error);
       }
     };
-
+  
     navigationElements.forEach((element) => {
-      element.addEventListener('mousedown', handleClick); 
+      element.addEventListener('click', handleClick);
     });
+  
     return () => {
       navigationElements.forEach((element) => {
-        element.removeEventListener('mousedown', handleClick);
+        element.removeEventListener('click', handleClick);
       });
     };
-  }, []);
+  }); 
+  
 
   useEffect(() => {
     const handleSequenceNavigationClick = (event) => {
