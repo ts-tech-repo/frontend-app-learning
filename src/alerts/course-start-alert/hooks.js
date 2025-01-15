@@ -1,37 +1,38 @@
-import React, { useMemo, useEffect } from 'react';
-import { useAlert } from '../../generic/user-messages';
-import { useModel } from '../../generic/model-store';
+import React, { useMemo, useEffect } from "react";
+import { useAlert } from "../../generic/user-messages";
+import { useModel } from "../../generic/model-store";
 
-const CourseStartAlert = React.lazy(() => import('./CourseStartAlert'));
-const CourseStartMasqueradeBanner = React.lazy(() => import('./CourseStartMasqueradeBanner'));
+const CourseStartAlert = React.lazy(() => import("./CourseStartAlert"));
+const CourseStartMasqueradeBanner = React.lazy(() =>
+  import("./CourseStartMasqueradeBanner")
+);
 
 function IsStartDateInFuture(courseId, start) {
   // const {
   //   start,
   // } = useModel('courseHomeMeta', courseId) || {};
-  // if(start){
-    const today = new Date();
+  // commented the above code because we are calling this hook conditionally and it is causing issues, anyway we are calling same hook in below functions so using start value from their -- Datta Tadepalli.
+  const today = new Date();
   const startDate = new Date(start);
   return startDate > today;
-  // }
-  
 }
 
 function useCourseStartAlert(courseId) {
-  const {
-    isEnrolled,
-  } = useModel('courseHomeMeta', courseId);
+  const { isEnrolled, start } = useModel("courseHomeMeta", courseId);
 
-  const isVisible = isEnrolled && IsStartDateInFuture(courseId);
+  const isVisible = isEnrolled && IsStartDateInFuture(courseId, start);
 
-  const payload = useMemo(() => ({
-    courseId,
-  }), [courseId]);
+  const payload = useMemo(
+    () => ({
+      courseId,
+    }),
+    [courseId]
+  );
 
   useAlert(isVisible, {
-    code: 'clientCourseStartAlert',
+    code: "clientCourseStartAlert",
     payload,
-    topic: 'outline-course-alerts',
+    topic: "outline-course-alerts",
   });
 
   return {
@@ -40,21 +41,20 @@ function useCourseStartAlert(courseId) {
 }
 
 export function useCourseStartMasqueradeBanner(courseId, tab) {
-  const {
-    isMasquerading,
-    start
-  } = useModel('courseHomeMeta', courseId) || {};
-  console.log(IsStartDateInFuture(courseId), useModel('courseHomeMeta', courseId), "courseHomeMeta")
-  const isVisible = isMasquerading && tab === 'progress' ? IsStartDateInFuture(courseId, start) : false;
+  const { isMasquerading, start } = useModel("courseHomeMeta", courseId) || {};
+  const isVisible =
+    isMasquerading &&
+    tab === "progress" &&
+    IsStartDateInFuture(courseId, start);
 
-  // const payload = useMemo(() => ({
-  //   courseId,
-  // }), [courseId]);
+  const payload = useMemo(() => ({
+    courseId,
+  }), [courseId]);
 
   useAlert(isVisible, {
-    code: 'clientCourseStartMasqueradeBanner',
-    payload: {courseId},
-    topic: 'instructor-toolbar-alerts',
+    code: "clientCourseStartMasqueradeBanner",
+    payload,
+    topic: "instructor-toolbar-alerts",
   });
 
   return {
