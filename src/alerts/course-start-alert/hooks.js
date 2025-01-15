@@ -45,7 +45,7 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
     isMasquerading,
   } = useModel('courseHomeMeta', courseId);
   console.log(IsStartDateInFuture(courseId), useModel('courseHomeMeta', courseId), "courseHomeMeta")
-  const isVisible = isMasquerading && tab === 'progress' && (IsStartDateInFuture(courseId) || false);
+  const isVisible = isMasquerading && tab === 'progress' ? IsStartDateInFuture(courseId) : false;
 
   // const payload = useMemo(() => ({
   //   courseId,
