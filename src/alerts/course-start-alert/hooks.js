@@ -66,7 +66,7 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
 
   useAlert(isVisible, {
     code: 'clientCourseStartMasqueradeBanner',
-    payload,
+    payload: {courseId},
     topic: 'instructor-toolbar-alerts',
   });
 
