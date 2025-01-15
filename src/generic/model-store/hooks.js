@@ -5,7 +5,7 @@ import { useSelector, shallowEqual } from 'react-redux';
  */
 export function useModel(type, id) {
   return useSelector(
-    state => ((state.models[type] !== undefined && state.models[type][id] !== undefined) ? state.models[type][id] : {}),
+    state => (state.models?.[type]?.[id] || {}),
     shallowEqual,
   );
 }
