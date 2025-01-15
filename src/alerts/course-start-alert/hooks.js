@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useAlert } from '../../generic/user-messages';
 import { useModel } from '../../generic/model-store';
 
@@ -44,9 +44,20 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
 
   const isVisible = isMasquerading && tab === 'progress' && IsStartDateInFuture(courseId);
 
-  const payload = useMemo(() => ({
-    courseId,
-  }), [courseId]);
+  // const payload = useMemo(() => ({
+  //   courseId,
+  // }), [courseId]);
+
+  useEffect(() => {
+    console.log(courseId, "courseIdcourseId")
+  }, [courseId]);
+
+  const payload = useMemo(() => {
+    console.log('Payload created for courseId:', courseId); // Log the courseId
+    return {
+      courseId,
+    };
+  }, [courseId]);
 
   useAlert(isVisible, {
     code: 'clientCourseStartMasqueradeBanner',
