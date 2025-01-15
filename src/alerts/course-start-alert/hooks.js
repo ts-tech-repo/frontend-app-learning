@@ -48,6 +48,8 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
   //   courseId,
   // }), [courseId]);
 
+  console.log(isVisible, "isVisible Payload")
+
   useEffect(() => {
     console.log(courseId, "courseIdcourseId")
   }, [courseId]);
