@@ -51,19 +51,6 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
   //   courseId,
   // }), [courseId]);
 
-  console.log(isVisible, "isVisible Payload")
-
-  useEffect(() => {
-    console.log(courseId, "courseIdcourseId")
-  }, [courseId]);
-
-  const payload = useMemo(() => {
-    console.log('Payload created for courseId:', courseId); // Log the courseId
-    return {
-      courseId,
-    };
-  }, [courseId]);
-
   useAlert(isVisible, {
     code: 'clientCourseStartMasqueradeBanner',
     payload: {courseId},
