@@ -43,7 +43,7 @@ function useCourseStartAlert(courseId) {
 export function useCourseStartMasqueradeBanner(courseId, tab) {
   const {
     isMasquerading,
-  } = useModel('courseHomeMeta', courseId);
+  } = useModel('courseHomeMeta', courseId) || {};
   console.log(IsStartDateInFuture(courseId), useModel('courseHomeMeta', courseId), "courseHomeMeta")
   const isVisible = isMasquerading && tab === 'progress' ? IsStartDateInFuture(courseId) : false;
 
