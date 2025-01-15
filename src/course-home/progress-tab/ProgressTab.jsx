@@ -40,7 +40,7 @@ const ProgressTab = () => {
         && (subsection.numPointsPossible > 0 || subsection.numPointsEarned > 0)),
     );
 
-    if (subsectionScores.length === 0) {
+    if (subsectionScores?.length === 0) {
       return null;
     }
 
