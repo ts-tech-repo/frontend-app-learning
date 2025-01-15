@@ -6,13 +6,16 @@ const CourseStartAlert = React.lazy(() => import('./CourseStartAlert'));
 const CourseStartMasqueradeBanner = React.lazy(() => import('./CourseStartMasqueradeBanner'));
 
 function IsStartDateInFuture(courseId) {
+  console.log('courseHomeMeta:', useModel('courseHomeMeta', courseId));
   const {
     start,
-  } = useModel('courseHomeMeta', courseId);
-
-  const today = new Date();
+  } = useModel('courseHomeMeta', courseId) || {};
+  if(start){
+    const today = new Date();
   const startDate = new Date(start);
   return startDate > today;
+  }
+  
 }
 
 function useCourseStartAlert(courseId) {
@@ -41,8 +44,8 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
   const {
     isMasquerading,
   } = useModel('courseHomeMeta', courseId);
-
-  const isVisible = isMasquerading && tab === 'progress' && IsStartDateInFuture(courseId);
+  console.log(IsStartDateInFuture(courseId))
+  const isVisible = isMasquerading && tab === 'progress' && (IsStartDateInFuture(courseId) || false);
 
   // const payload = useMemo(() => ({
   //   courseId,
