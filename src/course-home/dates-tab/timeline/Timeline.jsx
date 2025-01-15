@@ -46,23 +46,23 @@ const Timeline = () => {
       }
     }
 
-    if (groupedDates.length === 0 || daycmp(groupedDates[groupedDates.length - 1].date, parsedDate) !== 0) {
+    if (groupedDates?.length === 0 || daycmp(groupedDates[groupedDates?.length - 1].date, parsedDate) !== 0) {
       // Add new grouped date
       groupedDates.push({
         date: parsedDate,
         unparsedDate: dateInfo.date,
         items: [dateInfo],
-        first: groupedDates.length === 0,
+        first: groupedDates?.length === 0,
       });
     } else {
-      groupedDates[groupedDates.length - 1].items.push(dateInfo);
+      groupedDates[groupedDates?.length - 1].items.push(dateInfo);
     }
   });
   if (!foundToday) {
     groupedDates.push({ date: now, unparsedDate: now, items: [] });
   }
-  if (groupedDates.length) {
-    groupedDates[groupedDates.length - 1].last = true;
+  if (groupedDates?.length) {
+    groupedDates[groupedDates?.length - 1].last = true;
   }
   
   return (
