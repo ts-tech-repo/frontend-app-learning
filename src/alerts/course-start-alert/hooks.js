@@ -10,11 +10,11 @@ function IsStartDateInFuture(courseId) {
   const {
     start,
   } = useModel('courseHomeMeta', courseId) || {};
-  if(start){
+  // if(start){
     const today = new Date();
   const startDate = new Date(start);
   return startDate > today;
-  }
+  // }
   
 }
 
@@ -44,7 +44,7 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
   const {
     isMasquerading,
   } = useModel('courseHomeMeta', courseId);
-  console.log(IsStartDateInFuture(courseId))
+  console.log(IsStartDateInFuture(courseId), "courseHomeMeta")
   const isVisible = isMasquerading && tab === 'progress' && (IsStartDateInFuture(courseId) || false);
 
   // const payload = useMemo(() => ({
