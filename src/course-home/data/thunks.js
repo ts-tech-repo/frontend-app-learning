@@ -63,7 +63,7 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
         }));
       }
     } catch (error) {
-      console.log(e, "this is error debugging");
+      console.log(error, "this is error debugging");
       const { httpErrorStatus } = error && error.customAttributes;
       if (httpErrorStatus === 502) {
         dispatch(fetchTabBadGateway({ courseId }));
