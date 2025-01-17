@@ -42,10 +42,11 @@ const SidebarBase = ({
     );
     const handleClick = () => {
       try {
-        const videoElement = window.parent.document.querySelector('.is-playing .video-player video');
-        console.log(videoElement);
+        const videoElement = window.parent?.document?.querySelector('.is-playing .video-player video');
         if (videoElement) {
           videoElement.click();
+        } else {
+          console.warn('No playable video element found.');
         }
       } catch (error) {
         console.error('Unable to interact with the video element in the parent document:', error);
