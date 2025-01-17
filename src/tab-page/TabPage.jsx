@@ -38,6 +38,8 @@ const TabPage = ({ intl, ...props }) => {
     title,
   } = useModel('courseHomeMeta', courseId);
 
+  console.log(courseStatus, "courseStatuscourseStatus")
+
   if (courseStatus === 'denied') {
     const redirectUrl = getAccessDeniedRedirectUrl(courseId, activeTabSlug, courseAccess, start);
     if (redirectUrl) {
@@ -79,6 +81,13 @@ const TabPage = ({ intl, ...props }) => {
         <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
           {/* {intl.formatMessage(messages.failure)} */}
           There seems to be a network issue. Please check your connection and try again.
+        </p>
+      )}
+
+      {(['badGateway'].includes(courseStatus)) && (
+        <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
+          {/* {intl.formatMessage(messages.failure)} */}
+          An error has occurred; please try again.
         </p>
       )}
       <Footer />
