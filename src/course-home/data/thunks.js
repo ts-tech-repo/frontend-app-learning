@@ -21,6 +21,7 @@ import {
 import {
   fetchTabDenied,
   fetchTabFailure,
+  fetchTabBadGateway,
   fetchTabRequest,
   fetchTabSuccess,
   setCallToActionToast,
@@ -65,7 +66,7 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
       console.log(e, "this is error debugging");
       const { httpErrorStatus } = error && error.customAttributes;
       if (httpErrorStatus === 502) {
-        return {};
+        dispatch(fetchTabBadGateway({ courseId }));
       }
       dispatch(fetchTabFailure({ courseId }));
       logError(e);

@@ -5,6 +5,7 @@ export const LOADING = 'loading';
 export const LOADED = 'loaded';
 export const FAILED = 'failed';
 export const DENIED = 'denied';
+export const BAD_GATEWAY = 'badGateway';
 
 const slice = createSlice({
   name: 'course-home',
@@ -27,6 +28,10 @@ const slice = createSlice({
     fetchTabFailure: (state, { payload }) => {
       state.courseId = payload.courseId;
       state.courseStatus = FAILED;
+    },
+    fetchTabBadGateway: (state, { payload }) => {
+      state.courseId = payload.courseId;
+      state.courseStatus = BAD_GATEWAY;
     },
     fetchTabRequest: (state, { payload }) => {
       state.courseId = payload.courseId;
@@ -54,6 +59,7 @@ export const {
   fetchProctoringInfoResolved,
   fetchTabDenied,
   fetchTabFailure,
+  fetchTabBadGateway,
   fetchTabRequest,
   fetchTabSuccess,
   setCallToActionToast,
