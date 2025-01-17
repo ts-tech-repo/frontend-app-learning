@@ -67,9 +67,13 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
       const { httpErrorStatus } = error && error.customAttributes;
       if (httpErrorStatus === 502) {
         dispatch(fetchTabBadGateway({ courseId }));
+        logError(e);
+
+      }else{
+        dispatch(fetchTabFailure({ courseId }));
+        logError(e);
       }
-      dispatch(fetchTabFailure({ courseId }));
-      logError(e);
+      
     }
   };
 }
