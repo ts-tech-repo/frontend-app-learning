@@ -43,6 +43,7 @@ const SidebarBase = ({
     const handleClick = () => {
       try {
         const videoElement = window.parent.document.querySelector('.is-playing .video-player video');
+        console.log(videoElement);
         if (videoElement) {
           videoElement.click();
         }
