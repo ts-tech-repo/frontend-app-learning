@@ -62,6 +62,11 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
         }));
       }
     } catch (e) {
+      console.log(e, "this is error debugging");
+      const { httpErrorStatus } = error && error.customAttributes;
+      if (httpErrorStatus === 502) {
+        return {};
+      }
       dispatch(fetchTabFailure({ courseId }));
       logError(e);
     }
