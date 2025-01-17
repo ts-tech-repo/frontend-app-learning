@@ -62,7 +62,7 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
           targetUserId,
         }));
       }
-    } catch (e) {
+    } catch (error) {
       console.log(e, "this is error debugging");
       const { httpErrorStatus } = error && error.customAttributes;
       if (httpErrorStatus === 502) {
