@@ -60,7 +60,7 @@ const SidebarBase = ({
         element.removeEventListener('click', handleClick);
       });
     };
-  });
+  },[videoElement]);
    
   
 
