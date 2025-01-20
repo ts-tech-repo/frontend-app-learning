@@ -37,36 +37,53 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const navigationElements = document.querySelectorAll(
-      '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
-    );
     const handleClick = () => {
       try {
         const iframe = document.querySelector('iframe');
-        if (iframe && iframe.contentDocument) {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-          if (videoElement) {
-            videoElement.click();
-          } else {
-            console.warn('No playable video element found.');
+        if (iframe) {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+          if (iframeDoc) {
+            const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
+            if (videoElement) {
+              videoElement.click();
+            } else {
+              console.warn('No playable video element found.');
+            }
           }
         }
       } catch (error) {
-        console.error('Unable to interact with the video element in the parent document:', error);
+        console.error('Error interacting with the video element:', error);
       }
     };
 
-    navigationElements.forEach(element => {
-      element.addEventListener('click', handleClick);
+    const addNavigationListeners = () => {
+      const navigationElements = document.querySelectorAll(
+        '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
+      );
+
+      navigationElements.forEach(element => {
+        element.addEventListener('click', handleClick);
+      });
+
+      return () => {
+        navigationElements.forEach(element => {
+          element.removeEventListener('click', handleClick);
+        });
+      };
+    };
+
+    const removeListeners = addNavigationListeners();
+    const observer = new MutationObserver(() => {
+      removeListeners();
+      addNavigationListeners();
     });
+    observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      navigationElements.forEach(element => {
-        element.removeEventListener('click', handleClick);
-      });
+      removeListeners();
+      observer.disconnect();
     };
-  });
+  }, []);
    
   
 
