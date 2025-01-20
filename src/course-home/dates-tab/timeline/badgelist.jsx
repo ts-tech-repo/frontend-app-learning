@@ -19,12 +19,12 @@ function isPastDue(assignment) {
   return !isComplete(assignment) && (new Date(assignment.date) < new Date());
 }
 
-function isUnreleased(assignment) {
-  return !assignment.link;
-}
-
 function isDueNext(assignment) {
   return !isComplete(assignment) && (new Date(assignment.date) > new Date());
+}
+
+function isUnreleased(assignment) {
+  return !assignment.link;
 }
 
 // Pass a null item if you want to get a whole day's badge list, not just one item's list.
@@ -35,7 +35,7 @@ function getBadgeListAndColor(date, intl, item, items) {
   const tillToday = daycmp(date, now) < 0;
   const isToday = daycmp(date, now) === 0;
   const isInFuture = daycmp(date, now) > 0;
-
+  
   // This badge info list is in order of priority (they will appear left to right in this order and the first badge
   // sets the color of the dot in the timeline).
   const badgesInfo = [
@@ -56,14 +56,16 @@ function getBadgeListAndColor(date, intl, item, items) {
       message: messages.pastDue,
       shownForDay: assignments.length && assignments.every(isPastDue),
       shownForItem: x => isLearnerAssignment(x) && isPastDue(x),
-      bg: 'bg-dark-200',
-      className: 'text-dark',
+      bg: 'bg-red',
+      variant: "danger",
+      className: 'text-white',
     },
     {
       message: messages.dueNext,
       shownForDay: !isToday && assignments.some(isDueNext),
       shownForItem: x => isLearnerAssignment(x) && isDueNext(x),
-      bg: 'bg-gray-500',
+      bg: 'bg-warning-300',
+      variant: "warning",
       className: 'text-dark',
     },
     {
@@ -101,7 +103,7 @@ function getBadgeListAndColor(date, intl, item, items) {
           color = b.bg;
         }
         return (
-          <Badge key={b.message.id} className={classNames('ml-2', b.bg, b.className)} data-testid="dates-badge">
+          <Badge key={b.message.id} variant={b?.variant || "primary"} className={classNames('ml-2', b.bg, b.className)} data-testid="dates-badge">
             {b.icon && <FontAwesomeIcon icon={b.icon} className="mr-1" />}
             {intl.formatMessage(b.message)}
           </Badge>

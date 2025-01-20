@@ -13,7 +13,7 @@ const messages = defineMessages({
   },
   pastDue: {
     id: 'learning.dates.badge.pastDue',
-    defaultMessage: 'Past due',
+    defaultMessage: 'Not Completed',
     description: 'Shown as label for the assignments which deadline has passed',
   },
   title: {
