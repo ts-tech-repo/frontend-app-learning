@@ -42,11 +42,15 @@ const SidebarBase = ({
     );
     const handleClick = () => {
       try {
-        const videoElement = window.parent?.document?.querySelector('.is-playing .video-player video');
-        if (videoElement) {
-          videoElement.click();
-        } else {
-          console.warn('No playable video element found.');
+        const iframe = document.querySelector('iframe');
+        if (iframe && iframe.contentDocument) {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
+          if (videoElement) {
+            videoElement.click();
+          } else {
+            console.warn('No playable video element found.');
+          }
         }
       } catch (error) {
         console.error('Unable to interact with the video element in the parent document:', error);
