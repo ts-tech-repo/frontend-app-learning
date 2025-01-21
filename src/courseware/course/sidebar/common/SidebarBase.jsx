@@ -102,10 +102,10 @@ const SidebarBase = ({
   }, [toggleSidebar]);
   
 
-  const { unitId,  courseId } = useContext(SidebarContext);
-  useEffect(() => {    
-    toggleSidebar(null);
-  }, []);
+  // const { unitId,  courseId } = useContext(SidebarContext);
+  // useEffect(() => {    
+  //   toggleSidebar(null);
+  // }, []);
 
   return (
     <section
