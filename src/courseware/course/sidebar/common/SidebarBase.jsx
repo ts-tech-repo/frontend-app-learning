@@ -105,7 +105,7 @@ const SidebarBase = ({
   const { unitId,  courseId } = useContext(SidebarContext);
   useEffect(() => {    
     toggleSidebar(null);
-  }, [unitId]);
+  }, []);
 
   return (
     <section
