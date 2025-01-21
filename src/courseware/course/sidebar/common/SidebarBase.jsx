@@ -47,7 +47,7 @@ const SidebarBase = ({
           const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
           const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
           if (videoElement) {
-            videoElement.click();
+            videoElement.trigger("click");
           } else {
             console.warn('No playable video element found.');
           }
