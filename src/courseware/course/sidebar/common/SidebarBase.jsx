@@ -42,27 +42,18 @@ const SidebarBase = ({
     );
     const handleClick = () => {
       try {
-        fetch('https://staging.quince02.talentsprint.com/courses/course-v1:QUINCE+TCUM0912+912241233/xblock/block-v1:QUINCE+TCUM0912+912241233+type@video+block@f0c62f932f5e491d927e5b41ff259fa8/handler/xmodule_handler/save_user_state', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: new URLSearchParams({
-            saved_video_position: '00:10:22'
-          })
-        });
-        // const iframe = document.querySelector('iframe');
-        // if (iframe && iframe.contentDocument) {
-        //   const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        //   console.log(iframeDoc);
-        //   const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-        //   console.log(videoElement);
-        //   if (videoElement) {
-        //     videoElement.trigger("click");
-        //   } else {
-        //     console.warn('No playable video element found.');
-        //   }
-        // }
+        const iframe = document.querySelector('iframe');
+        if (iframe && iframe.contentDocument) {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          console.log(iframeDoc);
+          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
+          console.log(videoElement);
+          if (videoElement) {
+            videoElement.trigger("click");
+          } else {
+            console.warn('No playable video element found.');
+          }
+        }
       } catch (error) {
         console.error('Unable to interact with the video element in the parent document:', error);
       }
