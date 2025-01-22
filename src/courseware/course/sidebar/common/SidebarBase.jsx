@@ -37,55 +37,37 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const saveVideoPosition = async () => {
+    const navigationElements = document.querySelectorAll(
+      '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
+    );
+    const handleClick = () => {
       try {
-        const formData = new FormData();
-        formData.append('saved_video_position', '00:10:55');
-        const response = await fetch('https://staging.quince02.talentsprint.com/courses/course-v1:QUINCE+TCUM0912+912241233/xblock/block-v1:QUINCE+TCUM0912+912241233+type@video+block@f0c62f932f5e491d927e5b41ff259fa8/handler/xmodule_handler/save_user_state', {
-          method: 'POST',
-          body: formData,
-        });
-        if (!response.ok) {
-          throw new Error('Failed to save video position');
+        const iframe = document.querySelector('iframe');
+        if (iframe && iframe.contentDocument) {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          console.log(iframeDoc);
+          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
+          console.log(videoElement);
+          if (videoElement) {
+            videoElement.trigger("click");
+          } else {
+            console.warn('No playable video element found.');
+          }
         }
-        console.log('Video position saved successfully');
       } catch (error) {
-        console.error('Error saving video position:', error);
+        console.error('Unable to interact with the video element in the parent document:', error);
       }
     };
 
-    saveVideoPosition();
-    // const navigationElements = document.querySelectorAll(
-    //   '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
-    // );
-    // const handleClick = () => {
-    //   try {
-    //     const iframe = document.querySelector('iframe');
-    //     if (iframe && iframe.contentDocument) {
-    //       const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    //       console.log(iframeDoc);
-    //       const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-    //       console.log(videoElement);
-    //       if (videoElement) {
-    //         videoElement.trigger("click");
-    //       } else {
-    //         console.warn('No playable video element found.');
-    //       }
-    //     }
-    //   } catch (error) {
-    //     console.error('Unable to interact with the video element in the parent document:', error);
-    //   }
-    // };
+    navigationElements.forEach(element => {
+      element.addEventListener('click', handleClick);
+    });
 
-    // navigationElements.forEach(element => {
-    //   element.addEventListener('click', handleClick);
-    // });
-
-    // return () => {
-    //   navigationElements.forEach(element => {
-    //     element.removeEventListener('click', handleClick);
-    //   });
-    // };
+    return () => {
+      navigationElements.forEach(element => {
+        element.removeEventListener('click', handleClick);
+      });
+    };
   });
    
   
