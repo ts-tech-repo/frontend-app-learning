@@ -102,7 +102,15 @@ const SidebarBase = ({
       data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
       aria-label={ariaLabel}
-      onLoad={() => toggleSidebar(null)}
+      onLoad={() => {
+        toggleSidebar(null);
+        const sidebarElement = document.querySelector(`[data-testid="sidebar-${sidebarId}"]`);
+        if (currentSidebar === sidebarId) {
+          sidebarElement.classList.add('d-block');
+        } else {
+          sidebarElement.classList.add('d-none');
+        }
+      }}
     >
       {shouldDisplayFullScreen ? (
         <div
