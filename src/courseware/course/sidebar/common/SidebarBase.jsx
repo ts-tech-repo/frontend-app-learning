@@ -81,9 +81,9 @@ const SidebarBase = ({
 
     document.addEventListener('click', handleSequenceNavigationClick);
 
-    return () => {
-      document.removeEventListener('click', handleSequenceNavigationClick);
-    };
+    // return () => {
+    //   document.removeEventListener('click', handleSequenceNavigationClick);
+    // };
   }, [toggleSidebar]);
   
 
