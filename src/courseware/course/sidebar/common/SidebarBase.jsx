@@ -72,19 +72,19 @@ const SidebarBase = ({
    
   
 
-  useEffect(() => {
-    const handleSequenceNavigationClick = (event) => {
-      if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
-        toggleSidebar(null);
-      }
-    };
+  // useEffect(() => {
+  //   const handleSequenceNavigationClick = (event) => {
+  //     if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
+  //       toggleSidebar(null);
+  //     }
+  //   };
 
-    document.addEventListener('click', handleSequenceNavigationClick);
+  //   document.addEventListener('click', handleSequenceNavigationClick);
 
-    // return () => {
-    //   document.removeEventListener('click', handleSequenceNavigationClick);
-    // };
-  }, [toggleSidebar]);
+  //   return () => {
+  //     document.removeEventListener('click', handleSequenceNavigationClick);
+  //   };
+  // }, [toggleSidebar]);
   
 
   // const { unitId,  courseId } = useContext(SidebarContext);
