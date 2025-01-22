@@ -43,7 +43,7 @@ const SidebarBase = ({
     const handleClick = () => {
       try {
         const iframe = document.querySelector('iframe');
-        if (iframe && iframe.contentDocument) {
+        if (iframe) {
           const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
           console.log(iframeDoc);
           const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
