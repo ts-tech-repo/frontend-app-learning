@@ -36,61 +36,61 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  useEffect(() => {
-    const navigationElements = document.querySelectorAll(
-      '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
-    );
-    const handleClick = () => {
-      try {
-        const iframe = document.querySelector('iframe');
-        if (iframe) {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          console.log(iframeDoc);
-          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-          console.log(videoElement);
-          if (videoElement) {
-            videoElement.trigger("click");
-          } else {
-            console.warn('No playable video element found.');
-          }
-        }
-      } catch (error) {
-        console.error('Unable to interact with the video element in the parent document:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const navigationElements = document.querySelectorAll(
+  //     '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
+  //   );
+  //   const handleClick = () => {
+  //     try {
+  //       const iframe = document.querySelector('iframe');
+  //       if (iframe) {
+  //         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+  //         console.log(iframeDoc);
+  //         const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
+  //         console.log(videoElement);
+  //         if (videoElement) {
+  //           videoElement.trigger("click");
+  //         } else {
+  //           console.warn('No playable video element found.');
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error('Unable to interact with the video element in the parent document:', error);
+  //     }
+  //   };
 
-    navigationElements.forEach(element => {
-      element.addEventListener('click', handleClick);
-    });
+  //   navigationElements.forEach(element => {
+  //     element.addEventListener('click', handleClick);
+  //   });
 
-    return () => {
-      navigationElements.forEach(element => {
-        element.removeEventListener('click', handleClick);
-      });
-    };
-  });
+  //   return () => {
+  //     navigationElements.forEach(element => {
+  //       element.removeEventListener('click', handleClick);
+  //     });
+  //   };
+  // });
    
   
 
-  useEffect(() => {
-    const handleSequenceNavigationClick = (event) => {
-      if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
-        toggleSidebar(null);
-      }
-    };
+  // useEffect(() => {
+  //   const handleSequenceNavigationClick = (event) => {
+  //     if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
+  //       toggleSidebar(null);
+  //     }
+  //   };
 
-    document.addEventListener('click', handleSequenceNavigationClick);
+  //   document.addEventListener('click', handleSequenceNavigationClick);
 
-    return () => {
-      document.removeEventListener('click', handleSequenceNavigationClick);
-    };
-  }, [toggleSidebar]);
+  //   return () => {
+  //     document.removeEventListener('click', handleSequenceNavigationClick);
+  //   };
+  // }, [toggleSidebar]);
   
 
-  const { unitId,  courseId } = useContext(SidebarContext);
-  useEffect(() => {    
-    toggleSidebar(null);
-  }, [unitId,  courseId]);
+  // const { unitId,  courseId } = useContext(SidebarContext);
+  // useEffect(() => {    
+  //   toggleSidebar(null);
+  // }, [unitId,  courseId]);
 
   return (
     <section
@@ -102,6 +102,7 @@ const SidebarBase = ({
       data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
       aria-label={ariaLabel}
+      onLoad={() => toggleSidebar(null)}
     >
       {shouldDisplayFullScreen ? (
         <div
