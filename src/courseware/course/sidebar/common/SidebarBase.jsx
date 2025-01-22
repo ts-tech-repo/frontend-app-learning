@@ -72,41 +72,37 @@ const SidebarBase = ({
    
   
 
-  // useEffect(() => {
-  //   const handleSequenceNavigationClick = (event) => {
-  //     if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
-  //       toggleSidebar(null);
-  //     }
-  //   };
+  useEffect(() => {
+    const handleSequenceNavigationClick = (event) => {
+      if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
+        toggleSidebar(null);
+      }
+    };
 
-  //   document.addEventListener('click', handleSequenceNavigationClick);
+    document.addEventListener('click', handleSequenceNavigationClick);
 
-  //   return () => {
-  //     document.removeEventListener('click', handleSequenceNavigationClick);
-  //   };
-  // }, [toggleSidebar]);
+    return () => {
+      document.removeEventListener('click', handleSequenceNavigationClick);
+    };
+  }, [toggleSidebar]);
   
 
-  // const { unitId,  courseId } = useContext(SidebarContext);
-  // useEffect(() => {    
-  //   toggleSidebar(null);
-  // }, [unitId,  courseId]);
+  const { unitId,  courseId } = useContext(SidebarContext);
+  useEffect(() => {    
+    toggleSidebar(null);
+  }, [unitId,  courseId]);
 
   return (
     <section
-    onLoad={() => {
-      toggleSidebar(null);
-      setTimeout(() => {
-        this.className = classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top d-none', {
-          'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
-          'min-vh-100': !shouldDisplayFullScreen,
-          'd-block': currentSidebar == sidebarId,
-        }, className);
-      }, 1000);
-    }}
-    data-testid={`sidebar-${sidebarId}`}
-    style={{ width: shouldDisplayFullScreen ? '100%' : width }}
-    aria-label={ariaLabel}
+    onLoad={() => toggleSidebar(null)}
+      className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top d-none', {
+        'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
+        'min-vh-100': !shouldDisplayFullScreen,
+        'd-block': currentSidebar == sidebarId,
+      }, className)}
+      data-testid={`sidebar-${sidebarId}`}
+      style={{ width: shouldDisplayFullScreen ? '100%' : width }}
+      aria-label={ariaLabel}
     >
       {shouldDisplayFullScreen ? (
         <div
