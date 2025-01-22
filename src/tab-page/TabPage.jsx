@@ -87,7 +87,7 @@ const TabPage = ({ intl, ...props }) => {
       {(['badGateway'].includes(courseStatus)) && (
         <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
           {/* {intl.formatMessage(messages.failure)} */}
-          An error has occurred; please try again.
+          We are unable to handle your request right now. We will be back very soon. Please try again later.
         </p>
       )}
       <Footer />
