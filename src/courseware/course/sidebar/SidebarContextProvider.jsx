@@ -17,10 +17,11 @@ const SidebarProvider = ({
   const shouldDisplaySidebarOpen = useWindowSize().width > breakpoints.medium.minWidth;
   const query = new URLSearchParams(window.location.search);
   const initialSidebar = (shouldDisplaySidebarOpen || query.get('sidebar') === 'true') ? SIDEBARS.DISCUSSIONS.ID : null;
-  console.log(shouldDisplaySidebarOpen, "shouldDisplaySidebarOpen")
-  console.log(SIDEBARS.DISCUSSIONS.ID, "SIDEBARS.DISCUSSIONS.ID")
-  console.log(initialSidebar, "initialSidebar")
-  const [currentSidebar, setCurrentSidebar] = useState(initialSidebar);
+  console.log(shouldDisplaySidebarOpen, "shouldDisplaySidebarOpen");
+  console.log(SIDEBARS.DISCUSSIONS.ID, "SIDEBARS.DISCUSSIONS.ID");
+  console.log(initialSidebar, "initialSidebar");
+
+  const [currentSidebar, setCurrentSidebar] = useState(null);
   const [notificationStatus, setNotificationStatus] = useState(getLocalStorage(`notificationStatus.${courseId}`));
   const [upgradeNotificationCurrentState, setUpgradeNotificationCurrentState] = useState(getLocalStorage(`upgradeNotificationCurrentState.${courseId}`));
 
