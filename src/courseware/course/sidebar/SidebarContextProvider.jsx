@@ -36,13 +36,8 @@ const SidebarProvider = ({
     // Switch to new sidebar or hide the current sidebar
     setCurrentSidebar(sidebarId === currentSidebar ? null : sidebarId);
   const discussionIcon = document.querySelector('.discussion-section');
-  if (discussionIcon.classList.contains('d-none')) {
-    discussionIcon.classList.remove('d-none');
-    discussionIcon.classList.add('d-block');
-  } else {
-    discussionIcon.classList.remove('d-block');
-    discussionIcon.classList.add('d-none');
-  }
+  discussionIcon.classList.toggle('d-none');
+  discussionIcon.classList.toggle('d-block');
   }, [currentSidebar]);
 
   const contextValue = useMemo(() => ({
