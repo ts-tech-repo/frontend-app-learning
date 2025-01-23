@@ -5,6 +5,7 @@ const Sidebar = () => (
   <>
     {
       SIDEBAR_ORDER.map((sideBarId) => {
+        console.log(sideBarId);
         const SidebarToRender = SIDEBARS[sideBarId].Sidebar;
         return <SidebarToRender />;
       })
