@@ -17,9 +17,6 @@ const SidebarProvider = ({
   const shouldDisplaySidebarOpen = useWindowSize().width > breakpoints.medium.minWidth;
   const query = new URLSearchParams(window.location.search);
   const initialSidebar = (shouldDisplaySidebarOpen || query.get('sidebar') === 'true') ? SIDEBARS.DISCUSSIONS.ID : null;
-  console.log(shouldDisplaySidebarOpen, "shouldDisplaySidebarOpen");
-  console.log(SIDEBARS.DISCUSSIONS.ID, "SIDEBARS.DISCUSSIONS.ID");
-  console.log(initialSidebar, "initialSidebar");
 
   const [currentSidebar, setCurrentSidebar] = useState(null);
   const [notificationStatus, setNotificationStatus] = useState(getLocalStorage(`notificationStatus.${courseId}`));
@@ -38,14 +35,9 @@ const SidebarProvider = ({
   const toggleSidebar = useCallback((sidebarId) => {
     // Switch to new sidebar or hide the current sidebar
     setCurrentSidebar(sidebarId === currentSidebar ? null : sidebarId);
-  const discussionIcon = document.querySelector('.discussion-icon');
-  if (discussionIcon.classList.contains('d-none')) {
-    discussionIcon.classList.remove('d-none');
-    discussionIcon.classList.add('d-block');
-  } else {
-    discussionIcon.classList.remove('d-block');
-    discussionIcon.classList.add('d-none');
-  }
+  const discussionIcon = document.querySelector('.discussion-section');
+  discussionIcon.classList.toggle('d-none');
+  discussionIcon.classList.toggle('d-block');
   }, [currentSidebar]);
 
   const contextValue = useMemo(() => ({
