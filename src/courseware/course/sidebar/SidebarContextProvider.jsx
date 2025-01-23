@@ -38,6 +38,14 @@ const SidebarProvider = ({
   const toggleSidebar = useCallback((sidebarId) => {
     // Switch to new sidebar or hide the current sidebar
     setCurrentSidebar(sidebarId === currentSidebar ? null : sidebarId);
+  const discussionIcon = document.querySelector('.discussion-icon');
+  if (discussionIcon.classList.contains('d-none')) {
+    discussionIcon.classList.remove('d-none');
+    discussionIcon.classList.add('d-block');
+  } else {
+    discussionIcon.classList.remove('d-block');
+    discussionIcon.classList.add('d-none');
+  }
   }, [currentSidebar]);
 
   const contextValue = useMemo(() => ({
