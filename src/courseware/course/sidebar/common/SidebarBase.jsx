@@ -44,25 +44,37 @@ const SidebarBase = ({
       const iframe = document.querySelector('#unit-iframe');
       if (iframe) {
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        console.log(iframeDoc);
-        const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-        console.log(videoElement);
-        if (videoElement) {
-          videoElement.click();
-        } 
+        if (iframeDoc) {
+          console.log("Iframe document found:", iframeDoc);
+          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
+          console.log("Video element found:", videoElement);
+  
+          if (videoElement) {
+            if (!videoElement.paused) {
+              videoElement.pause();
+              console.log("Video paused.");
+            } else {
+              console.log("Video was already paused.");
+            }
+          } else {
+            console.log("No video element found in the iframe.");
+          }
+        } else {
+          console.log("Unable to access iframe content.");
+        }
       }
     };
-
+  
     navigationElements.forEach(element => {
       element.addEventListener('click', handleClick);
     });
-
+  
     return () => {
       navigationElements.forEach(element => {
         element.removeEventListener('click', handleClick);
       });
     };
-  },[]);
+  }, []);  
    
   
 
