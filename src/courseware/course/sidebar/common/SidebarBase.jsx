@@ -36,9 +36,9 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  useEffect(() => {
-    document.querySelector('.is-playing .video-player video').click();
-  });  
+  // useEffect(() => {
+  //   document.querySelector('.is-playing .video-player video').click();
+  // });  
   
 
   // useEffect(() => {
