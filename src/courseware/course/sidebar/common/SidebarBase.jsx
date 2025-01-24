@@ -3,7 +3,7 @@ import { Icon, IconButton } from '@edx/paragon';
 import { ArrowBackIos, Close } from '@edx/paragon/icons';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useEventListener } from '../../../../generic/hooks';
 import messages from '../../messages';
 import SidebarContext from '../SidebarContext';
@@ -18,13 +18,13 @@ const SidebarBase = ({
   showTitleBar,
   width,
 }) => {
+ 
   const {
     toggleSidebar,
     shouldDisplayFullScreen,
     currentSidebar,
   } = useContext(SidebarContext);
 
-  const iframeRef = useRef(null);
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
@@ -37,27 +37,29 @@ const SidebarBase = ({
   useEventListener('message', receiveMessage);
 
   useEffect(() => {
-    const iframe = document.querySelector('#unit-iframe');
-    iframeRef.current = iframe;
+    document.querySelector('.is-playing .video-player video').click();
+  });  
+  
 
-    if (iframe) {
-      const handleIframeLoad = () => {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        if (iframeDoc) {
-          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-          if (videoElement) {
-            videoElement.click();
-          }
-        }
-      };
+  // useEffect(() => {
+  //   const handleSequenceNavigationClick = (event) => {
+  //     if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
+  //       toggleSidebar(null);
+  //     }
+  //   };
 
-      iframe.addEventListener('load', handleIframeLoad);
+  //   document.addEventListener('click', handleSequenceNavigationClick);
 
-      return () => {
-        iframe.removeEventListener('load', handleIframeLoad);
-      };
-    }
-  }); 
+  //   return () => {
+  //     document.removeEventListener('click', handleSequenceNavigationClick);
+  //   };
+  // }, [toggleSidebar]);
+  
+
+  // const { unitId,  courseId } = useContext(SidebarContext);
+  // useEffect(() => {    
+  //   toggleSidebar(null);
+  // }, [unitId,  courseId]);
 
   return (
     <section
