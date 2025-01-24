@@ -49,9 +49,7 @@ const SidebarBase = ({
         console.log(videoElement);
         if (videoElement) {
           videoElement.click();
-        } else {
-          console.warn('No playable video element found.');
-        }
+        } 
       }
     };
 
