@@ -53,12 +53,11 @@ const SidebarBase = ({
 
       iframe.addEventListener('load', handleIframeLoad);
 
-      // Cleanup on unmount
       return () => {
         iframe.removeEventListener('load', handleIframeLoad);
       };
     }
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }); 
 
   return (
     <section
