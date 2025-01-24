@@ -36,39 +36,35 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  // useEffect(() => {
-  //   const navigationElements = document.querySelectorAll(
-  //     '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
-  //   );
-  //   const handleClick = () => {
-  //     try {
-  //       const iframe = document.querySelector('iframe');
-  //       if (iframe) {
-  //         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-  //         console.log(iframeDoc);
-  //         const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-  //         console.log(videoElement);
-  //         if (videoElement) {
-  //           videoElement.trigger("click");
-  //         } else {
-  //           console.warn('No playable video element found.');
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error('Unable to interact with the video element in the parent document:', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const navigationElements = document.querySelectorAll(
+      '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
+    );
+    const handleClick = () => {
+      const iframe = document.querySelector('#unit-iframe');
+      if (iframe) {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        console.log(iframeDoc);
+        const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
+        console.log(videoElement);
+        if (videoElement) {
+          videoElement.trigger("click");
+        } else {
+          console.warn('No playable video element found.');
+        }
+      }
+    };
 
-  //   navigationElements.forEach(element => {
-  //     element.addEventListener('click', handleClick);
-  //   });
+    navigationElements.forEach(element => {
+      element.addEventListener('click', handleClick);
+    });
 
-  //   return () => {
-  //     navigationElements.forEach(element => {
-  //       element.removeEventListener('click', handleClick);
-  //     });
-  //   };
-  // });
+    return () => {
+      navigationElements.forEach(element => {
+        element.removeEventListener('click', handleClick);
+      });
+    };
+  });
    
   
 
