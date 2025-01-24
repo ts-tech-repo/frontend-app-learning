@@ -45,23 +45,13 @@ const SidebarBase = ({
       if (iframe) {
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
         if (iframeDoc) {
-          console.log("Iframe document found:", iframeDoc);
           const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-          console.log("Video element found:", videoElement);
-  
           if (videoElement) {
-            if (!videoElement.paused) {
+              document.querySelector('.pause').click();
               videoElement.pause();
               console.log("Video paused.");
-            } else {
-              console.log("Video was already paused.");
-            }
-          } else {
-            console.log("No video element found in the iframe.");
-          }
-        } else {
-          console.log("Unable to access iframe content.");
-        }
+          } 
+        } 
       }
     };
   
