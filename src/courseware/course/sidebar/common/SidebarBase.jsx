@@ -50,7 +50,12 @@ const SidebarBase = ({
           if (videoElement) {
             const pauseButton = iframeDoc.querySelector('.pause'); 
             if (pauseButton) {
-              pauseButton.click(); // Click the pause button inside the iframe
+              const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window,
+              });
+              pauseButton.dispatchEvent(clickEvent); 
             } 
           }
         }
@@ -66,7 +71,7 @@ const SidebarBase = ({
         element.removeEventListener('click', handleClick);
       });
     };
-  }, []);   
+  }, []);  
   
 
   // useEffect(() => {
