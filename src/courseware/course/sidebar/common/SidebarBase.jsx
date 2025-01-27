@@ -40,6 +40,7 @@ const SidebarBase = ({
     const navigationElements = document.querySelectorAll(
       '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
     );
+  
     const handleClick = () => {
       const iframe = document.querySelector('#unit-iframe');
       if (iframe) {
@@ -47,11 +48,12 @@ const SidebarBase = ({
         if (iframeDoc) {
           const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
           if (videoElement) {
-              document.querySelector('.pause').click();
-              videoElement.pause();
-              console.log("Video paused.");
-          } 
-        } 
+            const pauseButton = iframeDoc.querySelector('.pause'); 
+            if (pauseButton) {
+              pauseButton.click(); // Click the pause button inside the iframe
+            } 
+          }
+        }
       }
     };
   
@@ -64,8 +66,7 @@ const SidebarBase = ({
         element.removeEventListener('click', handleClick);
       });
     };
-  }, []);  
-   
+  }, []);   
   
 
   // useEffect(() => {
