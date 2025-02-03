@@ -21,7 +21,7 @@ const FlagButton = ({
     data-testid={`weekly-learning-goal-input-${title}`}
   >
     <div className="row w-100 m-0 justify-content-center pb-1">
-      {buttonIcon}
+      <div style={{ pointerEvents: 'none' }}>{buttonIcon}</div>
     </div>
     <div className={classnames('row w-100 m-0 justify-content-center small text-gray-700 pb-1', isSelected ? 'font-weight-bold' : '')}>
       {title}
