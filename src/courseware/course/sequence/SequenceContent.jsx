@@ -57,7 +57,7 @@ const SequenceContent = ({
     console.log("error is here above data");
     return (
       <div>
-        {intl.formatMessage(messages.noContent)}
+        {intl.formatMessage(messages.hideContent)}
       </div>
     );
   }
