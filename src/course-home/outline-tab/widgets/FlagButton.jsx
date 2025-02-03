@@ -36,7 +36,6 @@ const FlagButton = ({
     </div>
   </button>
 );
-console.log(handleSelect,'handleSelect');
 
 FlagButton.propTypes = {
   buttonIcon: PropTypes.element.isRequired,
