@@ -208,7 +208,9 @@ const Sequence = ({
       </div>
     );
   }
-
+  console.log("squence status",sequenceStatus);
+  console.log("course id ",{courseId});
+  console.log("staffstatus id ",{isStaff});
   // sequence status 'failed' and any other unexpected sequence status.
   return (
     <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
