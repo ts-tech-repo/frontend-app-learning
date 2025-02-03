@@ -17,12 +17,7 @@ const FlagButton = ({
     )}
     aria-checked={isSelected}
     role="radio"
-    onClick={(e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      handleSelect();
-    }}
-    
+    onClick={() => handleSelect()}
     data-testid={`weekly-learning-goal-input-${title}`}
   >
     <div className="row w-100 m-0 justify-content-center pb-1">

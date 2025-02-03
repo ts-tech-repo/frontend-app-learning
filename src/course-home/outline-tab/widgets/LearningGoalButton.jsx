@@ -43,14 +43,7 @@ const LearningGoalButton = ({
       buttonIcon={values.icon}
       title={intl.formatMessage(values.title)}
       text={intl.formatMessage(values.text)}
-      handleSelect={() => {
-        console.log('Button clicked, days per week:', values.daysPerWeek);
-        if (typeof handleSelect === 'function') {
-          handleSelect(values.daysPerWeek);
-        } else {
-          console.error('handleSelect is not a function:', handleSelect);
-        }
-      }}
+      handleSelect={() => handleSelect(values.daysPerWeek)}
       isSelected={isSelected}
     />
   );
