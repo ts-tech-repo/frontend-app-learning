@@ -54,12 +54,11 @@ const SequenceContent = ({
     );
   }
   const SUPPORT_EMAIL = getConfig().INFO_EMAIL;
-  console.log(SUPPORT_EMAIL,"support email2");
   if (!unitId || Object.keys(unit).length === 0) {
     return (
       <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
         {/* {intl.formatMessage(messages.loadFailure)} */}
-        The content has been marked hidden, for further information please contact support team.
+        The content has been marked hidden, for further information please contact support team {SUPPORT_EMAIL}.
       </p>
     );
   }

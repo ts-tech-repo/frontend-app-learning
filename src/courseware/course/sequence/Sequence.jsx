@@ -24,7 +24,7 @@ import messages from './messages';
 import HiddenAfterDue from './hidden-after-due';
 import { SequenceNavigation, UnitNavigation } from './sequence-navigation';
 import SequenceContent from './SequenceContent';
-
+import { getConfig } from '@edx/frontend-platform';
 const Sequence = ({
   unitId,
   sequenceId,
@@ -208,15 +208,13 @@ const Sequence = ({
       </div>
     );
   }
-  console.log(sequenceStatus,"sssss");
-  console.log({courseId});
-  console.log({isStaff});
-  console.log(isStaff);
+ 
+  const SUPPORT_EMAIL = getConfig().INFO_EMAIL;
   // sequence status 'failed' and any other unexpected sequence status.
   return (
     <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
       {/* {intl.formatMessage(messages.loadFailure)} */}
-      There seems to be a network issue. Please check your connection and try again later1.
+      The content has been marked hidden, for further information please contact support team {SUPPORT_EMAIL}.
     </p>
   );
 };
