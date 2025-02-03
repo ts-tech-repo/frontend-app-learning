@@ -1,7 +1,5 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
-import { getConfig } from '@edx/frontend-platform';
-const SUPPORT_EMAIL = getConfig().INFO_EMAIL;
-console.log(SUPPORT_EMAIL,"support email");
+
 const messages = defineMessages({
   headerPlaceholder: {
     id: 'learn.header.h2.placeholder',
@@ -31,11 +29,6 @@ const messages = defineMessages({
   noContent: {
     id: 'learn.sequence.no.content',
     defaultMessage: 'There is no content here.',
-    description: 'Message shown when there is no content to show a user inside a learning sequence.',
-  },
-  hideContent: {
-    id: 'learn.sequence.no.content',
-    defaultMessage: `The content has been marked hidden, for further information please contact support team ${SUPPORT_EMAIL}`,
     description: 'Message shown when there is no content to show a user inside a learning sequence.',
   },
 });

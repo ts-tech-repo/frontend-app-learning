@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import PageLoading from '../../../generic/PageLoading';
 import { useModel } from '../../../generic/model-store';
+import { getConfig } from '@edx/frontend-platform';
 
 import messages from './messages';
 import Unit from './Unit';
@@ -52,13 +53,14 @@ const SequenceContent = ({
       </div>
     );
   }
-
+  const SUPPORT_EMAIL = getConfig().INFO_EMAIL;
+  console.log(SUPPORT_EMAIL,"support email2");
   if (!unitId || Object.keys(unit).length === 0) {
-    console.log("error is here above data");
     return (
-      <div>
-        {intl.formatMessage(messages.hideContent)}
-      </div>
+      <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
+        {/* {intl.formatMessage(messages.loadFailure)} */}
+        The content has been marked hidden, for further information please contact support team.
+      </p>
     );
   }
 
