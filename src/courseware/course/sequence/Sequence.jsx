@@ -208,7 +208,7 @@ const Sequence = ({
       </div>
     );
   }
-  console.log(sequenceStatus);
+  console.log(sequenceStatus,"sssss");
   console.log({courseId});
   console.log({isStaff});
   console.log(isStaff);
