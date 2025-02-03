@@ -122,6 +122,7 @@ const Sequence = ({
   const loading = sequenceStatus === 'loading' || (sequenceStatus === 'failed' && sequenceMightBeUnit);
   if (loading) {
     if (!sequenceId) {
+      console.log("error is here content after");
       return (<div> {intl.formatMessage(messages.noContent)} </div>);
     }
     return (

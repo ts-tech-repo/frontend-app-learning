@@ -45,6 +45,7 @@ const SequenceContent = ({
 
   const unit = useModel('units', unitId);
   if (!unitId || !unit) {
+    console.log("error is here");
     return (
       <div>
         {intl.formatMessage(messages.noContent)}
