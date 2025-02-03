@@ -213,9 +213,12 @@ const Sequence = ({
   // sequence status 'failed' and any other unexpected sequence status.
   return (
     <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
-      {/* {intl.formatMessage(messages.loadFailure)} */}
-      The content has been marked hidden, for further information please contact support team {SUPPORT_EMAIL}.
-    </p>
+        {/* {intl.formatMessage(messages.loadFailure)} */}
+        The content has been marked hidden. For further information, please contact the support team at{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-blue-500 underline">
+          {SUPPORT_EMAIL}
+        </a>.
+      </p>
   );
 };
 
