@@ -53,6 +53,15 @@ const SequenceContent = ({
     );
   }
 
+  if (!unitId || Object.keys(unit).length === 0) {
+    console.log("error is here above data");
+    return (
+      <div>
+        {intl.formatMessage(messages.noContent)}
+      </div>
+    );
+  }
+
   return (
     <Unit
       courseId={courseId}
