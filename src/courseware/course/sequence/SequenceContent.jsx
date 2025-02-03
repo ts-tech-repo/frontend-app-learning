@@ -52,6 +52,14 @@ const SequenceContent = ({
     );
   }
 
+  if (!unitId || Object.keys(unit).length === 0) {
+    return (
+      <div>
+        {intl.formatMessage(messages.noContent)}
+      </div>
+    );
+  }
+
   return (
     <Unit
       courseId={courseId}
