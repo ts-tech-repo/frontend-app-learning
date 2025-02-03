@@ -17,10 +17,15 @@ const FlagButton = ({
     )}
     aria-checked={isSelected}
     role="radio"
-    onClick={() => handleSelect()}
+    onClick={(e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      handleSelect();
+    }}
+    
     data-testid={`weekly-learning-goal-input-${title}`}
   >
-    <div className="row w-100 m-0 justify-content-center pb-1" onClick={handleSelect}>
+    <div className="row w-100 m-0 justify-content-center pb-1">
       {buttonIcon}
     </div>
     <div className={classnames('row w-100 m-0 justify-content-center small text-gray-700 pb-1', isSelected ? 'font-weight-bold' : '')}>
@@ -31,6 +36,7 @@ const FlagButton = ({
     </div>
   </button>
 );
+console.log(handleSelect,'handleSelect');
 
 FlagButton.propTypes = {
   buttonIcon: PropTypes.element.isRequired,
