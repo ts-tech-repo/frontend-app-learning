@@ -213,7 +213,7 @@ const Sequence = ({
   return (
     <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
       {/* {intl.formatMessage(messages.loadFailure)} */}
-      There seems to be a network issue. Please check your connection and try again.
+      There seems to be a network issue. Please check your connection and try again later.
     </p>
   );
 };
