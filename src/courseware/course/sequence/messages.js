@@ -1,7 +1,7 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
 const SUPPORT_EMAIL = getConfig().INFO_EMAIL;
-console.log(SUPPORT_EMAIL);
+console.log(SUPPORT_EMAIL,"support email");
 const messages = defineMessages({
   headerPlaceholder: {
     id: 'learn.header.h2.placeholder',
