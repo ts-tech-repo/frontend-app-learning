@@ -28,16 +28,11 @@ const SidebarBase = ({
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
-    console.log("Received event:", type);
-  
-    if (type === 'learning.events.sidebar.close' && currentSidebar === sidebarId) {
-      console.log("Closing sidebar");
+    if (type === 'learning.events.sidebar.close' && sidebarId === "DISCUSSIONS") {
       toggleSidebar(null);
-    } else if (type === 'learning.events.sidebar.open' && currentSidebar !== sidebarId) {
-      console.log("Opening sidebar");
-      toggleSidebar(sidebarId);
     }
-  }, [sidebarId, toggleSidebar, currentSidebar]);  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
 
