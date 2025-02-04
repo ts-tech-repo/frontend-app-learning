@@ -28,6 +28,7 @@ const SidebarBase = ({
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
+    console.log("closing sidebar");
     if (type === 'learning.events.sidebar.close') {
       toggleSidebar(null);
     }
