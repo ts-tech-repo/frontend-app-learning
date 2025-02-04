@@ -28,7 +28,7 @@ const SidebarBase = ({
 
   const receiveMessage = useCallback(({ data }) => {
     const { type } = data;
-    if (type === 'learning.events.sidebar.close' && sidebarId === "DISCUSSIONS") {
+    if (type === 'learning.events.sidebar.close') {
       toggleSidebar(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
