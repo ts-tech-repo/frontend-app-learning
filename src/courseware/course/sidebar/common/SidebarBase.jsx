@@ -26,16 +26,6 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  // const receiveMessage = useCallback(({ data }) => {
-  //   const { type } = data;
-  //   if (type === 'learning.events.sidebar.close') {
-  //     toggleSidebar(null);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [sidebarId, toggleSidebar]);
-
-  // useEventListener('message', receiveMessage);
-
   window.addEventListener('message', (event) => {
     if (event.data?.action === 'toggleDiscussionSection') {
       const discussionIcon = document.querySelector('.discussion-section');
