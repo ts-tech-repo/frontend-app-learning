@@ -46,7 +46,7 @@ const SidebarBase = ({
         button.removeEventListener("click", () => toggleSidebar(null));
       }
     };
-  }, [toggleSidebar]);
+  });
 
   return (
     <section
