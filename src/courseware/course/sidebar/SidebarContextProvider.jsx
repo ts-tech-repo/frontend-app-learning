@@ -17,7 +17,7 @@ const SidebarProvider = ({
   const shouldDisplaySidebarOpen = useWindowSize().width > breakpoints.medium.minWidth;
   const query = new URLSearchParams(window.location.search);
   const initialSidebar = query.get('sidebar') === 'true' ? SIDEBARS.DISCUSSIONS.ID : null;
-  const [currentSidebar, setCurrentSidebar] = useState(initialSidebar);
+  const [currentSidebar, setCurrentSidebar] = useState(null);
   const [notificationStatus, setNotificationStatus] = useState(getLocalStorage(`notificationStatus.${courseId}`));
   const [upgradeNotificationCurrentState, setUpgradeNotificationCurrentState] = useState(getLocalStorage(`upgradeNotificationCurrentState.${courseId}`));
 
