@@ -29,11 +29,27 @@ const SidebarBase = ({
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
-   console.log('coming here1');
+    const handleClick = () => {
+      toggleSidebar(null);
+    };
+
+    const checkIframe = () => {
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentWindow && iframe.contentDocument) {
+        const button = iframe.contentDocument.querySelector(".spinner-dimentions");
+        if (button) {
+          button.addEventListener("click", handleClick);
+        }
+      }
+    };
+
+    const interval = setInterval(checkIframe, 1000); // Check every second
+
+    return () => {
+      clearInterval(interval);
+    };
   });
-  useEffect(() => {
-   console.log('coming here2');
-  },[]);
+
 
   return (
     <section
