@@ -21,24 +21,15 @@ const SidebarProvider = ({
   const [notificationStatus, setNotificationStatus] = useState(getLocalStorage(`notificationStatus.${courseId}`));
   const [upgradeNotificationCurrentState, setUpgradeNotificationCurrentState] = useState(getLocalStorage(`upgradeNotificationCurrentState.${courseId}`));
 
-  const [originalSidebar, setOriginalSidebar] = useState(null);
-
-  useEffect(() => {
-    setOriginalSidebar(currentSidebar); 
-    setCurrentSidebar(null); 
-
-    const timeout = setTimeout(() => {
-      setCurrentSidebar(originalSidebar); 
-    }, 3000); 
-
-    return () => clearTimeout(timeout); 
-  }, []);
-
   useEffect(() => {
     setCurrentSidebar(SIDEBARS.DISCUSSIONS.ID);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unitId]);
   
+  // useEffect(() => {
+  //   setCurrentSidebar(null);
+  // }, []);
+
   const onNotificationSeen = useCallback(() => {
     setNotificationStatus('inactive');
     setLocalStorage(`notificationStatus.${courseId}`, 'inactive');
