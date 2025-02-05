@@ -26,9 +26,6 @@ const SidebarProvider = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unitId]);
   
-  // useEffect(() => {
-  //   setCurrentSidebar(null);
-  // }, []);
 
   const onNotificationSeen = useCallback(() => {
     setNotificationStatus('inactive');
