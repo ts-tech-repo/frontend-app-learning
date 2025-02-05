@@ -26,30 +26,25 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  const [iframeLoaded, setIframeLoaded] = useState(false);
+  // const receiveMessage = useCallback(({ data }) => {
+  //   const { type } = data;
+  //   if (type === 'learning.events.sidebar.close') {
+  //     toggleSidebar(null);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [sidebarId, toggleSidebar]);
 
-  useEffect(() => {
-    const handleClick = () => {
-      toggleSidebar(null);
-    };
+  // useEventListener('message', receiveMessage);
 
-    const checkIframe = () => {
-      const iframe = document.querySelector("iframe");
-      if (iframe && iframe.contentWindow && iframe.contentDocument) {
-        const button = iframe.contentDocument.querySelector(".btn-icon-md.spinner-dimentions");
-        if (button) {
-          button.addEventListener("click", handleClick);
-        }
+  window.addEventListener('message', (event) => {
+    if (event.data?.action === 'toggleDiscussionSection') {
+      const discussionIcon = document.querySelector('.discussion-section');
+      if (discussionIcon) {
+        discussionIcon.classList.toggle('d-none');
+        discussionIcon.classList.toggle('d-block');
       }
-    };
-
-    const interval = setInterval(checkIframe, 1000); // Check every second
-
-    return () => {
-      clearInterval(interval);
-    };
+    }
   });
-
 
   return (
     <section
