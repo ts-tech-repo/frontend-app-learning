@@ -96,17 +96,14 @@ const SidebarBase = ({
 
   return (
     <section
-        className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
-          'd-none': currentSidebar !== sidebarId,  // Hide by default
-          'd-block': currentSidebar === sidebarId, // Show when toggled
-          'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
-          'min-vh-100': !shouldDisplayFullScreen,
-        }, className)}
-        data-testid={`sidebar-${sidebarId}`}
-        style={{ width: shouldDisplayFullScreen ? '100%' : width }}
-        aria-label={ariaLabel}
+      className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top d-none discussion-section', {
+        'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
+        'min-vh-100': !shouldDisplayFullScreen,
+      }, className)}
+      data-testid={`sidebar-${sidebarId}`}
+      style={{ width: shouldDisplayFullScreen ? '100%' : width }}
+      aria-label={ariaLabel}
     >
-
       {shouldDisplayFullScreen ? (
         <div
           className="pt-2 pb-2.5 border-bottom border-light-400 d-flex align-items-center ml-2"

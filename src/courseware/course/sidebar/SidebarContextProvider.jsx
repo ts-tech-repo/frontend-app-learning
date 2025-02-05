@@ -16,8 +16,8 @@ const SidebarProvider = ({
   const shouldDisplayFullScreen = useWindowSize().width < breakpoints.large.minWidth;
   const shouldDisplaySidebarOpen = useWindowSize().width > breakpoints.medium.minWidth;
   const query = new URLSearchParams(window.location.search);
-  const initialSidebar = query.get('sidebar') === 'true' ? SIDEBARS.DISCUSSIONS.ID : null;
-  const [currentSidebar, setCurrentSidebar] = useState(null);
+  const initialSidebar = (shouldDisplaySidebarOpen || query.get('sidebar') === 'true') ? SIDEBARS.DISCUSSIONS.ID : null;
+  const [currentSidebar, setCurrentSidebar] = useState(initialSidebar);
   const [notificationStatus, setNotificationStatus] = useState(getLocalStorage(`notificationStatus.${courseId}`));
   const [upgradeNotificationCurrentState, setUpgradeNotificationCurrentState] = useState(getLocalStorage(`upgradeNotificationCurrentState.${courseId}`));
 
@@ -32,8 +32,13 @@ const SidebarProvider = ({
   }, [courseId]);
 
   const toggleSidebar = useCallback((sidebarId) => {
-    setCurrentSidebar((prevSidebar) => (prevSidebar === sidebarId ? null : sidebarId));
-  }, []);   
+    const discussionIcon = document.querySelector('.discussion-section');
+    const isActive = sidebarId === currentSidebar;
+    
+    setCurrentSidebar(isActive ? null : sidebarId);
+    discussionIcon.classList.toggle('d-none', isActive);
+    discussionIcon.classList.toggle('d-block', !isActive);
+  }, [currentSidebar]);
   
 
   const contextValue = useMemo(() => ({
