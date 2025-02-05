@@ -26,17 +26,6 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  // window.addEventListener('message', (event) => {
-  //   if (event.data?.action === 'toggleDiscussionSection') {
-  //     event.stopPropagation();
-  //     const discussionIcon = document.querySelector('.discussion-section');
-  //     if (discussionIcon) {
-  //       discussionIcon.classList.toggle('d-none');
-  //       discussionIcon.classList.toggle('d-block');
-  //     }
-  //   }
-  // });
-
   window.addEventListener('message', (event) => {
     if (event.data?.action === 'toggleDiscussionSection') {
       event.stopPropagation();
@@ -46,8 +35,7 @@ const SidebarBase = ({
         discussionIcon.classList.toggle('d-block');
       }
     }
-  }, { once: true });  
-  
+  });
 
 
   return (
