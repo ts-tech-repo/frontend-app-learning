@@ -36,64 +36,6 @@ const SidebarBase = ({
 
   useEventListener('message', receiveMessage);
 
-  useEffect(() => {
-    const navigationElements = document.querySelectorAll(
-      '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
-    );
-  
-    const handleClick = () => {
-      const iframe = document.querySelector('#unit-iframe');
-      if (iframe) {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        if (iframeDoc) {
-          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-          if (videoElement) {
-            const pauseButton = iframeDoc.querySelector('.pause'); 
-            if (pauseButton) {
-              const clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window,
-              });
-              pauseButton.dispatchEvent(clickEvent); 
-            } 
-          }
-        }
-      }
-    };
-  
-    navigationElements.forEach(element => {
-      element.addEventListener('click', handleClick);
-    });
-  
-    return () => {
-      navigationElements.forEach(element => {
-        element.removeEventListener('click', handleClick);
-      });
-    };
-  }, []);  
-  
-
-  // useEffect(() => {
-  //   const handleSequenceNavigationClick = (event) => {
-  //     if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
-  //       toggleSidebar(null);
-  //     }
-  //   };
-
-  //   document.addEventListener('click', handleSequenceNavigationClick);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleSequenceNavigationClick);
-  //   };
-  // }, [toggleSidebar]);
-  
-
-  // const { unitId,  courseId } = useContext(SidebarContext);
-  // useEffect(() => {    
-  //   toggleSidebar(null);
-  // }, [unitId,  courseId]);
-
   return (
     <section
       className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top d-none discussion-section', {
