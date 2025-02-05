@@ -33,8 +33,12 @@ const SidebarBase = ({
     const handleLoad = () => {
       const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
       if (button) {
-        button.addEventListener("click", () => toggleSidebar(null));
+        button.addEventListener("click", handleButtonClick);
       }
+    };
+
+    const handleButtonClick = () => {
+      toggleSidebar(null);
     };
 
     iframe.addEventListener("load", handleLoad);
@@ -43,7 +47,7 @@ const SidebarBase = ({
       iframe.removeEventListener("load", handleLoad);
       const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
       if (button) {
-        button.removeEventListener("click", () => toggleSidebar(null));
+        button.removeEventListener("click", handleButtonClick);
       }
     };
   });
