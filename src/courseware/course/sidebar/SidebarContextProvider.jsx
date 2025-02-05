@@ -32,18 +32,8 @@ const SidebarProvider = ({
   }, [courseId]);
 
   const toggleSidebar = useCallback((sidebarId) => {
-    setCurrentSidebar((prevSidebar) => {
-      const isActive = prevSidebar === sidebarId;
-      const discussionIcon = document.querySelector('.discussion-section');
-  
-      if (discussionIcon) {
-        discussionIcon.classList.toggle('d-none', isActive);
-        discussionIcon.classList.toggle('d-block', !isActive);
-      }
-  
-      return isActive ? null : sidebarId;
-    });
-  }, []);  
+    setCurrentSidebar((prevSidebar) => (prevSidebar === sidebarId ? null : sidebarId));
+  }, []);   
   
 
   const contextValue = useMemo(() => ({
