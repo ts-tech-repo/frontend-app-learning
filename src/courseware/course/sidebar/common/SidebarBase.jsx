@@ -31,10 +31,12 @@ const SidebarBase = ({
     if (!iframe) return;
 
     const handleLoad = () => {
-      const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
-      if (button) {
-        button.addEventListener("click", handleButtonClick);
-      }
+      setTimeout(() => {
+        const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
+        if (button) {
+          button.addEventListener("click", handleButtonClick);
+        }
+      }, 100); // Small delay to ensure DOM is ready
     };
 
     const handleButtonClick = () => {
@@ -45,10 +47,12 @@ const SidebarBase = ({
 
     return () => {
       iframe.removeEventListener("load", handleLoad);
-      const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
-      if (button) {
-        button.removeEventListener("click", handleButtonClick);
-      }
+      setTimeout(() => {
+        const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
+        if (button) {
+          button.removeEventListener("click", handleButtonClick);
+        }
+      }, 100);
     };
   });
 
