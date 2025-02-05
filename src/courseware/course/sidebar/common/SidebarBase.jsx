@@ -26,16 +26,33 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  window.addEventListener('message', (event) => {
-    if (event.data?.action === 'toggleDiscussionSection') {
-      event.stopPropagation();
-      const discussionIcon = document.querySelector('.discussion-section');
-      if (discussionIcon) {
-        discussionIcon.classList.toggle('d-none');
-        discussionIcon.classList.toggle('d-block');
-      }
+  // window.addEventListener('message', (event) => {
+  //   if (event.data?.action === 'toggleDiscussionSection') {
+  //     event.stopPropagation();
+  //     const discussionIcon = document.querySelector('.discussion-section');
+  //     if (discussionIcon) {
+  //       discussionIcon.classList.toggle('d-none');
+  //       discussionIcon.classList.toggle('d-block');
+  //     }
+  //   }
+  // });
+
+  const observer = new MutationObserver((mutationsList, observer) => {
+    const discussionIcon = document.querySelector('.discussion-section');
+    if (discussionIcon) {
+      observer.disconnect(); 
+      window.addEventListener('message', (event) => {
+        if (event.data?.action === 'toggleDiscussionSection') {
+          event.stopPropagation();
+          discussionIcon.classList.toggle('d-none');
+          discussionIcon.classList.toggle('d-block');
+        }
+      });
     }
   });
+  
+  observer.observe(document.body, { childList: true, subtree: true });
+  
 
 
   return (
