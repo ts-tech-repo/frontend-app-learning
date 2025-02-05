@@ -29,35 +29,11 @@ const SidebarBase = ({
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
-    const iframe = document.querySelector("iframe");
-    if (!iframe) return;
-
-    const handleLoad = () => {
-      setIframeLoaded(true);
-      setTimeout(() => {
-        const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
-        if (button) {
-          button.addEventListener("click", handleButtonClick);
-        }
-      }, 100); // Small delay to ensure content is fully loaded
-    };
-
-    const handleButtonClick = () => {
-      toggleSidebar(null);
-    };
-
-    iframe.addEventListener("load", handleLoad);
-
-    return () => {
-      iframe.removeEventListener("load", handleLoad);
-      setTimeout(() => {
-        const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
-        if (button) {
-          button.removeEventListener("click", handleButtonClick);
-        }
-      }, 100);
-    };
-  }, [iframeLoaded]);
+   console.log('coming here1');
+  });
+  useEffect(() => {
+   console.log('coming here2');
+  },[]);
 
   return (
     <section
