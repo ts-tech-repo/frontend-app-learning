@@ -26,15 +26,24 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  window.addEventListener('message', (event) => {
-    if (event.data?.action === 'toggleDiscussionSection') {
-      const discussionIcon = document.querySelector('.discussion-section');
-      if (discussionIcon) {
-        discussionIcon.classList.toggle('d-none');
-        discussionIcon.classList.toggle('d-block');
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data?.action === 'toggleDiscussionSection') {
+        const discussionIcon = document.querySelector('.discussion-section');
+        if (discussionIcon) {
+          discussionIcon.classList.toggle('d-none');
+          discussionIcon.classList.toggle('d-block');
+        }
       }
-    }
-  });
+    };
+  
+    window.addEventListener('message', handleMessage);
+  
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+  
 
   return (
     <section
