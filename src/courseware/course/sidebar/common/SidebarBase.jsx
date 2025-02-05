@@ -27,7 +27,7 @@ const SidebarBase = ({
 
 
   useEffect(() => {
-    const handleMessage = (event) => {
+    function handleMessage(event) {
       if (event.data?.action === 'toggleDiscussionSection') {
         const discussionIcon = document.querySelector('.discussion-section');
         if (discussionIcon) {
@@ -35,15 +35,15 @@ const SidebarBase = ({
           discussionIcon.classList.toggle('d-block');
         }
       }
-    };
+    }
   
     window.addEventListener('message', handleMessage);
   
     return () => {
-      window.removeEventListener('message', handleMessage);
+      window.removeEventListener('message', handleMessage); // Cleanup on unmount
     };
   }, []);
-  
+
 
   return (
     <section
