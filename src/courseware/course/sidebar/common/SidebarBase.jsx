@@ -3,7 +3,7 @@ import { Icon, IconButton } from '@edx/paragon';
 import { ArrowBackIos, Close } from '@edx/paragon/icons';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useContext, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useEventListener } from '../../../../generic/hooks';
 import messages from '../../messages';
 import SidebarContext from '../SidebarContext';
@@ -26,23 +26,27 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  const executedRef = useRef(false);
+  useEffect(() => {
+    const iframe = document.querySelector("iframe");
+    if (!iframe) return;
 
-  const receiveMessage = useCallback(({ data }) => {
-      if (executedRef.current) return; 
-
-      executedRef.current = true;
-      const { type } = data;
-      if (type === 'learning.events.sidebar.close') {
-          toggleSidebar(null);
+    const handleLoad = () => {
+      const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
+      if (button) {
+        button.addEventListener("click", () => toggleSidebar(null));
       }
+    };
 
-      setTimeout(() => {
-          executedRef.current = false;
-      }, 0);
+    iframe.addEventListener("load", handleLoad);
+
+    return () => {
+      iframe.removeEventListener("load", handleLoad);
+      const button = iframe.contentDocument?.querySelector("button.spinner-dimentions");
+      if (button) {
+        button.removeEventListener("click", () => toggleSidebar(null));
+      }
+    };
   }, [toggleSidebar]);
-
-  useEventListener('message', receiveMessage);
 
   return (
     <section
