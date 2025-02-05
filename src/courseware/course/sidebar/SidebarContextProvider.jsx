@@ -32,12 +32,14 @@ const SidebarProvider = ({
   }, [courseId]);
 
   const toggleSidebar = useCallback((sidebarId) => {
-    // Switch to new sidebar or hide the current sidebar
-    setCurrentSidebar(sidebarId === currentSidebar ? null : sidebarId);
-  const discussionIcon = document.querySelector('.discussion-section');
-  discussionIcon.classList.toggle('d-none');
-  discussionIcon.classList.toggle('d-block');
+    const discussionIcon = document.querySelector('.discussion-section');
+    const isActive = sidebarId === currentSidebar;
+    
+    setCurrentSidebar(isActive ? null : sidebarId);
+    discussionIcon.classList.toggle('d-none', isActive);
+    discussionIcon.classList.toggle('d-block', !isActive);
   }, [currentSidebar]);
+  
 
   const contextValue = useMemo(() => ({
     toggleSidebar,
