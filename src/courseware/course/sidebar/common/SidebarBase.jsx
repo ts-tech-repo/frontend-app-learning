@@ -26,13 +26,21 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
+  const executedRef = useRef(false);
+
   const receiveMessage = useCallback(({ data }) => {
-    const { type } = data;
-    if (type === 'learning.events.sidebar.close') {
-      toggleSidebar(null);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      if (executedRef.current) return; 
+
+      executedRef.current = true;
+      const { type } = data;
+      if (type === 'learning.events.sidebar.close') {
+          toggleSidebar(null);
+      }
+
+      setTimeout(() => {
+          executedRef.current = false;
+      }, 0);
+  }, [toggleSidebar]);
 
   useEventListener('message', receiveMessage);
 
