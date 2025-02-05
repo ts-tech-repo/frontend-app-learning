@@ -28,11 +28,10 @@ const SidebarBase = ({
 
   window.addEventListener('message', (event) => {
     if (event.data?.action === 'toggleDiscussionSection') {
-      event.stopPropagation();
       const discussionIcon = document.querySelector('.discussion-section');
       if (discussionIcon) {
-        discussionIcon.classList.toggle('d-none');
-        discussionIcon.classList.toggle('d-block');
+        discussionIcon.classList.add('d-none');
+        discussionIcon.classList.remove('d-block');        
       }
     }
   });
