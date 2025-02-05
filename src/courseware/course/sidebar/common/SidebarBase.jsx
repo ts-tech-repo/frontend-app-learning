@@ -32,7 +32,7 @@ const SidebarBase = ({
       toggleSidebar(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sidebarId, toggleSidebar]);
+  }, []);
 
   useEventListener('message', receiveMessage);
 
