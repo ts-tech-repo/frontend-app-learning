@@ -36,7 +36,7 @@ const SidebarBase = ({
     const checkIframe = () => {
       const iframe = document.querySelector("iframe");
       if (iframe && iframe.contentWindow && iframe.contentDocument) {
-        const button = iframe.contentDocument.querySelector(".spinner-dimentions");
+        const button = iframe.contentDocument.querySelector(".btn-icon-md.spinner-dimentions");
         if (button) {
           button.addEventListener("click", handleClick);
         }
