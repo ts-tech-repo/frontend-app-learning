@@ -33,7 +33,8 @@ const SidebarBase = ({
         discussionIcon.classList.toggle('d-none');
         discussionIcon.classList.toggle('d-block');
       }
-    };
+    }
+  });
 
 
   return (
