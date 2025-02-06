@@ -123,7 +123,7 @@ const ContentIFrame = ({
             <span>🛈 </span>{" "}
             {isNoInternet
               ? "There seems to be no internet. Please check your connection and try again."
-              : "We are unable to handle your request right now. We will be back very soon. Please try again later."}
+              : "There seems to be a network issue. Please check your connection and try again."}
           </div>
         ) : (
           <PageLoading srMessage={loadingMessage} />
