@@ -36,6 +36,7 @@ const ContentIFrame = ({
   title,
 }) => {
   const [iframeClass, setIframeClass] = useState("");
+  const [isNoInternet, setIsNoInternet] = useState(!navigator.onLine);
 
   const { handleIFrameLoad, hasLoaded, iframeHeight, showError } =
     hooks.useIFrameBehavior({
@@ -46,6 +47,20 @@ const ContentIFrame = ({
     });
 
   const { modalOptions, handleModalClose } = hooks.useModalIFrameData();
+
+  useEffect(() => {
+    const handleOnlineStatus = () => {
+      setIsNoInternet(!navigator.onLine);
+    };
+
+    window.addEventListener("online", handleOnlineStatus);
+    window.addEventListener("offline", handleOnlineStatus);
+
+    return () => {
+      window.removeEventListener("online", handleOnlineStatus);
+      window.removeEventListener("offline", handleOnlineStatus);
+    };
+  }, []);
 
   useEffect(() => {
     const checkIframeContent = () => {
@@ -105,8 +120,10 @@ const ContentIFrame = ({
         // custom error message for iframe
         (showError ? (
           <div className="error_msg fade alert-content alert alert-danger show">
-            <span>🛈 </span> There seems to be a network issue. Please check your
-            connection and try again.
+            <span>🛈 </span>{" "}
+            {isNoInternet
+              ? "There seems to be no internet. Please check your connection and try again."
+              : "There seems to be a network issue. Please check your connection and try again."}
           </div>
         ) : (
           <PageLoading srMessage={loadingMessage} />

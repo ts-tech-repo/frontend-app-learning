@@ -21,6 +21,7 @@ import {
 import {
   fetchTabDenied,
   fetchTabFailure,
+  fetchTabBadGateway,
   fetchTabRequest,
   fetchTabSuccess,
   setCallToActionToast,
@@ -62,8 +63,15 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
         }));
       }
     } catch (e) {
-      dispatch(fetchTabFailure({ courseId }));
-      logError(e);
+      const { httpErrorStatus } = error && error.customAttributes;
+      if (httpErrorStatus === 502) {
+        dispatch(fetchTabBadGateway({ courseId }));
+        logError(e);
+
+      }else{
+        dispatch(fetchTabFailure({ courseId }));
+        logError(e);
+      }
     }
   };
 }
