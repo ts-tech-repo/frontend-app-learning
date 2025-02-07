@@ -26,16 +26,15 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  const receiveMessage = useCallback(({ data }) => {
-    const { type } = data;
-    if (type === 'learning.events.sidebar.close') {
-      toggleSidebar(null);
+  window.addEventListener('message', (event) => {
+    if (event.data?.action === 'toggleDiscussionSection') {
+      const discussionIcon = document.querySelector('.discussion-section');
+      if (discussionIcon) {
+        discussionIcon.classList.add('d-none');
+        discussionIcon.classList.remove('d-block');        
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sidebarId, toggleSidebar]);
-
-  useEventListener('message', receiveMessage);
-
+  });
 
 
   return (
