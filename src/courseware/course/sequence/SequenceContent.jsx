@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import PageLoading from '../../../generic/PageLoading';
 import { useModel } from '../../../generic/model-store';
+import { getConfig } from '@edx/frontend-platform';
 
 import messages from './messages';
 import Unit from './Unit';
@@ -49,6 +50,18 @@ const SequenceContent = ({
       <div>
         {intl.formatMessage(messages.noContent)}
       </div>
+    );
+  }
+  const SUPPORT_EMAIL = getConfig().INFO_EMAIL;
+  if (!unitId || Object.keys(unit).length === 0) {
+    return (
+      <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
+        {/* {intl.formatMessage(messages.loadFailure)} */}
+        The content has been marked hidden. For further information, please contact the support team at{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-blue-500 underline">
+          {SUPPORT_EMAIL}
+        </a>.
+      </p>
     );
   }
 

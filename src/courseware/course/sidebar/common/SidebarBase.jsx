@@ -26,73 +26,16 @@ const SidebarBase = ({
   } = useContext(SidebarContext);
 
 
-  const receiveMessage = useCallback(({ data }) => {
-    const { type } = data;
-    if (type === 'learning.events.sidebar.close') {
-      toggleSidebar(null);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sidebarId, toggleSidebar]);
-
-  useEventListener('message', receiveMessage);
-
-  useEffect(() => {
-    const navigationElements = document.querySelectorAll(
-      '.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]'
-    );
-  
-    const handleClick = () => {
-      const iframe = document.querySelector('#unit-iframe');
-      if (iframe) {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        if (iframeDoc) {
-          const videoElement = iframeDoc.querySelector('.is-playing .video-player video');
-          if (videoElement) {
-            const pauseButton = iframeDoc.querySelector('.pause'); 
-            if (pauseButton) {
-              const clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window,
-              });
-              pauseButton.dispatchEvent(clickEvent); 
-            } 
-          }
-        }
+  window.addEventListener('message', (event) => {
+    if (event.data?.action === 'toggleDiscussionSection') {
+      const discussionIcon = document.querySelector('.discussion-section');
+      if (discussionIcon) {
+        discussionIcon.classList.add('d-none');
+        discussionIcon.classList.remove('d-block');        
       }
-    };
-  
-    navigationElements.forEach(element => {
-      element.addEventListener('click', handleClick);
-    });
-  
-    return () => {
-      navigationElements.forEach(element => {
-        element.removeEventListener('click', handleClick);
-      });
-    };
-  }, []);  
-  
+    }
+  });
 
-  // useEffect(() => {
-  //   const handleSequenceNavigationClick = (event) => {
-  //     if (event.target.closest('.previous-button, .next-button, #courseware-sequenceNavigation .btn-link, .previous-btn, li[data-testid="breadcrumb-item"]')) {
-  //       toggleSidebar(null);
-  //     }
-  //   };
-
-  //   document.addEventListener('click', handleSequenceNavigationClick);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleSequenceNavigationClick);
-  //   };
-  // }, [toggleSidebar]);
-  
-
-  // const { unitId,  courseId } = useContext(SidebarContext);
-  // useEffect(() => {    
-  //   toggleSidebar(null);
-  // }, [unitId,  courseId]);
 
   return (
     <section

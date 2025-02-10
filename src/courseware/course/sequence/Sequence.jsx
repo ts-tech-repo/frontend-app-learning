@@ -24,7 +24,7 @@ import messages from './messages';
 import HiddenAfterDue from './hidden-after-due';
 import { SequenceNavigation, UnitNavigation } from './sequence-navigation';
 import SequenceContent from './SequenceContent';
-
+import { getConfig } from '@edx/frontend-platform';
 const Sequence = ({
   unitId,
   sequenceId,
@@ -122,6 +122,7 @@ const Sequence = ({
   const loading = sequenceStatus === 'loading' || (sequenceStatus === 'failed' && sequenceMightBeUnit);
   if (loading) {
     if (!sequenceId) {
+      console.log("error is here content after");
       return (<div> {intl.formatMessage(messages.noContent)} </div>);
     }
     return (
@@ -207,13 +208,17 @@ const Sequence = ({
       </div>
     );
   }
-
+ 
+  const SUPPORT_EMAIL = getConfig().INFO_EMAIL;
   // sequence status 'failed' and any other unexpected sequence status.
   return (
     <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
-      {/* {intl.formatMessage(messages.loadFailure)} */}
-      There seems to be a network issue. Please check your connection and try again.
-    </p>
+        {/* {intl.formatMessage(messages.loadFailure)} */}
+        The content has been marked hidden. For further information, please contact the support team at{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-blue-500 underline">
+          {SUPPORT_EMAIL}
+        </a>.
+      </p>
   );
 };
 
