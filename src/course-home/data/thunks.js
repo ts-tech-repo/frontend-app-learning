@@ -62,7 +62,7 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
           targetUserId,
         }));
       }
-    } catch (e) {
+    } catch (error) {
       const { httpErrorStatus } = error && error.customAttributes;
       if (httpErrorStatus === 502) {
         dispatch(fetchTabBadGateway({ courseId }));
@@ -72,6 +72,7 @@ export function fetchTab(courseId, tab, getTabData, targetUserId) {
         dispatch(fetchTabFailure({ courseId }));
         logError(e);
       }
+      
     }
   };
 }
